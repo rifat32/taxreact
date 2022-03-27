@@ -107,6 +107,16 @@ export const adminSideBarData: NavInterface[] = [
 		name: "Laboratory Tests",
 		list: [
 			{
+				name: "Add Lab Report",
+				link: ROUTE_LIST.createReportTemplate,
+				permissions: [],
+			},
+			{
+				name: "List Lab Reports",
+				link: ROUTE_LIST.listReportTemplate,
+				permissions: [],
+			},
+			{
 				name: "Add Sample",
 				link: ROUTE_LIST.createReportTemplate,
 				permissions: [],

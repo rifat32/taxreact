@@ -158,6 +158,16 @@ export const RouteData: RouteInterface[] = [
 	},
 	// Laboratory Tests
 	{
+		path: ROUTE_LIST.createLabReport,
+		exact: false,
+		component: AddReportTemplatePage,
+	},
+	{
+		path: ROUTE_LIST.listLabReport,
+		exact: true,
+		component: ListReportTemplatePage,
+	},
+	{
 		path: ROUTE_LIST.createReportTemplate,
 		exact: false,
 		component: AddReportTemplatePage,
