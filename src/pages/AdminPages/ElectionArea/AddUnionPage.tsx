@@ -1,21 +1,23 @@
 import React from "react";
 import AdminPageComponent from "../../../components/PageComponent/AdminPageComponent";
 
-import AddPatientForm from "../../../components/Forms/PatientForms/AddPatientForm";
 
-const AddPatientPage: React.FC = () => {
+
+import AddUnionForm from "../../../components/Forms/ElectionAreaForms/AddUnionForm";
+
+const AddUnionPage: React.FC = () => {
 	return (
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>Add new patient</h1>
+					<h1>Add new Union</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Home</a>
+								<a href="index.html">Election Area</a>
 							</li>
-							<li className="breadcrumb-item">Patients</li>
-							<li className="breadcrumb-item active">Add Patient</li>
+							<li className="breadcrumb-item">Union</li>
+							<li className="breadcrumb-item active">Add Union</li>
 						</ol>
 					</nav>
 				</div>
@@ -25,9 +27,9 @@ const AddPatientPage: React.FC = () => {
 						<div className="col-12">
 							<div className="card">
 								<div className="card-body">
-									<h5 className="card-title">Add Patient</h5>
+									<h5 className="card-title">Add Union</h5>
 
-									<AddPatientForm />
+									<AddUnionForm />
 								</div>
 							</div>
 						</div>
@@ -38,4 +40,4 @@ const AddPatientPage: React.FC = () => {
 	);
 };
 
-export default AddPatientPage;
+export default AddUnionPage;

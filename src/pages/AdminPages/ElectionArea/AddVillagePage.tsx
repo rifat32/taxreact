@@ -1,22 +1,23 @@
 import React from "react";
+import AddVillageForm from "../../../components/Forms/ElectionAreaForms/AddVillageForm";
+
 import AdminPageComponent from "../../../components/PageComponent/AdminPageComponent";
 
-import AddPatientForm from "../../../components/Forms/PatientForms/AddPatientForm";
-import AddDoctorForm from "../../../components/Forms/DoctorForms/AddDoctorForm";
 
-const AddDoctorPage: React.FC = () => {
+
+const AddVillagePage: React.FC = () => {
 	return (
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>Add new doctor</h1>
+					<h1>Add new Village</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Home</a>
+								<a href="index.html">Election Area</a>
 							</li>
-							<li className="breadcrumb-item">Doctor</li>
-							<li className="breadcrumb-item active">Add Doctor</li>
+							<li className="breadcrumb-item">Village</li>
+							<li className="breadcrumb-item active">Add Village</li>
 						</ol>
 					</nav>
 				</div>
@@ -26,9 +27,8 @@ const AddDoctorPage: React.FC = () => {
 						<div className="col-12">
 							<div className="card">
 								<div className="card-body">
-									<h5 className="card-title">Add Doctor</h5>
-
-									<AddDoctorForm />
+									<h5 className="card-title">Add Village</h5>
+									<AddVillageForm />
 								</div>
 							</div>
 						</div>
@@ -39,4 +39,4 @@ const AddDoctorPage: React.FC = () => {
 	);
 };
 
-export default AddDoctorPage;
+export default AddVillagePage;

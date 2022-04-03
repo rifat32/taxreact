@@ -1,22 +1,22 @@
 import React from "react";
+import AddWardForm from "../../../components/Forms/ElectionAreaForms/AddWardForm";
 import AdminPageComponent from "../../../components/PageComponent/AdminPageComponent";
 
 
-import AddAppoinmentForm from "../../../components/Forms/AppointmentForms/AddAppoinmentForm";
 
-const AddAppointmentPage: React.FC = () => {
+const AddWardPage: React.FC = () => {
 	return (
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>Add new Appointment</h1>
+					<h1>Add new Ward</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Home</a>
+								<a href="index.html">Election Area</a>
 							</li>
-							<li className="breadcrumb-item">Appointment</li>
-							<li className="breadcrumb-item active">Add Appointment</li>
+							<li className="breadcrumb-item">Ward</li>
+							<li className="breadcrumb-item active">Add Ward</li>
 						</ol>
 					</nav>
 				</div>
@@ -26,9 +26,8 @@ const AddAppointmentPage: React.FC = () => {
 						<div className="col-12">
 							<div className="card">
 								<div className="card-body">
-									<h5 className="card-title">Add Appointment</h5>
-
-									<AddAppoinmentForm />
+									<h5 className="card-title">Add Ward</h5>
+									<AddWardForm />
 								</div>
 							</div>
 						</div>
@@ -39,4 +38,4 @@ const AddAppointmentPage: React.FC = () => {
 	);
 };
 
-export default AddAppointmentPage;
+export default AddWardPage;

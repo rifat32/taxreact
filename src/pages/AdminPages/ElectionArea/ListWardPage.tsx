@@ -1,24 +1,26 @@
 import React from "react";
 import AdminPageComponent from "../../../components/PageComponent/AdminPageComponent";
-import ListProductsPageComponent from "../../../components/PageComponent/ProductComponent/ListProductsPageComponent";
+
 import { Link } from "react-router-dom";
 
-import ListPatientsPageComponent from "../../../components/PageComponent/PatientComponent/ListPatientPageComponent";
-import { ROUTE_LIST } from "../../../RoutConstants";
 
-const ListPatientsPage: React.FC = () => {
+import { ROUTE_LIST } from "../../../RoutConstants";
+import ListWardPageComponent from "../../../components/PageComponent/ElectionAreaComponent/ListWardPageComponent";
+
+
+const ListWardPage: React.FC = () => {
 	return (
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>List Patients</h1>
+					<h1>List Wards</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Home</a>
+								<a href="index.html">Election Area</a>
 							</li>
-							<li className="breadcrumb-item">Patients</li>
-							<li className="breadcrumb-item active">List Patients</li>
+							<li className="breadcrumb-item">Wards</li>
+							<li className="breadcrumb-item active">List Wards</li>
 						</ol>
 					</nav>
 				</div>
@@ -29,14 +31,14 @@ const ListPatientsPage: React.FC = () => {
 							<div className="card">
 								<div className="card-body">
 									<div className="d-flex justify-content-between align-items-end">
-										<h5 className="card-title">All Patients</h5>
+										<h5 className="card-title">All Wards</h5>
 										<Link
-											to={ROUTE_LIST.createPatient}
+											to={ROUTE_LIST.createWards}
 											className="btn btn-primary">
 											Add Data
 										</Link>
 									</div>
-									<ListPatientsPageComponent />
+									<ListWardPageComponent />
 								</div>
 							</div>
 						</div>
@@ -47,4 +49,4 @@ const ListPatientsPage: React.FC = () => {
 	);
 };
 
-export default ListPatientsPage;
+export default ListWardPage;

@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BACKENDAPI } from "../../../config";
 import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
-import AddProductForm from "../../Forms/ProductForms/AddProductForm";
+
 import { toast } from "react-toastify";
-import AddPatientForm from "../../Forms/PatientForms/AddPatientForm";
-import AddDoctorForm from "../../Forms/DoctorForms/AddDoctorForm";
+
 import AddReportTemplateForm from "../../Forms/LaboratoryTestForms/AddReportTemplateForm";
 
 const ListReportTemplatePageComponent: React.FC = () => {

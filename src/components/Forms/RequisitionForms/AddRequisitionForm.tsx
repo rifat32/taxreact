@@ -172,7 +172,7 @@ const AddRequisitionForm: React.FC<UpdateFormInterface> = (props) => {
 			})
 			.catch((error) => {
 				console.log(error.response);
-				ErrorMessage(error.response.status, error.response.data.message);
+				ErrorMessage(error.response);
 				if (error.response.status === 422) {
 					toast.error("invalid input");
 					setErrors(error.response.data.errors);
@@ -219,7 +219,7 @@ const AddRequisitionForm: React.FC<UpdateFormInterface> = (props) => {
 			.catch((error) => {
 				console.log(error);
 				console.log(error.response);
-				ErrorMessage(error.response.status, error.response.data.message);
+				ErrorMessage(error.response);
 				if (error.response.status === 422) {
 					toast.error("invalid input");
 					setErrors(error.response.data.errors);

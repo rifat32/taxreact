@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { BACKENDAPI } from "../../../config";
 import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
-import AddProductForm from "../../Forms/ProductForms/AddProductForm";
 import { toast } from "react-toastify";
-import AddPatientForm from "../../Forms/PatientForms/AddPatientForm";
-import AddDoctorForm from "../../Forms/ElectionAreaForms/AddUnionForm";
-import AddAppoinmentForm from "../../Forms/AppointmentForms/AddAppoinmentForm";
+import AddUnionForm from "../../Forms/ElectionAreaForms/AddUnionForm";
 
-const ListAppointmentsPageComponent: React.FC = () => {
+
+
+const ListUnionPageComponent: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [data, setData] = useState<any>([]);
 	const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -17,7 +16,7 @@ const ListAppointmentsPageComponent: React.FC = () => {
 	};
 	const [currentData, setCurrentData] = useState<any>(null);
 
-	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/appointments`);
+	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/unions`);
 	const [nextPageLink, setNextPageLink] = useState("");
 	const [prevPageLink, setPrevPageLink] = useState("");
 
@@ -55,7 +54,7 @@ const ListAppointmentsPageComponent: React.FC = () => {
 	const deleteData = (id: number) => {
 		if (window.confirm("Are you sure  want to delete ?")) {
 			apiClient()
-				.delete(`${BACKENDAPI}/v1.0/appointments/${id}`)
+				.delete(`${BACKENDAPI}/v1.0/unions/${id}`)
 				.then((response: any) => {
 					console.log(response);
 					const tempDatas = data.filter((el: any) => {
@@ -74,16 +73,10 @@ const ListAppointmentsPageComponent: React.FC = () => {
 		<>
 			<table className="table">
 				<thead>
-	
 					<tr>
-
-
-
-						<th scope="col">Doctor</th>
-						<th scope="col">Patient</th>
-						<th scope="col">Remarks</th>
-						<th scope="col">Status</th>
-						<th scope="col">Data</th>
+					
+						<th scope="col">Id</th>
+						<th scope="col">Name</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
@@ -92,12 +85,9 @@ const ListAppointmentsPageComponent: React.FC = () => {
 						{data.map((el: any) => {
 							return (
 								<tr key={el.id}>
-									<td>{el.doctor?.name}</td>
-									<td>{el.patient?.name && el.patient?.name}</td>
-									<td>{el.remarks && el.remarks}</td>
-									<td>{el.status && el.status}</td>
-									<td>{el.date && new Date(el.date).toDateString()}</td>
-						
+									<td>{el.id}</td>
+									<td>{el.name && el.name}</td>
+								
 									<td>
 										<div className="btn-group">
 											<button
@@ -168,8 +158,8 @@ const ListAppointmentsPageComponent: React.FC = () => {
 			<CustomModal
 				isOpen={modalIsOpen}
 				showModal={showModal}
-				type="Update Appointment">
-				<AddAppoinmentForm
+				type="Update Uniion">
+				<AddUnionForm
 					value={currentData}
 					updateDataStates={updateDataStates}
 					showModal={showModal}
@@ -180,4 +170,4 @@ const ListAppointmentsPageComponent: React.FC = () => {
 	);
 };
 
-export default ListAppointmentsPageComponent;
+export default ListUnionPageComponent;

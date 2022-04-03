@@ -3,46 +3,84 @@ import { BACKENDAPI } from "../../../config";
 import { apiClient } from "../../../utils/apiClient";
 import { toast } from "react-toastify";
 import { UpdateFormInterface } from "../../../interfaces/UpdateFormInterfaced";
+import { ErrorMessage } from "../../../utils/ErrorMessage";
 
 interface FormData {
 	name: string;
-	email: string;
-	address: string;
-	phone: string;
+	union_id: string;
+	ward_id: string;
 	
-
 
 }
 
-const AddDoctorForm: React.FC<UpdateFormInterface> = (props) => {
+const AddVillageForm: React.FC<UpdateFormInterface> = (props) => {
 	const [formData, setFormData] = useState<FormData>({
-	name: "",
-	email:'',
-	address: '',
-	phone: '',
-	
+		name: "",
+	union_id:'',
+	ward_id:''
 	});
-	const [sex, setSex] = useState(["male","female","others"]);
-	const [bloodGroup, setBlooodGroup] = useState(["A+","AB","O+"]);
+	
 	const [errors, setErrors] = useState<any>(null);
 
+	const [unions, setUnions] = useState([]);
+	const [wards, setWards] = useState([]);
+	
+
 	useEffect(() => {
-		
+		loadUnions();
 	}, []);
+	// pagination required
+	const loadUnions = () => {
+		apiClient()
+			.get(`${BACKENDAPI}/v1.0/unions/all`)
+			.then((response: any) => {
+				console.log(response);
+				setUnions(response.data.data);
+			})
+			.catch((error) => {
+				console.log(error.response);
+			});
+	};
+	const loadWards = (unionId:string) => {
+		apiClient()
+			.get(`${BACKENDAPI}/v1.0/wards/unions/${unionId}`)
+			.then((response: any) => {
+				console.log("dddd",response.data.data);
+				setWards(response.data.data);
+			})
+			.catch((error) => {
+				console.log(error.response);
+			});
+	};
+
+
+
+
+
+
+const invalidInputHandler = (error:any) => {
+	if (error.status === 422) {
+		setErrors(error.data.errors);
+	}
+}
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
+		
 	};
 	const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
+		if(e.target.name == "union_id"){
+		
+			loadWards(e.target.value );
+				  }
+				  
 	};
 	const resetFunction = () => {
 		setFormData({
-			name: "",
-			email:'',
-			address: '',
-			phone: '',
-		
+	name: "",
+	union_id:'',
+	ward_id:''
 		});
 	};
 	const handleSubmit = (e: React.FormEvent) => {
@@ -56,7 +94,7 @@ const AddDoctorForm: React.FC<UpdateFormInterface> = (props) => {
 	};
 	const createData = () => {
 		apiClient()
-			.post(`${BACKENDAPI}/v1.0/doctors`, { ...formData })
+			.post(`${BACKENDAPI}/v1.0/villages`, { ...formData })
 			.then((response) => {
 				console.log(response);
 				toast.success("Data saved");
@@ -64,16 +102,10 @@ const AddDoctorForm: React.FC<UpdateFormInterface> = (props) => {
 			})
 			.catch((error) => {
 				console.log(error.response);
-				if (
-					error.response.status === 404 ||
-					error.response.status === 400
-				) {
-					toast.error(error.response.data.message);
-				}
-				if (error.response.status === 422) {
-					toast.error("invalid input");
-					setErrors(error.response.data.errors);
-				}
+				
+				
+				invalidInputHandler(error.response)
+				ErrorMessage(error.response)
 			});
 	};
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -85,7 +117,7 @@ const AddDoctorForm: React.FC<UpdateFormInterface> = (props) => {
 	}, []);
 	const updateData = () => {
 		apiClient()
-			.put(`${BACKENDAPI}/v1.0/doctors`, { ...formData })
+			.put(`${BACKENDAPI}/v1.0/wards`, { ...formData })
 			.then((response: any) => {
 				console.log(response);
 				toast.success("Data Updated");
@@ -96,16 +128,8 @@ const AddDoctorForm: React.FC<UpdateFormInterface> = (props) => {
 			.catch((error) => {
 				console.log(error);
 				console.log(error.response);
-				if (
-					error.response.status === 404 ||
-					error.response.status === 400
-				) {
-					toast.error(error.response.data.message);
-				}
-				if (error.response.status === 422) {
-					toast.error("invalid input");
-					setErrors(error.response.data.errors);
-				}
+				ErrorMessage(error.response)
+				invalidInputHandler(error.response)
 			});
 	};
 	// end edit Data section
@@ -113,10 +137,71 @@ const AddDoctorForm: React.FC<UpdateFormInterface> = (props) => {
 
 	return (
 		<form className="row g-3" onSubmit={handleSubmit}>
-		
+		<div className="col-md-12">
+				<label htmlFor="union_id" className="form-label">
+					Union
+				</label>
+				<select
+					className={
+						errors
+							? errors.union_id
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="union_id"
+					name="union_id"
+					onChange={handleSelect}
+					value={formData.union_id}>
+					<option value="">Please Select</option>
+					{unions.map((el: any, index) => (
+						<option
+							key={index}
+							value={el.id}
+							style={{ textTransform: "uppercase" }}>
+							{el.name}
+						</option>
+					))}
+				</select>
+				{errors?.union_id && (
+					<div className="invalid-feedback">{errors.union_id[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			<div className="col-md-12">
+				<label htmlFor="union_id" className="form-label">
+					Ward
+				</label>
+				<select
+					className={
+						errors
+							? errors.ward_id
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="ward_id"
+					name="ward_id"
+					onChange={handleSelect}
+					value={formData.ward_id}>
+					<option value="">Please Select</option>
+					{wards.map((el: any, index) => (
+						<option
+							key={index}
+							value={el.id}
+							style={{ textTransform: "uppercase" }}>
+							{el.ward_no}
+						</option>
+					))}
+				</select>
+				{errors?.ward_id && (
+					<div className="invalid-feedback">{errors.ward_id[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
 			<div className="col-md-4">
 				<label htmlFor="name" className="form-label">
-					 Name
+					Name
 				</label>
 				<input
 					type="text"
@@ -137,75 +222,7 @@ const AddDoctorForm: React.FC<UpdateFormInterface> = (props) => {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
-			<div className="col-md-4">
-				<label htmlFor="email" className="form-label">
-					 Email
-				</label>
-				<input
-					type="email"
-					className={
-						errors
-							? errors.email
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="email"
-					name="email"
-					onChange={handleChange}
-					value={formData.email}
-				/>
-				{errors?.email && (
-					<div className="invalid-feedback">{errors.email[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
-			<div className="col-md-4">
-				<label htmlFor="address" className="form-label">
-				Address
-				</label>
-				<input
-					type="text"
-					className={
-						errors
-							? errors.address
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="address"
-					name="address"
-					onChange={handleChange}
-					value={formData.address}
-				/>
-				{errors?.address && (
-					<div className="invalid-feedback">{errors.address[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
-			<div className="col-md-4">
-				<label htmlFor="phone" className="form-label">
-				Phone
-				</label>
-				<input
-					type="text"
-					className={
-						errors
-							? errors.phone
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="phone"
-					name="phone"
-					onChange={handleChange}
-					value={formData.phone}
-				/>
-				{errors?.phone && (
-					<div className="invalid-feedback">{errors.phone[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
+		
 		
 		
 
@@ -224,4 +241,4 @@ const AddDoctorForm: React.FC<UpdateFormInterface> = (props) => {
 	);
 };
 
-export default AddDoctorForm;
+export default AddVillageForm;

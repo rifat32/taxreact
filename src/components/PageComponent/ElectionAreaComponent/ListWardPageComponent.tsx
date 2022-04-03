@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { BACKENDAPI } from "../../../config";
 import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
-import AddProductForm from "../../Forms/ProductForms/AddProductForm";
 import { toast } from "react-toastify";
-import AddPatientForm from "../../Forms/PatientForms/AddPatientForm";
-import AddDoctorForm from "../../Forms/DoctorForms/AddDoctorForm";
+import AddWardForm from "../../Forms/ElectionAreaForms/AddWardForm";
 
-const ListDoctorsPageComponent: React.FC = () => {
+
+
+const ListWardPageComponent: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [data, setData] = useState<any>([]);
 	const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -16,7 +16,7 @@ const ListDoctorsPageComponent: React.FC = () => {
 	};
 	const [currentData, setCurrentData] = useState<any>(null);
 
-	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/doctors`);
+	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/wards`);
 	const [nextPageLink, setNextPageLink] = useState("");
 	const [prevPageLink, setPrevPageLink] = useState("");
 
@@ -54,7 +54,7 @@ const ListDoctorsPageComponent: React.FC = () => {
 	const deleteData = (id: number) => {
 		if (window.confirm("Are you sure  want to delete ?")) {
 			apiClient()
-				.delete(`${BACKENDAPI}/v1.0/doctors/${id}`)
+				.delete(`${BACKENDAPI}/v1.0/wards/${id}`)
 				.then((response: any) => {
 					console.log(response);
 					const tempDatas = data.filter((el: any) => {
@@ -76,10 +76,8 @@ const ListDoctorsPageComponent: React.FC = () => {
 					<tr>
 					
 						<th scope="col">Id</th>
-						<th scope="col">Name</th>
-						<th scope="col">Phone</th>
-						<th scope="col">Address</th>
-				
+						<th scope="col">Ward Number</th>
+						<th scope="col">Union Number</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
@@ -89,11 +87,9 @@ const ListDoctorsPageComponent: React.FC = () => {
 							return (
 								<tr key={el.id}>
 									<td>{el.id}</td>
-									<td>{el.name && el.name}</td>
-									<td>{el.phone && el.phone}</td>
-									<td>{el.address && el.address}</td>
+									<td>{el.ward_no && el.ward_no}</td>
+									<td>{el.union?.name && el.union.name}</td>
 								
-						
 									<td>
 										<div className="btn-group">
 											<button
@@ -164,8 +160,8 @@ const ListDoctorsPageComponent: React.FC = () => {
 			<CustomModal
 				isOpen={modalIsOpen}
 				showModal={showModal}
-				type="Update Doctor">
-				<AddDoctorForm
+				type="Update Uniion">
+				<AddWardForm
 					value={currentData}
 					updateDataStates={updateDataStates}
 					showModal={showModal}
@@ -176,4 +172,4 @@ const ListDoctorsPageComponent: React.FC = () => {
 	);
 };
 
-export default ListDoctorsPageComponent;
+export default ListWardPageComponent;

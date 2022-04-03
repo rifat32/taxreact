@@ -73,7 +73,7 @@ const ParchasesPageComponent: React.FC = () => {
 				})
 				.catch((error) => {
 					console.log(error.response);
-					ErrorMessage(error.response.status, error.response.data.message);
+					ErrorMessage(error.response.status);
 				});
 		}
 	};

@@ -1,6 +1,12 @@
 import { toast } from "react-toastify";
-export const ErrorMessage = (status: number, message: string) => {
-	if (status === 404 || status === 400 || status === 409 || status === 403) {
-		toast.error(message);
-	}
+export const ErrorMessage = (error:any) => {
+         console.log(error.data);
+		 if(error.message){
+			toast.error(error.message);
+		 }
+		else if(error.data.message){
+			toast.error(error.data.message);
+		 }
+	
+
 };
