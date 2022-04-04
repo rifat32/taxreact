@@ -31,38 +31,76 @@ export const adminSideBarData: NavInterface[] = [
 	{
 		name: "Election Area",
 		list: [
-			{
-				name: "Add Union",
-				link: ROUTE_LIST.createUnions,
-				permissions: [],
-			},
+			// {
+			// 	name: "Add Union",
+			// 	link: ROUTE_LIST.createUnions,
+			// 	permissions: [],
+			// },
 			{
 				name: "List Unions",
 				link: ROUTE_LIST.listUnions,
 				permissions: [],
 			},
-			{
-				name: "Add Ward",
-				link: ROUTE_LIST.createWards,
-				permissions: [],
-			},
+			// {
+			// 	name: "Add Ward",
+			// 	link: ROUTE_LIST.createWards,
+			// 	permissions: [],
+			// },
 			{
 				name: "List Wards",
 				link: ROUTE_LIST.listWards,
 				permissions: [],
 			},
-			{
-				name: "Add Village",
-				link: ROUTE_LIST.createVillage,
-				permissions: [],
-			},
+			// {
+			// 	name: "Add Village",
+			// 	link: ROUTE_LIST.createVillage,
+			// 	permissions: [],
+			// },
 			{
 				name: "List Villages",
 				link: ROUTE_LIST.listVillages,
 				permissions: [],
 			},
-
-		
+			// {
+			// 	name: "Add Post Office",
+			// 	link: ROUTE_LIST.createPostOfice,
+			// 	permissions: [],
+			// },
+			{
+				name: "List Post Office",
+				link: ROUTE_LIST.listPostOffice,
+				permissions: [],
+			},
+				// {
+			// 	name: "Add Ward",
+			// 	link: ROUTE_LIST.createWards,
+			// 	permissions: [],
+			// },
+			{
+				name: "List Sub District",
+				link: ROUTE_LIST.listSubDistrict,
+				permissions: [],
+			},
+			// {
+			// 	name: "Add District",
+			// 	link: ROUTE_LIST.createDistrict,
+			// 	permissions: [],
+			// },
+			{
+				name: "List Districts",
+				link: ROUTE_LIST.listDistrict,
+				permissions: [],
+			},
+			// {
+			// 	name: "Add Payment Method",
+			// 	link: ROUTE_LIST.createPaymentMethod,
+			// 	permissions: [],
+			// },
+			{
+				name: "List Payment Method",
+				link: ROUTE_LIST.listPaymentMethod,
+				permissions: [],
+			},
 		],
 	},
 

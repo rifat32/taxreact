@@ -3,11 +3,12 @@ import { BACKENDAPI } from "../../../config";
 import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
-import AddWardForm from "../../Forms/ElectionAreaForms/AddWardForm";
+
+import AddSubDistrictForm from "../../Forms/ElectionAreaForms/AddSubDistrictForm";
 
 
 
-const ListWardPageComponent: React.FC = () => {
+const ListSubDitrictPageComponent: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [data, setData] = useState<any>([]);
 	const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -16,7 +17,7 @@ const ListWardPageComponent: React.FC = () => {
 	};
 	const [currentData, setCurrentData] = useState<any>(null);
 
-	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/wards`);
+	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/upazilas`);
 	const [nextPageLink, setNextPageLink] = useState("");
 	const [prevPageLink, setPrevPageLink] = useState("");
 
@@ -54,7 +55,7 @@ const ListWardPageComponent: React.FC = () => {
 	const deleteData = (id: number) => {
 		if (window.confirm("Are you sure  want to delete ?")) {
 			apiClient()
-				.delete(`${BACKENDAPI}/v1.0/wards/${id}`)
+				.delete(`${BACKENDAPI}/v1.0/upazilas/${id}`)
 				.then((response: any) => {
 					console.log(response);
 					const tempDatas = data.filter((el: any) => {
@@ -76,7 +77,7 @@ const ListWardPageComponent: React.FC = () => {
 					<tr>
 					
 						<th scope="col">Id</th>
-						<th scope="col">Ward Number</th>
+						<th scope="col">Name</th>
 						<th scope="col">Union</th>
 						<th scope="col">Action</th>
 					</tr>
@@ -87,7 +88,7 @@ const ListWardPageComponent: React.FC = () => {
 							return (
 								<tr key={el.id}>
 									<td>{el.id}</td>
-									<td>{el.ward_no && el.ward_no}</td>
+									<td>{el.name && el.name}</td>
 									<td>{el.union?.name && el.union.name}</td>
 								
 									<td>
@@ -160,8 +161,8 @@ const ListWardPageComponent: React.FC = () => {
 			<CustomModal
 				isOpen={modalIsOpen}
 				showModal={showModal}
-				type="Update Uniion">
-				<AddWardForm
+				type="Update Sub District">
+				<AddSubDistrictForm
 					value={currentData}
 					updateDataStates={updateDataStates}
 					showModal={showModal}
@@ -172,4 +173,4 @@ const ListWardPageComponent: React.FC = () => {
 	);
 };
 
-export default ListWardPageComponent;
+export default ListSubDitrictPageComponent;

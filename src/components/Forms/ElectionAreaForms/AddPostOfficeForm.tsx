@@ -13,9 +13,9 @@ interface FormData {
 
 }
 
-const AddVillageForm: React.FC<UpdateFormInterface> = (props) => {
+const AddPostOfficeForm: React.FC<UpdateFormInterface> = (props) => {
 	const [formData, setFormData] = useState<FormData>({
-		name: "",
+	name: "",
 	union_id:'',
 	ward_id:''
 	});
@@ -94,7 +94,7 @@ const invalidInputHandler = (error:any) => {
 	};
 	const createData = () => {
 		apiClient()
-			.post(`${BACKENDAPI}/v1.0/villages`, { ...formData })
+			.post(`${BACKENDAPI}/v1.0/post-office`, { ...formData })
 			.then((response) => {
 				console.log(response);
 				toast.success("Data saved");
@@ -119,7 +119,7 @@ const invalidInputHandler = (error:any) => {
 	}, []);
 	const updateData = () => {
 		apiClient()
-			.put(`${BACKENDAPI}/v1.0/villages`, { ...formData })
+			.put(`${BACKENDAPI}/v1.0/post-office`, { ...formData })
 			.then((response: any) => {
 				console.log(response);
 				toast.success("Data Updated");
@@ -243,4 +243,4 @@ const invalidInputHandler = (error:any) => {
 	);
 };
 
-export default AddVillageForm;
+export default AddPostOfficeForm;

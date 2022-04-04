@@ -3,11 +3,12 @@ import { BACKENDAPI } from "../../../config";
 import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
-import AddWardForm from "../../Forms/ElectionAreaForms/AddWardForm";
+import AddPaymentMethodForm from "../../Forms/ElectionAreaForms/AddPaymentMethodForm";
 
 
 
-const ListWardPageComponent: React.FC = () => {
+
+const ListPaymentMethodPageComponent: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [data, setData] = useState<any>([]);
 	const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -16,7 +17,7 @@ const ListWardPageComponent: React.FC = () => {
 	};
 	const [currentData, setCurrentData] = useState<any>(null);
 
-	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/wards`);
+	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/methods`);
 	const [nextPageLink, setNextPageLink] = useState("");
 	const [prevPageLink, setPrevPageLink] = useState("");
 
@@ -54,7 +55,7 @@ const ListWardPageComponent: React.FC = () => {
 	const deleteData = (id: number) => {
 		if (window.confirm("Are you sure  want to delete ?")) {
 			apiClient()
-				.delete(`${BACKENDAPI}/v1.0/wards/${id}`)
+				.delete(`${BACKENDAPI}/v1.0/methods/${id}`)
 				.then((response: any) => {
 					console.log(response);
 					const tempDatas = data.filter((el: any) => {
@@ -76,8 +77,7 @@ const ListWardPageComponent: React.FC = () => {
 					<tr>
 					
 						<th scope="col">Id</th>
-						<th scope="col">Ward Number</th>
-						<th scope="col">Union</th>
+						<th scope="col">Name</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
@@ -87,8 +87,7 @@ const ListWardPageComponent: React.FC = () => {
 							return (
 								<tr key={el.id}>
 									<td>{el.id}</td>
-									<td>{el.ward_no && el.ward_no}</td>
-									<td>{el.union?.name && el.union.name}</td>
+									<td>{el.name && el.name}</td>
 								
 									<td>
 										<div className="btn-group">
@@ -160,8 +159,8 @@ const ListWardPageComponent: React.FC = () => {
 			<CustomModal
 				isOpen={modalIsOpen}
 				showModal={showModal}
-				type="Update Uniion">
-				<AddWardForm
+				type="Update Methods">
+				<AddPaymentMethodForm
 					value={currentData}
 					updateDataStates={updateDataStates}
 					showModal={showModal}
@@ -172,4 +171,4 @@ const ListWardPageComponent: React.FC = () => {
 	);
 };
 
-export default ListWardPageComponent;
+export default ListPaymentMethodPageComponent;

@@ -25,6 +25,16 @@ import ListWardPage from "./pages/AdminPages/ElectionArea/ListWardPage";
 import AddUnionPage from "./pages/AdminPages/ElectionArea/AddUnionPage";
 import ListUnionPage from "./pages/AdminPages/ElectionArea/ListUnionPage";
 import AddVillagePage from "./pages/AdminPages/ElectionArea/AddVillagePage";
+import ListVillagePage from "./pages/AdminPages/ElectionArea/ListVillagePage";
+import AddPostOfficePage from "./pages/AdminPages/ElectionArea/AddPostOfficePage";
+import ListPostOfficePage from "./pages/AdminPages/ElectionArea/ListPostOfficePage";
+import AddSubDistrictPage from "./pages/AdminPages/ElectionArea/AddSubDistrictPage";
+import ListSubDristictPage from "./pages/AdminPages/ElectionArea/ListSubDistrictPage";
+import ListDistrictPage from "./pages/AdminPages/ElectionArea/ListDistrictPage";
+
+import AddDistrictPage from "./pages/AdminPages/ElectionArea/AddDistrictPage";
+import AddPaymentMethodPage from "./pages/AdminPages/ElectionArea/AddPaymentMethodPage";
+import ListPaymentMethodPage from "./pages/AdminPages/ElectionArea/ListPaymentMethodPage";
 
 
 export const RouteData: RouteInterface[] = [
@@ -119,9 +129,54 @@ export const RouteData: RouteInterface[] = [
 	{
 		path: ROUTE_LIST.listVillages,
 		exact: true,
-		component: ListWardPage,
+		component: ListVillagePage,
 	},
+
+		// post office 
+		{
+			path: ROUTE_LIST.createPostOfice,
+			exact: false,
+			component: AddPostOfficePage,
+		},
+		{
+			path: ROUTE_LIST.listPostOffice,
+			exact: true,
+			component: ListPostOfficePage,
+		},
 	
+	// Sub Distruct 
+	{
+		path: ROUTE_LIST.createSubDistrict,
+		exact: false,
+		component: AddSubDistrictPage,
+	},
+	{
+		path: ROUTE_LIST.listSubDistrict,
+		exact: true,
+		component: ListSubDristictPage,
+	},
+	// District 
+	{
+		path: ROUTE_LIST.createDistrict,
+		exact: false,
+		component: AddDistrictPage,
+	},
+	{
+		path: ROUTE_LIST.listDistrict,
+		exact: true,
+		component: ListDistrictPage,
+	},
+		// Payment Method 
+		{
+			path: ROUTE_LIST.createPaymentMethod,
+			exact: false,
+			component: AddPaymentMethodPage,
+		},
+		{
+			path: ROUTE_LIST.listPaymentMethod,
+			exact: true,
+			component: ListPaymentMethodPage,
+		},
 	
 ];
 //
