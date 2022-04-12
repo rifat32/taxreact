@@ -6,16 +6,15 @@ import { UpdateFormInterface } from "../../../interfaces/UpdateFormInterfaced";
 import { ErrorMessage } from "../../../utils/ErrorMessage";
 
 interface FormData {
-	name: string;
+	ward_no: string;
 	union_id: string;
 	ward_id: string;
-	
 
 }
 
-const AddVillageForm: React.FC<UpdateFormInterface> = (props) => {
+const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 	const [formData, setFormData] = useState<FormData>({
-		name: "",
+		ward_no: "",
 	union_id:'',
 	ward_id:''
 	});
@@ -29,6 +28,7 @@ const AddVillageForm: React.FC<UpdateFormInterface> = (props) => {
 	useEffect(() => {
 		loadUnions();
 	}, []);
+
 	// pagination required
 	const loadUnions = () => {
 		apiClient()
@@ -77,7 +77,7 @@ const invalidInputHandler = (error:any) => {
 	};
 	const resetFunction = () => {
 		setFormData({
-	name: "",
+			ward_no: "",
 	union_id:'',
 	ward_id:''
 		});
@@ -93,7 +93,7 @@ const invalidInputHandler = (error:any) => {
 	};
 	const createData = () => {
 		apiClient()
-			.post(`${BACKENDAPI}/v1.0/villages`, { ...formData })
+			.post(`${BACKENDAPI}/v1.0/wards`, { ...formData })
 			.then((response) => {
 				console.log(response);
 				toast.success("Data saved");
@@ -113,12 +113,11 @@ const invalidInputHandler = (error:any) => {
 		if (props.type == "update") {
 			setFormData(props.value);
 			loadWards(props.value.union_id)
-			
 		}
 	}, []);
 	const updateData = () => {
 		apiClient()
-			.put(`${BACKENDAPI}/v1.0/villages`, { ...formData })
+			.put(`${BACKENDAPI}/v1.0/wards`, { ...formData })
 			.then((response: any) => {
 				console.log(response);
 				toast.success("Data Updated");
@@ -169,6 +168,30 @@ const invalidInputHandler = (error:any) => {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
+			<div className="col-md-4">
+				<label htmlFor="ward_no" className="form-label">
+					Ward  No
+				</label>
+				<input
+					type="text"
+					className={
+						errors
+							? errors.ward_no
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="ward_no"
+					name="ward_no"
+					onChange={handleChange}
+					value={formData.ward_no}
+				/>
+				{errors?.ward_no && (
+					<div className="invalid-feedback">{errors.ward_no[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+		
 			<div className="col-md-12">
 				<label htmlFor="union_id" className="form-label">
 					Ward
@@ -200,31 +223,6 @@ const invalidInputHandler = (error:any) => {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
-			<div className="col-md-4">
-				<label htmlFor="name" className="form-label">
-					Name
-				</label>
-				<input
-					type="text"
-					className={
-						errors
-							? errors.name
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="name"
-					name="name"
-					onChange={handleChange}
-					value={formData.name}
-				/>
-				{errors?.name && (
-					<div className="invalid-feedback">{errors.name[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
-		
-		
 		
 
 			<div className="text-center">
@@ -242,4 +240,4 @@ const invalidInputHandler = (error:any) => {
 	);
 };
 
-export default AddVillageForm;
+export default AddCitizenForm;

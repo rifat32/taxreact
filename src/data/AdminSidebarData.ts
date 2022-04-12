@@ -27,7 +27,27 @@ export const adminSideBarData: NavInterface[] = [
 			},
 		],
 	},
-	
+	{
+		name: "Citizen",
+		list: [
+			// {
+			// 	name: "Add Union",
+			// 	link: ROUTE_LIST.createUnions,
+			// 	permissions: [],
+			// },
+			{
+				name: "Citizen",
+				link: ROUTE_LIST.listCitizen,
+				permissions: [],
+			},
+			// {
+			// 	name: "Add Ward",
+			// 	link: ROUTE_LIST.createWards,
+			// 	permissions: [],
+			// },
+		
+		],
+	},
 	{
 		name: "Election Area",
 		list: [

@@ -35,6 +35,8 @@ import ListDistrictPage from "./pages/AdminPages/ElectionArea/ListDistrictPage";
 import AddDistrictPage from "./pages/AdminPages/ElectionArea/AddDistrictPage";
 import AddPaymentMethodPage from "./pages/AdminPages/ElectionArea/AddPaymentMethodPage";
 import ListPaymentMethodPage from "./pages/AdminPages/ElectionArea/ListPaymentMethodPage";
+import AddCitizenPage from "./pages/AdminPages/Citizen/AddCitizenPage";
+import ListCitizenPage from "./pages/AdminPages/Citizen/ListCitizenPage";
 
 
 export const RouteData: RouteInterface[] = [
@@ -178,5 +180,17 @@ export const RouteData: RouteInterface[] = [
 			component: ListPaymentMethodPage,
 		},
 	
+
+			// Citizen 
+	{
+		path: ROUTE_LIST.createCitizen,
+		exact: false,
+		component: AddCitizenPage,
+	},
+	{
+		path: ROUTE_LIST.listCitizen,
+		exact: true,
+		component: ListCitizenPage,
+	},
 ];
 //
