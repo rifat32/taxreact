@@ -5,11 +5,11 @@ import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
 import AddWardForm from "../../Forms/ElectionAreaForms/AddWardForm";
 import AddCitizenForm from "../../Forms/CitizenForm/AddCitizenForm";
-import AddChairmanForm from "../../Forms/ChairmanForm/AddChairmanForm";
+import AddNonHoldingCitizenForm from "../../Forms/CitizenForm/AddNonHoldingCitizenForm";
 
 
 
-const ListCitizenPageComponent: React.FC = () => {
+const ListNonHoldingCitizenPageComponent: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [data, setData] = useState<any>([]);
 	const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -18,7 +18,7 @@ const ListCitizenPageComponent: React.FC = () => {
 	};
 	const [currentData, setCurrentData] = useState<any>(null);
 
-	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/chairmans`);
+	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/nonholding-citizens`);
 	const [nextPageLink, setNextPageLink] = useState("");
 	const [prevPageLink, setPrevPageLink] = useState("");
 
@@ -57,7 +57,7 @@ const ListCitizenPageComponent: React.FC = () => {
 	const deleteData = (id: number) => {
 		if (window.confirm("Are you sure  want to delete ?")) {
 			apiClient()
-				.delete(`${BACKENDAPI}/v1.0/chairmans/${id}`)
+				.delete(`${BACKENDAPI}/v1.0/nonholding-citizens/${id}`)
 				.then((response: any) => {
 					console.log(response);
 					const tempDatas = data.filter((el: any) => {
@@ -80,11 +80,17 @@ const ListCitizenPageComponent: React.FC = () => {
 					
 						<th scope="col">Id</th>
 						<th scope="col">Union</th>
-						<th scope="col">Name</th>
+						<th scope="col">Ward</th>
+						<th scope="col">Village</th>
+						<th scope="col">Post Office</th>
+						<th scope="col">Sub District</th>
+						<th scope="col">District</th>
+						<th scope="col">License No</th>
+						<th scope="col">Phone</th>
 						<th scope="col">Nid</th>
-						<th scope="col">Mobile</th>
-						<th scope="col">Address</th>
-						<th scope="col">Action</th>
+						<th scope="col">Holding No</th>
+						<th scope="col">Institute Name</th>
+						
 						
 					</tr>
 				</thead>
@@ -95,13 +101,16 @@ const ListCitizenPageComponent: React.FC = () => {
 								<tr key={el.id}>
 									<td>{el.id}</td>
 									<td>{el.union?.name && el.union.name}</td>
-									<td>{el.name && el.name}</td>
-									<td>{el.nid && el.nid}</td>
-
+									<td>{el.ward?.ward_no && el.ward.ward_no}</td>
+									<td>{el.village?.name && el.village.name}</td>
+									<td>{el.post_office?.name && el.post_office.name}</td>
+									<td>{el.upazila?.name && el.upazila.name}</td>
+									<td>{el.district?.name && el.district.name}</td>
+									<td>{el.license_no && el.license_no}</td>
 									<td>{el.mobile && el.mobile}</td>
-									<td>{el.address && el.address}</td>
-									
-									
+									<td>{el.nid && el.nid}</td>
+									<td>{el.holding_no && el.holding_no}</td>
+									<td>{el.institute_name && el.institute_name}</td>
 									
 									<td>
 										<div className="btn-group">
@@ -173,8 +182,8 @@ const ListCitizenPageComponent: React.FC = () => {
 			<CustomModal
 				isOpen={modalIsOpen}
 				showModal={showModal}
-				type="Update Chairman">
-				<AddChairmanForm
+				type="Update Non Holding Citizen">
+				<AddNonHoldingCitizenForm
 					value={currentData}
 					updateDataStates={updateDataStates}
 					showModal={showModal}
@@ -185,4 +194,4 @@ const ListCitizenPageComponent: React.FC = () => {
 	);
 };
 
-export default ListCitizenPageComponent;
+export default ListNonHoldingCitizenPageComponent;

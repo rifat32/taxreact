@@ -37,7 +37,11 @@ import AddPaymentMethodPage from "./pages/AdminPages/ElectionArea/AddPaymentMeth
 import ListPaymentMethodPage from "./pages/AdminPages/ElectionArea/ListPaymentMethodPage";
 import AddCitizenPage from "./pages/AdminPages/Citizen/AddCitizenPage";
 import ListCitizenPage from "./pages/AdminPages/Citizen/ListCitizenPage";
+import AddNonHoldingCitizenPage from "./pages/AdminPages/Citizen/AddNonHoldingCitizenPage";
+import ListNonHoldingCitizenPage from "./pages/AdminPages/Citizen/ListNonHoldingCitizenPage";
 
+import AddChairmanPage from "./pages/AdminPages/ChairmanProfile/AddChairmanPage";
+import ListChairmanPage from "./pages/AdminPages/ChairmanProfile/ListChairmanPage";
 
 export const RouteData: RouteInterface[] = [
 	{
@@ -191,6 +195,28 @@ export const RouteData: RouteInterface[] = [
 		path: ROUTE_LIST.listCitizen,
 		exact: true,
 		component: ListCitizenPage,
+	},
+			// NonHolding Citizen 
+			{
+				path: ROUTE_LIST.createNonHoldingCitizen,
+				exact: false,
+				component: AddNonHoldingCitizenPage,
+			},
+			{
+				path: ROUTE_LIST.listNonHoldingCitizen,
+				exact: true,
+				component: ListNonHoldingCitizenPage,
+			},
+			// chairman 
+	{
+		path: ROUTE_LIST.createChairman,
+		exact: false,
+		component: AddChairmanPage,
+	},
+	{
+		path: ROUTE_LIST.listChairman,
+		exact: true,
+		component: ListChairmanPage,
 	},
 ];
 //
