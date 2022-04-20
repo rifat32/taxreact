@@ -21,5 +21,8 @@ export enum ROUTE_LIST {
     listNonHoldingCitizen="/admin/non-holding-citizens",
     createChairman="/admin/chairmans/create",
     listChairman="/admin/chairmans",
+    createCase="/admin/cases/create",
+    listCase="/admin/cases",
+    listSolvedCase="/admin/solved-cases",
   }
 

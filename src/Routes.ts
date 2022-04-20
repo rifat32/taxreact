@@ -42,6 +42,8 @@ import ListNonHoldingCitizenPage from "./pages/AdminPages/Citizen/ListNonHolding
 
 import AddChairmanPage from "./pages/AdminPages/ChairmanProfile/AddChairmanPage";
 import ListChairmanPage from "./pages/AdminPages/ChairmanProfile/ListChairmanPage";
+import ListCasePage from "./pages/AdminPages/VillageCourt/ListCasePage";
+import AddCasePage from "./pages/AdminPages/VillageCourt/AddCasePage";
 
 export const RouteData: RouteInterface[] = [
 	{
@@ -182,6 +184,7 @@ export const RouteData: RouteInterface[] = [
 			path: ROUTE_LIST.listPaymentMethod,
 			exact: true,
 			component: ListPaymentMethodPage,
+			
 		},
 	
 
@@ -217,6 +220,27 @@ export const RouteData: RouteInterface[] = [
 		path: ROUTE_LIST.listChairman,
 		exact: true,
 		component: ListChairmanPage,
+	},
+	{
+		path: ROUTE_LIST.createCase,
+		exact: false,
+		component: AddCasePage,
+	},
+	{
+		path: ROUTE_LIST.listCase,
+		exact: true,
+		component: ListCasePage,
+		props:{
+			case:"unsolved"
+		}
+	},
+	{
+		path: ROUTE_LIST.listSolvedCase,
+		exact: true,
+		component: ListCasePage,
+		props:{
+			case:"solved"
+		}
 	},
 ];
 //

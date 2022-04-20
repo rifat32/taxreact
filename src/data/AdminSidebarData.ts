@@ -71,6 +71,28 @@ export const adminSideBarData: NavInterface[] = [
 		],
 	},
 	{
+		name: "Village Court",
+		list: [
+			// {
+			// 	name: "Add Union",
+			// 	link: ROUTE_LIST.createUnions,
+			// 	permissions: [],
+			// },
+			{
+				name: "Unsolved Cases",
+				link: ROUTE_LIST.listCase,
+				permissions: [],
+			},
+			{
+				name: "Solved Cases",
+				link: ROUTE_LIST.listSolvedCase,
+				permissions: [],
+			},
+			
+		
+		],
+	},
+	{
 		name: "Election Area",
 		list: [
 			// {
