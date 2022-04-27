@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 import { ROUTE_LIST } from "../../../RoutConstants";
 import ListWardPageComponent from "../../../components/PageComponent/ElectionAreaComponent/ListWardPageComponent";
+import { wardsLang } from "../../../language/bn/wards";
 
 
 const ListWardPage: React.FC = () => {
@@ -13,14 +14,14 @@ const ListWardPage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>List Wards</h1>
+					<h1>{wardsLang.heading}</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Election Area</a>
+								<a href="index.html">{wardsLang.dir_1}</a>
 							</li>
-							<li className="breadcrumb-item">Wards</li>
-							<li className="breadcrumb-item active">List Wards</li>
+							<li className="breadcrumb-item">{wardsLang.dir_2}</li>
+							<li className="breadcrumb-item active">{wardsLang.dir_3}</li>
 						</ol>
 					</nav>
 				</div>
@@ -31,7 +32,7 @@ const ListWardPage: React.FC = () => {
 							<div className="card">
 								<div className="card-body">
 									<div className="d-flex justify-content-between align-items-end">
-										<h5 className="card-title">All Wards</h5>
+										<h5 className="card-title">{wardsLang.title}</h5>
 										<Link
 											to={ROUTE_LIST.createWards}
 											className="btn btn-primary">

@@ -88,7 +88,7 @@ const invalidInputHandler = (error:any) => {
 		
 			<div className="col-md-4">
 				<label htmlFor="name" className="form-label">
-					 Name
+					 নাম
 				</label>
 				<input
 					type="text"

@@ -4,6 +4,7 @@ import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
 import AddPaymentMethodForm from "../../Forms/ElectionAreaForms/AddPaymentMethodForm";
+import { PaymentMethodsLang } from "../../../language/bn/paymentMethod";
 
 
 
@@ -76,8 +77,8 @@ const ListPaymentMethodPageComponent: React.FC = () => {
 				<thead>
 					<tr>
 					
-						<th scope="col">Id</th>
-						<th scope="col">Name</th>
+						<th scope="col">{PaymentMethodsLang.id}</th>
+						<th scope="col">{PaymentMethodsLang.name}</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>

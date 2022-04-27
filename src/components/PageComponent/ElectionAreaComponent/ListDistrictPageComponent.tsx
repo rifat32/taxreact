@@ -4,6 +4,7 @@ import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
 import AddDistrictForm from "../../Forms/ElectionAreaForms/AddDistrictForm";
+import { districtsLang } from "../../../language/bn/district";
 
 
 
@@ -75,8 +76,8 @@ const ListDistrictPageComponent: React.FC = () => {
 				<thead>
 					<tr>
 					
-						<th scope="col">Id</th>
-						<th scope="col">Name</th>
+						<th scope="col">{districtsLang.id}</th>
+						<th scope="col">{districtsLang.name}</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>

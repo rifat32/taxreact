@@ -11,14 +11,14 @@ const AddPostOfficePage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>Add new Post Office</h1>
+					<h1>পোস্ট অফিস </h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Election Area</a>
+								<a href="index.html"> হোম </a>
 							</li>
-							<li className="breadcrumb-item">Post Office</li>
-							<li className="breadcrumb-item active">Add Post Office</li>
+							<li className="breadcrumb-item"> নির্বাচনী এরিয়া </li>
+							<li className="breadcrumb-item active"> পোস্ট অফিস</li>
 						</ol>
 					</nav>
 				</div>
@@ -28,7 +28,7 @@ const AddPostOfficePage: React.FC = () => {
 						<div className="col-12">
 							<div className="card">
 								<div className="card-body">
-									<h5 className="card-title">Add Post Office</h5>
+									<h5 className="card-title"> পোস্ট অফিস তৈরি করুন</h5>
 									<AddPostOfficeForm />
 								</div>
 							</div>

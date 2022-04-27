@@ -14,14 +14,14 @@ const ListCitizenPage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>List Wards</h1>
+					<h1> নাগরিক</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Citizen</a>
+								<a href="index.html">হোম</a>
 							</li>
-							<li className="breadcrumb-item">Citizen</li>
-							<li className="breadcrumb-item active">List Citizen</li>
+							<li className="breadcrumb-item"> নাগরিক</li>
+							<li className="breadcrumb-item active"> নাগরিক</li>
 						</ol>
 					</nav>
 				</div>
@@ -32,7 +32,7 @@ const ListCitizenPage: React.FC = () => {
 							<div className="card">
 								<div className="card-body">
 									<div className="d-flex justify-content-between align-items-end">
-										<h5 className="card-title">All Citizen</h5>
+										<h5 className="card-title"> নাগরিক সমূহ</h5>
 										<Link
 											to={ROUTE_LIST.createCitizen}
 											className="btn btn-primary">

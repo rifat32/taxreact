@@ -7,14 +7,14 @@ const CreateUserPage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>Add User</h1>
+					<h1>ইউজার </h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Home</a>
+								<a href="index.html"> হোম</a>
 							</li>
-							<li className="breadcrumb-item">Requisition</li>
-							<li className="breadcrumb-item active">Users Create</li>
+							<li className="breadcrumb-item"> ইউজার ম্যানেজমেন্ট</li>
+							<li className="breadcrumb-item active"> ইউজার</li>
 						</ol>
 					</nav>
 				</div>
@@ -24,7 +24,7 @@ const CreateUserPage: React.FC = () => {
 						<div className="col-12">
 							<div className="card">
 								<div className="card-body">
-									<h5 className="card-title">Add User</h5>
+									<h5 className="card-title"> ইউজার তৈরি করুন </h5>
 									<AddUserForm />
 								</div>
 							</div>

@@ -4,6 +4,7 @@ import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
 import AddUnionForm from "../../Forms/ElectionAreaForms/AddUnionForm";
+import { unionLang } from "../../../language/bn/union";
 
 
 
@@ -75,8 +76,8 @@ const ListUnionPageComponent: React.FC = () => {
 				<thead>
 					<tr>
 					
-						<th scope="col">Id</th>
-						<th scope="col">Name</th>
+						<th scope="col">{unionLang.id}</th>
+						<th scope="col">{unionLang.name}</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>

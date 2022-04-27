@@ -5,6 +5,7 @@ import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
 
 import AddSubDistrictForm from "../../Forms/ElectionAreaForms/AddSubDistrictForm";
+import { subDistrictsLang } from "../../../language/bn/subDistrict";
 
 
 
@@ -76,9 +77,9 @@ const ListSubDitrictPageComponent: React.FC = () => {
 				<thead>
 					<tr>
 					
-						<th scope="col">Id</th>
-						<th scope="col">Name</th>
-						<th scope="col">Union</th>
+						<th scope="col">{subDistrictsLang.id}</th>
+						<th scope="col">{subDistrictsLang.name}</th>
+						<th scope="col">{subDistrictsLang.union}</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>

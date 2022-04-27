@@ -18,7 +18,7 @@ const ListCitizenPageComponent: React.FC = () => {
 	};
 	const [currentData, setCurrentData] = useState<any>(null);
 
-	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/chairmans`);
+	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/citizens`);
 	const [nextPageLink, setNextPageLink] = useState("");
 	const [prevPageLink, setPrevPageLink] = useState("");
 
@@ -78,12 +78,15 @@ const ListCitizenPageComponent: React.FC = () => {
 				<thead>
 					<tr>
 					
-						<th scope="col">Id</th>
-						<th scope="col">Union</th>
-						<th scope="col">Name</th>
-						<th scope="col">Nid</th>
-						<th scope="col">Mobile</th>
-						<th scope="col">Address</th>
+						<th scope="col"> আইডি</th>
+						<th scope="col"> ইউনিয়ন</th>
+						<th scope="col"> ওয়ার্ড</th>
+						<th scope="col"> গ্রাম</th>
+						<th scope="col"> পোস্ট অফিস</th>
+						<th scope="col"> উপজেলা</th>
+						<th scope="col"> জেলা</th>
+						<th scope="col"> ফোন</th>
+						<th scope="col"> এনআইডি</th>
 						<th scope="col">Action</th>
 						
 					</tr>
@@ -95,12 +98,14 @@ const ListCitizenPageComponent: React.FC = () => {
 								<tr key={el.id}>
 									<td>{el.id}</td>
 									<td>{el.union?.name && el.union.name}</td>
-									<td>{el.name && el.name}</td>
-									<td>{el.nid && el.nid}</td>
-
+									<td>{el.ward?.ward_no && el.ward.ward_no}</td>
+									<td>{el.village?.name && el.village.name}</td>
+									<td>{el.post_office?.name && el.post_office.name}</td>
+									<td>{el.upazila?.name && el.upazila.name}</td>
+									<td>{el.district?.name && el.district.name}</td>
+								
 									<td>{el.mobile && el.mobile}</td>
-									<td>{el.address && el.address}</td>
-									
+									<td>{el.nid && el.nid}</td>
 									
 									
 									<td>
@@ -173,8 +178,8 @@ const ListCitizenPageComponent: React.FC = () => {
 			<CustomModal
 				isOpen={modalIsOpen}
 				showModal={showModal}
-				type="Update Chairman">
-				<AddChairmanForm
+				type="Update Citizen">
+				<AddCitizenForm
 					value={currentData}
 					updateDataStates={updateDataStates}
 					showModal={showModal}

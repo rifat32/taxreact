@@ -138,7 +138,7 @@ const AddRoleForm: React.FC = () => {
 		<form className="row g-3">
 			<div className="col-12">
 				<label htmlFor="name" className="form-label">
-					Name
+					নাম
 				</label>
 				<input
 					type="text"

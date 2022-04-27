@@ -264,7 +264,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 		<form className="row g-3" onSubmit={handleSubmit}>
 			<div className="col-md-4">
 				<label htmlFor="union_id" className="form-label">
-					Union
+					ইউনিয়ন
 				</label>
 				<select
 					className={
@@ -297,7 +297,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 
 			<div className="col-md-4">
 				<label htmlFor="union_id" className="form-label">
-					Ward
+					ওয়ার্ড
 				</label>
 				<select
 					className={
@@ -328,7 +328,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="union_id" className="form-label">
-					Village
+					গ্রাম
 				</label>
 				<select
 					className={
@@ -359,7 +359,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="post_office_id" className="form-label">
-					Post Office
+				পোস্ট অফিস
 				</label>
 				<select
 					className={
@@ -390,7 +390,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="post_office_id" className="form-label">
-					Sub District
+					উপজেলা
 				</label>
 				<select
 					className={
@@ -421,7 +421,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="district_id" className="form-label">
-					District
+				জেলা
 				</label>
 				<select
 					className={
@@ -453,7 +453,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 
 			<div className="col-md-4">
 				<label htmlFor="institute_name" className="form-label">
-				Institute Name
+				 প্রতিষ্ঠানের  নাম
 				</label>
 				<input
 					type="text"
@@ -477,7 +477,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 
 			<div className="col-md-4">
 				<label htmlFor="business_address" className="form-label">
-				Business Address
+				বেবসার থিকানা
 				</label>
 				<input
 					type="text"
@@ -501,7 +501,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 		
 			<div className="col-md-4">
 				<label htmlFor="license_no" className="form-label">
-				License No
+				লাইসেন্স নাম্বার
 				</label>
 				<input
 					type="text"
@@ -524,7 +524,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="license_user_name" className="form-label">
-				License User Name
+				লাইসেন্স ইউজার নাম
 				</label>
 				<input
 					type="text"
@@ -547,7 +547,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="guardian" className="form-label">
-				Guardian
+				অভিভাবক
 				</label>
 				<input
 					type="text"
@@ -570,7 +570,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="mother_name" className="form-label">
-				Mother Name
+				মায়ের নাম
 				</label>
 				<input
 					type="text"
@@ -593,7 +593,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="nid" className="form-label">
-				Nid
+				এনআইডি
 				</label>
 				<input
 					type="text"
@@ -616,7 +616,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="mobile" className="form-label">
-				Mobile
+				মোবাইল
 				</label>
 				<input
 					type="text"
@@ -639,7 +639,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="parmanent_address" className="form-label">
-				Parmanent Address
+				স্থায়ী থিকানা
 				</label>
 				<input
 					type="text"
@@ -662,7 +662,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="occupation_type" className="form-label">
-				Occupation Type
+				পেশার ধরন
 				</label>
 				<input
 					type="text"
@@ -687,7 +687,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 
 			<div className="col-md-4">
 				<label htmlFor="gov_advantage" className="form-label">
-					Current Year
+				অর্থ বছর
 				</label>
 				<select
 					className={
@@ -719,7 +719,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 				<div className="col-md-4">
 				<label htmlFor="female" className="form-label">
-					Tax Amount
+					কর
 				</label>
 				<input
 					type="text"
@@ -742,7 +742,7 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="female" className="form-label">
-					Previous Due
+					পূর্বের বকেয়া
 				</label>
 				<input
 					type="text"

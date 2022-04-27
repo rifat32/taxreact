@@ -4,6 +4,8 @@ import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
 import AddWardForm from "../../Forms/ElectionAreaForms/AddWardForm";
+import AddCitizenForm from "../../Forms/CitizenForm/AddCitizenForm";
+import AddChairmanForm from "../../Forms/ChairmanForm/AddChairmanForm";
 
 
 
@@ -16,7 +18,7 @@ const ListChairmanPageComponent: React.FC = () => {
 	};
 	const [currentData, setCurrentData] = useState<any>(null);
 
-	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/wards`);
+	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/chairmans`);
 	const [nextPageLink, setNextPageLink] = useState("");
 	const [prevPageLink, setPrevPageLink] = useState("");
 
@@ -32,7 +34,8 @@ const ListChairmanPageComponent: React.FC = () => {
 
 	useEffect(() => {
 		loadData(link);
-	}, []);
+	},
+	 []);
 
 	// pagination required
 	const loadData = (link: string) => {
@@ -54,7 +57,7 @@ const ListChairmanPageComponent: React.FC = () => {
 	const deleteData = (id: number) => {
 		if (window.confirm("Are you sure  want to delete ?")) {
 			apiClient()
-				.delete(`${BACKENDAPI}/v1.0/wards/${id}`)
+				.delete(`${BACKENDAPI}/v1.0/chairmans/${id}`)
 				.then((response: any) => {
 					console.log(response);
 					const tempDatas = data.filter((el: any) => {
@@ -75,10 +78,14 @@ const ListChairmanPageComponent: React.FC = () => {
 				<thead>
 					<tr>
 					
-						<th scope="col">Id</th>
-						<th scope="col">Ward Number</th>
-						<th scope="col">Union</th>
+						<th scope="col"> আইডি</th>
+						<th scope="col"> ইউনিয়ন</th>
+						<th scope="col"> নাম</th>
+						<th scope="col"> এনআইডি</th>
+						<th scope="col"> মোবাইল</th>
+						<th scope="col"> থিকানা</th>
 						<th scope="col">Action</th>
+						
 					</tr>
 				</thead>
 				{data.length ? (
@@ -87,9 +94,15 @@ const ListChairmanPageComponent: React.FC = () => {
 							return (
 								<tr key={el.id}>
 									<td>{el.id}</td>
-									<td>{el.ward_no && el.ward_no}</td>
 									<td>{el.union?.name && el.union.name}</td>
-								
+									<td>{el.name && el.name}</td>
+									<td>{el.nid && el.nid}</td>
+
+									<td>{el.mobile && el.mobile}</td>
+									<td>{el.address && el.address}</td>
+									
+									
+									
 									<td>
 										<div className="btn-group">
 											<button
@@ -103,7 +116,7 @@ const ListChairmanPageComponent: React.FC = () => {
 												<li>
 													<a
 														onClick={() => {
-															setCurrentData(el);
+															setCurrentData({...el});
 															showModal(true);
 														}}
 														className="dropdown-item"
@@ -160,8 +173,8 @@ const ListChairmanPageComponent: React.FC = () => {
 			<CustomModal
 				isOpen={modalIsOpen}
 				showModal={showModal}
-				type="Update Uniion">
-				<AddWardForm
+				type="Update Chairman">
+				<AddChairmanForm
 					value={currentData}
 					updateDataStates={updateDataStates}
 					showModal={showModal}

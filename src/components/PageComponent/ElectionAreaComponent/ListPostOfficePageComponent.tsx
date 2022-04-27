@@ -5,6 +5,7 @@ import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
 import AddVillageForm from "../../Forms/ElectionAreaForms/AddVillageForm";
 import AddPostOfficeForm from "../../Forms/ElectionAreaForms/AddPostOfficeForm";
+import { postOfficesLang } from "../../../language/bn/postOffice";
 
 
 
@@ -76,10 +77,10 @@ const ListPostOfficePageComponent: React.FC = () => {
 				<thead>
 					<tr>
 					
-						<th scope="col">Id</th>
-						<th scope="col">Post Office  Name</th>
-						<th scope="col">Ward Number</th>
-						<th scope="col">Union</th>
+						<th scope="col">{postOfficesLang.id}</th>
+						<th scope="col">{postOfficesLang.post_office_name}</th>
+						<th scope="col">{postOfficesLang.warn_no}</th>
+						<th scope="col">{postOfficesLang.union}</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>

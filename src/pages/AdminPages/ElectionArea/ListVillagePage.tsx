@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 
 
 import { ROUTE_LIST } from "../../../RoutConstants";
-import ListWardPageComponent from "../../../components/PageComponent/ElectionAreaComponent/ListWardPageComponent";
+
 import ListVillagePageComponent from "../../../components/PageComponent/ElectionAreaComponent/ListVillagePageComponent";
+import { villagesLang } from "../../../language/bn/village";
 
 
 const ListVillagePage: React.FC = () => {
@@ -14,14 +15,14 @@ const ListVillagePage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>List Village</h1>
+					<h1>{villagesLang.heading}</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Election Area</a>
+								<a href="index.html"> {villagesLang.dir_1} </a>
 							</li>
-							<li className="breadcrumb-item">Village</li>
-							<li className="breadcrumb-item active">List Village</li>
+							<li className="breadcrumb-item">  {villagesLang.dir_2} </li>
+							<li className="breadcrumb-item active"> {villagesLang.dir_3} </li>
 						</ol>
 					</nav>
 				</div>
@@ -32,7 +33,7 @@ const ListVillagePage: React.FC = () => {
 							<div className="card">
 								<div className="card-body">
 									<div className="d-flex justify-content-between align-items-end">
-										<h5 className="card-title">All Village</h5>
+										<h5 className="card-title">{villagesLang.title}</h5>
 										<Link
 											to={ROUTE_LIST.createVillage}
 											className="btn btn-primary">

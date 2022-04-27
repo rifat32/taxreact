@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { ROUTE_LIST } from "../../../RoutConstants";
 import ListWardPageComponent from "../../../components/PageComponent/ElectionAreaComponent/ListWardPageComponent";
 import ListSubDitrictPageComponent from "../../../components/PageComponent/ElectionAreaComponent/ListSubDistrictPageComponent";
+import { subDistrictsLang } from "../../../language/bn/subDistrict";
 
 
 const ListSubDristictPage: React.FC = () => {
@@ -14,14 +15,14 @@ const ListSubDristictPage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>List Sub District</h1>
+					<h1>{subDistrictsLang.heading}</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Election Area</a>
+								<a href="index.html">{subDistrictsLang.dir_1}</a>
 							</li>
-							<li className="breadcrumb-item">Sub District</li>
-							<li className="breadcrumb-item active">List Sub District</li>
+							<li className="breadcrumb-item">{subDistrictsLang.dir_2}</li>
+							<li className="breadcrumb-item active">{subDistrictsLang.dir_3}</li>
 						</ol>
 					</nav>
 				</div>
@@ -32,7 +33,7 @@ const ListSubDristictPage: React.FC = () => {
 							<div className="card">
 								<div className="card-body">
 									<div className="d-flex justify-content-between align-items-end">
-										<h5 className="card-title">All Sub District</h5>
+										<h5 className="card-title">{subDistrictsLang.title}</h5>
 										<Link
 											to={ROUTE_LIST.createSubDistrict}
 											className="btn btn-primary">

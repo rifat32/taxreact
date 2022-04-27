@@ -10,14 +10,14 @@ const AddUnionPage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>Add new Union</h1>
+					<h1> ইউনিয়ন</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Election Area</a>
+								<a href="index.html"> হোম</a>
 							</li>
-							<li className="breadcrumb-item">Union</li>
-							<li className="breadcrumb-item active">Add Union</li>
+							<li className="breadcrumb-item"> নির্বাচনী এরিয়া</li>
+							<li className="breadcrumb-item active"> ইউনিয়ন তৈরি করুন</li>
 						</ol>
 					</nav>
 				</div>
@@ -27,7 +27,7 @@ const AddUnionPage: React.FC = () => {
 						<div className="col-12">
 							<div className="card">
 								<div className="card-body">
-									<h5 className="card-title">Add Union</h5>
+									<h5 className="card-title"> ইউনিয়ন তৈরি করুন</h5>
 
 									<AddUnionForm />
 								</div>

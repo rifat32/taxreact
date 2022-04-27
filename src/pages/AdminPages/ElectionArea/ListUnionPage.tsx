@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 
 
 import { ROUTE_LIST } from "../../../RoutConstants";
-import ListUnionPageComponent from "../../../components/PageComponent/ElectionAreaComponent/ListWardPageComponent";
+
+import { unionLang } from "../../../language/bn/union";
+import ListUnionPageComponent from "../../../components/PageComponent/ElectionAreaComponent/ListUnionPageComponent";
 
 
 const ListUnionPage: React.FC = () => {
@@ -13,14 +15,14 @@ const ListUnionPage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>List Unions</h1>
+					<h1>{unionLang.heading}</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Election Area</a>
+								<a href="index.html">{unionLang.dir_1}</a>
 							</li>
-							<li className="breadcrumb-item">Unions</li>
-							<li className="breadcrumb-item active">List Unions</li>
+							<li className="breadcrumb-item">{unionLang.dir_2}</li>
+							<li className="breadcrumb-item active">{unionLang.dir_3}</li>
 						</ol>
 					</nav>
 				</div>
@@ -31,7 +33,7 @@ const ListUnionPage: React.FC = () => {
 							<div className="card">
 								<div className="card-body">
 									<div className="d-flex justify-content-between align-items-end">
-										<h5 className="card-title">All Unions</h5>
+										<h5 className="card-title">{unionLang.title}</h5>
 										<Link
 											to={ROUTE_LIST.createUnions}
 											className="btn btn-primary">

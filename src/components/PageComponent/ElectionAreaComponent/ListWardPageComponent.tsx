@@ -4,6 +4,7 @@ import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
 import AddWardForm from "../../Forms/ElectionAreaForms/AddWardForm";
+import { wardsLang } from "../../../language/bn/wards";
 
 
 
@@ -75,9 +76,9 @@ const ListWardPageComponent: React.FC = () => {
 				<thead>
 					<tr>
 					
-						<th scope="col">Id</th>
-						<th scope="col">Ward Number</th>
-						<th scope="col">Union</th>
+						<th scope="col">{wardsLang.id}</th>
+						<th scope="col">{wardsLang.warn_no}</th>
+						<th scope="col">{wardsLang.union}</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>

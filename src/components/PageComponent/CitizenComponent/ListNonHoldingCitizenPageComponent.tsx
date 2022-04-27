@@ -78,18 +78,18 @@ const ListNonHoldingCitizenPageComponent: React.FC = () => {
 				<thead>
 					<tr>
 					
-						<th scope="col">Id</th>
-						<th scope="col">Union</th>
-						<th scope="col">Ward</th>
-						<th scope="col">Village</th>
-						<th scope="col">Post Office</th>
-						<th scope="col">Sub District</th>
-						<th scope="col">District</th>
-						<th scope="col">License No</th>
-						<th scope="col">Phone</th>
-						<th scope="col">Nid</th>
-						<th scope="col">Holding No</th>
-						<th scope="col">Institute Name</th>
+						<th scope="col"> আইডি </th>
+						<th scope="col"> ইউনিয়ন</th>
+						<th scope="col"> ওয়ার্ড</th>
+						<th scope="col"> গ্রাম</th>
+						<th scope="col"> পোস্ট অফিস</th>
+						<th scope="col"> উপজেলা</th>
+						<th scope="col"> জেলা </th>
+						<th scope="col"> লাইসেন্স নাম্বার</th>
+						<th scope="col"> ফোন </th>
+						<th scope="col"> এনআইডি</th>
+						<th scope="col"> হোল্ডিং নাম্বার</th>
+						<th scope="col"> প্রতিষ্ঠানের  নাম</th>
 						
 						
 					</tr>

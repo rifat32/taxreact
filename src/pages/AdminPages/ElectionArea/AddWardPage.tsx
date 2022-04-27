@@ -9,14 +9,14 @@ const AddWardPage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>Add new Ward</h1>
+					<h1> ওয়ার্ড</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Election Area</a>
+								<a href="index.html"> হোম</a>
 							</li>
-							<li className="breadcrumb-item">Ward</li>
-							<li className="breadcrumb-item active">Add Ward</li>
+							<li className="breadcrumb-item"> নির্বাচনী এরিয়া</li>
+							<li className="breadcrumb-item active">ওয়ার্ড </li>
 						</ol>
 					</nav>
 				</div>
@@ -26,7 +26,7 @@ const AddWardPage: React.FC = () => {
 						<div className="col-12">
 							<div className="card">
 								<div className="card-body">
-									<h5 className="card-title">Add Ward</h5>
+									<h5 className="card-title">ওয়ার্ড তৈরি করুন</h5>
 									<AddWardForm />
 								</div>
 							</div>

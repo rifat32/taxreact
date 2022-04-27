@@ -8,14 +8,14 @@ const RolesPage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>Users</h1>
+					<h1> রোল</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Home</a>
+								<a href="index.html"> হোম</a>
 							</li>
-							<li className="breadcrumb-item">UserManagement</li>
-							<li className="breadcrumb-item active">Roles</li>
+							<li className="breadcrumb-item"> ইউজার ম্যানেজমেন্ট  </li>
+							<li className="breadcrumb-item active"> রোল</li>
 						</ol>
 					</nav>
 				</div>
@@ -26,7 +26,7 @@ const RolesPage: React.FC = () => {
 							<div className="card">
 								<div className="card-body">
 									<div className="d-flex justify-content-between align-items-end">
-										<h5 className="card-title">All Roles</h5>
+										<h5 className="card-title"> রোল সমূহ</h5>
 										<Link
 											to="/admin/roles/create"
 											className="btn btn-primary">

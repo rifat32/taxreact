@@ -26,8 +26,8 @@ const RolesPageComponent: React.FC = () => {
 			<table className="table">
 				<thead>
 					<tr>
-						<th scope="col">Id</th>
-						<th scope="col">Name</th>
+						<th scope="col"> আইডি</th>
+						<th scope="col"> নাম</th>
 					</tr>
 				</thead>
 				{roles.length ? (

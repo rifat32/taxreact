@@ -10,14 +10,14 @@ const AddSubDistrictPage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>Add new Sub District</h1>
+					<h1> উপজেলা </h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Election Area</a>
+								<a href="index.html"> হোম</a>
 							</li>
-							<li className="breadcrumb-item">Sub District</li>
-							<li className="breadcrumb-item active">Add Sub District</li>
+							<li className="breadcrumb-item"> নির্বাচনী এরিয়া </li>
+							<li className="breadcrumb-item active"> উপজেলা</li>
 						</ol>
 					</nav>
 				</div>
@@ -27,7 +27,7 @@ const AddSubDistrictPage: React.FC = () => {
 						<div className="col-12">
 							<div className="card">
 								<div className="card-body">
-									<h5 className="card-title">Add Sub District</h5>
+									<h5 className="card-title"> উপজেলা তৈরি করুন</h5>
 									<AddSubDistrictForm />
 								</div>
 							</div>

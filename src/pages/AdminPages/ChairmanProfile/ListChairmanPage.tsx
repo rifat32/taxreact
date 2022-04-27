@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { ROUTE_LIST } from "../../../RoutConstants";
 import ListWardPageComponent from "../../../components/PageComponent/ElectionAreaComponent/ListWardPageComponent";
 import ListCitizenPageComponent from "../../../components/PageComponent/CitizenComponent/ListCitizenPageComponent";
+import ListChairmanPageComponent from "../../../components/PageComponent/ChairmanComponent/ListChairmanPageComponent";
 
 
 const ListChairmanPage: React.FC = () => {
@@ -14,14 +15,14 @@ const ListChairmanPage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>Chairman Profile</h1>
+					<h1> চেয়ারম্যান প্রোফাইল</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Chairman Profile</a>
+								<a href="index.html"> হোম</a>
 							</li>
-							<li className="breadcrumb-item">Chairman Profile</li>
-							<li className="breadcrumb-item active">List Chairman Profile</li>
+							<li className="breadcrumb-item"> চেয়ারম্যান প্রোফাইল</li>
+							<li className="breadcrumb-item active"> চেয়ারম্যান প্রোফাইল </li>
 						</ol>
 					</nav>
 				</div>
@@ -32,14 +33,14 @@ const ListChairmanPage: React.FC = () => {
 							<div className="card">
 								<div className="card-body">
 									<div className="d-flex justify-content-between align-items-end">
-										<h5 className="card-title">All Chairman Profile</h5>
+										<h5 className="card-title"> চেয়ারম্যান প্রোফাইল সমূহ</h5>
 										<Link
 											to={ROUTE_LIST.createChairman}
 											className="btn btn-primary">
 											Add Data
 										</Link>
 									</div>
-									<ListCitizenPageComponent />
+									<ListChairmanPageComponent />
 								</div>
 							</div>
 						</div>

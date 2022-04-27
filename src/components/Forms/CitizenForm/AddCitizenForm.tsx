@@ -112,106 +112,123 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 	const religions = [
 		{
 			id: 1,
-			name: "Islam"
+			value: "islam",
+			name:"ইসলাম"
 		},
 		{
 			id: 2,
-			name: "Christian"
+			value: "christian",
+			name:"খ্রিস্টান"
 		},
 		{
 			id: 1,
-			name: "Hindu"
+			value: "hindu",
+			name:"হিন্দু"
 		},
 	]
 
 	const sexs = [
 		{
 			id: 1,
-			name: "Male"
+			name: "পুরুষ",
+			value: "male",
 		},
 		{
 			id: 2,
-			name: "Female"
+			name:"মহিলা",
+			value: "female"
 		}
 	];
 	const boolean = [
 		{
 			id: 1,
-			name: "Yes",
-			value: true
+			name: "হাঁ",
+			value: "true"
 
 		},
 		{
 			id: 2,
-			name: "No",
-			value: true
+			name: "না",
+			value: "false"
 		}
 	];
 	const latrinType = [
 		{
 			id: 1,
-			name: "old",
+			value: "old",
+			name:"কাঁচা"
 
 
 		},
 		{
 			id: 2,
-			name: "New"
+			value: "new",
+			name:"পাকা"
 		},
 		{
 			id: 3,
-			name: "No"
+			value: "no",
+			name:"না"
 		}
 	];
 	const house = [
 		{
 			id: 1,
-			name: "Self",
+			value: "self",
+			name:"নিজে বসবাস "
 
 
 		},
 		{
 			id: 2,
-			name: "Rent"
+			value: "rent", 
+			name:"ভাড়া"
 		}
 	];
 	const organizations = [
 		{
 			id: 1,
-			name: "Residential",
-
+			value: "residential",
+			name:"আবাসিক"
+  
 
 		},
 		{
 			id: 2,
-			name: "Business"
+			value: "business",
+			name:"বেবসা"
 		}
 		,
 		{
 			id: 3,
-			name: "Both"
+			value: "both",
+			name:"উভয়"
 		}
 	];
 	const govAdvantages = [
 		{
 			id: 1,
-			name: "Old",
+			name: "বৃদ্ধ",
+			value: "old",
 
 
 		},
 		{
 			id: 2,
-			name: "Widow"
+			name: "বিধবা",
+			value: "widow"
 		}
 		,
 		{
 			id: 3,
-			name: "Autistic"
+			name: "প্রতিবিন্ধি",
+			value: "autistic"
 		}
 		,
 		{
 			id: 3,
-			name: "Other"
+			name: "অন্য",
+			value: "other"
 		}
 	];
 	const years = [];
@@ -469,7 +486,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 		<form className="row g-3" onSubmit={handleSubmit}>
 			<div className="col-md-4">
 				<label htmlFor="union_id" className="form-label">
-					Union
+					ইউনিয়ন
 				</label>
 				<select
 					className={
@@ -502,7 +519,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 
 			<div className="col-md-4">
 				<label htmlFor="union_id" className="form-label">
-					Ward
+					ওয়ার্ড
 				</label>
 				<select
 					className={
@@ -533,7 +550,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="union_id" className="form-label">
-					Village
+					গ্রাম
 				</label>
 				<select
 					className={
@@ -564,7 +581,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="post_office_id" className="form-label">
-					Post Office
+					 পোস্ট অফিস
 				</label>
 				<select
 					className={
@@ -595,7 +612,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="post_office_id" className="form-label">
-					Sub District
+					উপজেলা
 				</label>
 				<select
 					className={
@@ -626,7 +643,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="district_id" className="form-label">
-					District
+					জেলা
 				</label>
 				<select
 					className={
@@ -658,7 +675,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 
 			<div className="col-md-4">
 				<label htmlFor="thana_head_name" className="form-label">
-					Thana Head Name
+					থানা প্রধানের নাম
 				</label>
 				<input
 					type="text"
@@ -681,7 +698,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="mobile" className="form-label">
-					Thana Head Mobile
+					থানা প্রধানেদ মোবাইল
 				</label>
 				<input
 					type="text"
@@ -704,7 +721,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="guardian" className="form-label">
-					Guardian
+					অভিভাবক
 				</label>
 				<input
 					type="text"
@@ -727,7 +744,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="c_mother_name" className="form-label">
-					Mother Name
+				মায়ের নাম
 				</label>
 				<input
 					type="text"
@@ -750,7 +767,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="nid_no" className="form-label">
-					Nid
+					এনআইডি
 				</label>
 				<input
 					type="text"
@@ -773,7 +790,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="thana_head_religion" className="form-label">
-					Thana Head Religion
+					ধর্ম 
 				</label>
 				<select
 					className={
@@ -788,10 +805,10 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 					onChange={handleSelect}
 					value={formData.thana_head_religion}>
 					<option value="">Please Select</option>
-					{religions.map((el: any, index) => (
+					{religions.map((el, index) => (
 						<option
 							key={index}
-							value={el.name}
+							value={el.value}
 							style={{ textTransform: "uppercase" }}>
 							{el.name}
 						</option>
@@ -804,7 +821,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="thana_head_religion" className="form-label">
-					Sex
+					লিঙ্গ
 				</label>
 				<select
 					className={
@@ -819,10 +836,10 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 					onChange={handleSelect}
 					value={formData.thana_head_gender}>
 					<option value="">Please Select</option>
-					{sexs.map((el: any, index) => (
+					{sexs.map((el, index) => (
 						<option
 							key={index}
-							value={el.name}
+							value={el.value}
 							style={{ textTransform: "uppercase" }}>
 							{el.name}
 						</option>
@@ -835,7 +852,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="thana_head_occupation" className="form-label">
-					Occupation
+					পেশা
 				</label>
 				<input
 					type="text"
@@ -858,7 +875,8 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="is_tubewell" className="form-label">
-					Have Tubewell?
+					টিউবওয়েল আছে?
+					
 				</label>
 				<select
 					className={
@@ -873,10 +891,10 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 					onChange={handleSelect}
 					value={formData.is_tubewell}>
 					<option value="">Please Select</option>
-					{boolean.map((el: any, index) => (
+					{boolean.map((el, index) => (
 						<option
 							key={index}
-							value={el.name}
+							value={el.value}
 							style={{ textTransform: "uppercase" }}>
 							{el.name}
 						</option>
@@ -889,7 +907,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="latrin_type" className="form-label">
-					Latrin Type
+					পায়খানার ধরন
 				</label>
 				<select
 					className={
@@ -904,10 +922,10 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 					onChange={handleSelect}
 					value={formData.latrin_type}>
 					<option value="">Please Select</option>
-					{latrinType.map((el: any, index) => (
+					{latrinType.map((el, index) => (
 						<option
 							key={index}
-							value={el.name}
+							value={el.value}
 							style={{ textTransform: "uppercase" }}>
 							{el.name}
 						</option>
@@ -920,7 +938,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="type_of_living" className="form-label">
-					House
+					বাড়ি
 				</label>
 				<select
 					className={
@@ -935,10 +953,10 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 					onChange={handleSelect}
 					value={formData.type_of_living}>
 					<option value="">Please Select</option>
-					{house.map((el: any, index) => (
+					{house.map((el, index) => (
 						<option
 							key={index}
-							value={el.name}
+							value={el.value}
 							style={{ textTransform: "uppercase" }}>
 							{el.name}
 						</option>
@@ -951,7 +969,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="type_of_organization" className="form-label">
-					type of organization
+				 প্রতিষ্ঠানের  ধরিন
 				</label>
 				<select
 					className={
@@ -966,10 +984,10 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 					onChange={handleSelect}
 					value={formData.type_of_organization}>
 					<option value="">Please Select</option>
-					{organizations.map((el: any, index) => (
+					{organizations.map((el, index) => (
 						<option
 							key={index}
-							value={el.name}
+							value={el.value}
 							style={{ textTransform: "uppercase" }}>
 							{el.name}
 						</option>
@@ -982,7 +1000,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="gov_advantage" className="form-label">
-					Government Advantage Holder
+					সরকারি সুবিধাভোগী 
 				</label>
 				<select
 					className={
@@ -1014,7 +1032,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 
 			<div className="col-md-4">
 				<label htmlFor="male" className="form-label">
-					Number of 	Male
+					পুরুষের সংখ্যা 
 				</label>
 				<input
 					type="number"
@@ -1037,7 +1055,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="female" className="form-label">
-					Number of 	Female
+					মহিলার সংখ্যা 
 				</label>
 				<input
 					type="number"
@@ -1061,7 +1079,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 
 			<div className="col-md-4">
 				<label htmlFor="gov_advantage" className="form-label">
-					Current Year
+					অর্থ বছর
 				</label>
 				<select
 					className={
@@ -1093,7 +1111,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="female" className="form-label">
-					Anuam Price
+					বাৎসরিক মূল্য
 				</label>
 				<input
 					type="text"
@@ -1116,7 +1134,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="female" className="form-label">
-					Tax Amount
+					কর
 				</label>
 				<input
 					type="text"
@@ -1139,7 +1157,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="female" className="form-label">
-					Previous Due
+					পূর্বের বকেয়া 
 				</label>
 				<input
 					type="text"
@@ -1162,15 +1180,15 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 
 			<br />
-			<h3 className="text-center">Members</h3>
+			<h3 className="text-center">সদস্য  গণ </h3>
 			{
 					formData.members.map( (el,index) => {
 						return (
 					<div className="row">
 				<br/>
 				<div className="col-md-4">
-				<label htmlFor="female" className="form-label">
-					Name
+				<label htmlFor="name" className="form-label">
+					নাম
 				</label>
 				<input
 					type="text"
@@ -1201,7 +1219,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			
 			<div className="col-md-4">
 				<label htmlFor="father_name" className="form-label">
-					Father Name
+					পিতার নাম
 				</label>
 				<input
 					type="text"
@@ -1232,7 +1250,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			
 			<div className="col-md-4">
 				<label htmlFor="mother_name" className="form-label">
-					Mother Name
+					মাতার নাম
 				</label>
 				<input
 					type="text"
@@ -1262,7 +1280,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="nid" className="form-label">
-					Nid
+				এনআইডি
 				</label>
 				<input
 					type="text"

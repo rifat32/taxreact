@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 import { ROUTE_LIST } from "../../../RoutConstants";
 import ListPostOfficePageComponent from "../../../components/PageComponent/ElectionAreaComponent/ListPostOfficePageComponent";
+import { postOfficesLang } from "../../../language/bn/postOffice";
 
 
 
@@ -14,14 +15,14 @@ const ListPostOfficePage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>List Post Office</h1>
+					<h1>{postOfficesLang.heading}</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Election Area</a>
+								<a href="index.html">{postOfficesLang.dir_1}</a>
 							</li>
-							<li className="breadcrumb-item">Post Office</li>
-							<li className="breadcrumb-item active">List Post Office</li>
+							<li className="breadcrumb-item">{postOfficesLang.dir_2}</li>
+							<li className="breadcrumb-item active">{postOfficesLang.dir_3}</li>
 						</ol>
 					</nav>
 				</div>
@@ -32,7 +33,7 @@ const ListPostOfficePage: React.FC = () => {
 							<div className="card">
 								<div className="card-body">
 									<div className="d-flex justify-content-between align-items-end">
-										<h5 className="card-title">All Post Office</h5>
+										<h5 className="card-title">{postOfficesLang.title}</h5>
 										<Link
 											to={ROUTE_LIST.createPostOfice}
 											className="btn btn-primary">

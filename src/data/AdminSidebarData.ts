@@ -1,34 +1,35 @@
 import { NavInterface } from "../interfaces/AdminSideBarInterface";
+import { sidebarLang } from "../language/bn/sidebar";
 import { ROUTE_LIST } from "../RoutConstants";
 export const adminSideBarData: NavInterface[] = [
 	
 	{
-		name: "User Management",
+		name: sidebarLang.user_management,
 		list: [
 			{
-				name: "Create User",
+				name: sidebarLang.create_user,
 				link: "/admin/users/create",
 				permissions: [],
 			},
 			{
-				name: "Users",
+				name: sidebarLang.list_user,
 				link: "/admin/users",
 				permissions: [],
 			},
 			{
-				name: "Create Role",
+				name: sidebarLang.create_role,
 				link: "/admin/roles/create",
 				permissions: [],
 			},
 			{
-				name: "Roles",
+				name: sidebarLang.list_roles,
 				link: "/admin/roles",
 				permissions: [],
 			},
 		],
 	},
 	{
-		name: "Citizen",
+		name: sidebarLang.citizen,
 		list: [
 			// {
 			// 	name: "Add Union",
@@ -36,12 +37,12 @@ export const adminSideBarData: NavInterface[] = [
 			// 	permissions: [],
 			// },
 			{
-				name: "Citizen",
+				name: sidebarLang.citizen,
 				link: ROUTE_LIST.listCitizen,
 				permissions: [],
 			},
 			{
-				name: "Non Holding Citizen",
+				name: sidebarLang.non_holding_citizen,
 				link: ROUTE_LIST.listNonHoldingCitizen,
 				permissions: [],
 			},
@@ -54,7 +55,7 @@ export const adminSideBarData: NavInterface[] = [
 		],
 	},
 	{
-		name: "Chairman Profile",
+		name: sidebarLang.chair_man_profile,
 		list: [
 			// {
 			// 	name: "Add Union",
@@ -62,7 +63,7 @@ export const adminSideBarData: NavInterface[] = [
 			// 	permissions: [],
 			// },
 			{
-				name: "Chairman",
+				name: sidebarLang.chairman,
 				link: ROUTE_LIST.listChairman,
 				permissions: [],
 			},
@@ -71,7 +72,7 @@ export const adminSideBarData: NavInterface[] = [
 		],
 	},
 	{
-		name: "Village Court",
+		name: sidebarLang.village_court,
 		list: [
 			// {
 			// 	name: "Add Union",
@@ -79,12 +80,12 @@ export const adminSideBarData: NavInterface[] = [
 			// 	permissions: [],
 			// },
 			{
-				name: "Unsolved Cases",
+				name: sidebarLang.unsolved_cases,
 				link: ROUTE_LIST.listCase,
 				permissions: [],
 			},
 			{
-				name: "Solved Cases",
+				name: sidebarLang.solved_cases,
 				link: ROUTE_LIST.listSolvedCase,
 				permissions: [],
 			},
@@ -93,7 +94,7 @@ export const adminSideBarData: NavInterface[] = [
 		],
 	},
 	{
-		name: "Election Area",
+		name: sidebarLang.taxes,
 		list: [
 			// {
 			// 	name: "Add Union",
@@ -101,7 +102,29 @@ export const adminSideBarData: NavInterface[] = [
 			// 	permissions: [],
 			// },
 			{
-				name: "List Unions",
+				name: sidebarLang.holding_tax,
+				link: ROUTE_LIST.listHoldingTax,
+				permissions: [],
+			},
+			{
+				name: sidebarLang.non_holding_tax,
+				link: ROUTE_LIST.listNonHoldingTax,
+				permissions: [],
+			},
+			
+		
+		],
+	},
+	{
+		name: sidebarLang.election_area,
+		list: [
+			// {
+			// 	name: "Add Union",
+			// 	link: ROUTE_LIST.createUnions,
+			// 	permissions: [],
+			// },
+			{
+				name: sidebarLang.unions,
 				link: ROUTE_LIST.listUnions,
 				permissions: [],
 			},
@@ -111,7 +134,7 @@ export const adminSideBarData: NavInterface[] = [
 			// 	permissions: [],
 			// },
 			{
-				name: "List Wards",
+				name: sidebarLang.wards,
 				link: ROUTE_LIST.listWards,
 				permissions: [],
 			},
@@ -121,7 +144,7 @@ export const adminSideBarData: NavInterface[] = [
 			// 	permissions: [],
 			// },
 			{
-				name: "List Villages",
+				name: sidebarLang.villages,
 				link: ROUTE_LIST.listVillages,
 				permissions: [],
 			},
@@ -131,7 +154,7 @@ export const adminSideBarData: NavInterface[] = [
 			// 	permissions: [],
 			// },
 			{
-				name: "List Post Office",
+				name: sidebarLang.post_offices,
 				link: ROUTE_LIST.listPostOffice,
 				permissions: [],
 			},
@@ -141,7 +164,7 @@ export const adminSideBarData: NavInterface[] = [
 			// 	permissions: [],
 			// },
 			{
-				name: "List Sub District",
+				name: sidebarLang.sub_districts,
 				link: ROUTE_LIST.listSubDistrict,
 				permissions: [],
 			},
@@ -151,7 +174,7 @@ export const adminSideBarData: NavInterface[] = [
 			// 	permissions: [],
 			// },
 			{
-				name: "List Districts",
+				name: sidebarLang.districts,
 				link: ROUTE_LIST.listDistrict,
 				permissions: [],
 			},
@@ -161,7 +184,7 @@ export const adminSideBarData: NavInterface[] = [
 			// 	permissions: [],
 			// },
 			{
-				name: "List Payment Method",
+				name: sidebarLang.payment_methods,
 				link: ROUTE_LIST.listPaymentMethod,
 				permissions: [],
 			},

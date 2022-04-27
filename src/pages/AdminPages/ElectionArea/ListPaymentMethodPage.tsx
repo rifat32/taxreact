@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { ROUTE_LIST } from "../../../RoutConstants";
 
 import ListPaymentMethodPageComponent from "../../../components/PageComponent/ElectionAreaComponent/ListPaymentMethodPageComponent";
+import { PaymentMethodsLang } from "../../../language/bn/paymentMethod";
 
 
 const ListPaymentMethodPage: React.FC = () => {
@@ -14,14 +15,14 @@ const ListPaymentMethodPage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>List Payment Method</h1>
+					<h1>{PaymentMethodsLang.heading}</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Election Area</a>
+								<a href="index.html">{PaymentMethodsLang.dir_1}</a>
 							</li>
-							<li className="breadcrumb-item">Payment Method</li>
-							<li className="breadcrumb-item active">List Payment Method</li>
+							<li className="breadcrumb-item">{PaymentMethodsLang.dir_2}</li>
+							<li className="breadcrumb-item active">{PaymentMethodsLang.dir_3}</li>
 						</ol>
 					</nav>
 				</div>
@@ -32,7 +33,7 @@ const ListPaymentMethodPage: React.FC = () => {
 							<div className="card">
 								<div className="card-body">
 									<div className="d-flex justify-content-between align-items-end">
-										<h5 className="card-title">All Payment Method</h5>
+										<h5 className="card-title">{PaymentMethodsLang.title}</h5>
 										<Link
 											to={ROUTE_LIST.createPaymentMethod}
 											className="btn btn-primary">

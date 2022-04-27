@@ -139,7 +139,7 @@ const invalidInputHandler = (error:any) => {
 		<form className="row g-3" onSubmit={handleSubmit}>
 		<div className="col-md-12">
 				<label htmlFor="union_id" className="form-label">
-					Union
+					ইউনিয়ন
 				</label>
 				<select
 					className={
@@ -169,8 +169,7 @@ const invalidInputHandler = (error:any) => {
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
 			<div className="col-md-4">
-				<label htmlFor="name" className="form-label">
-				Name
+				<label htmlFor="name" className="form-label"> নাম
 				</label>
 				<input
 					type="text"
@@ -194,7 +193,7 @@ const invalidInputHandler = (error:any) => {
 		
 			<div className="col-md-4">
 				<label htmlFor="nid" className="form-label">
-				Nid
+				এনআইডি 
 				</label>
 				<input
 					type="text"
@@ -217,7 +216,7 @@ const invalidInputHandler = (error:any) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="mobile" className="form-label">
-				Mobile
+				মোবাইল 
 				</label>
 				<input
 					type="text"
@@ -240,7 +239,7 @@ const invalidInputHandler = (error:any) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="address" className="form-label">
-				Address
+				থিকানা 
 				</label>
 				<input
 					type="text"

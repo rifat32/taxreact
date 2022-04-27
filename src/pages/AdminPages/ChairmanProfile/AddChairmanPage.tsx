@@ -10,14 +10,14 @@ const AddChairmanPage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>Add Chairman Profile</h1>
+					<h1> চেয়ারম্যান প্রোফাইল</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Chairman Profile</a>
+								<a href="index.html"> হোম</a>
 							</li>
-							<li className="breadcrumb-item">Chairman Profile</li>
-							<li className="breadcrumb-item active">Add Chairman Profile</li>
+							<li className="breadcrumb-item"> চেয়ারম্যান প্রোফাইল</li>
+							<li className="breadcrumb-item active"> চেয়ারম্যান</li>
 						</ol>
 					</nav>
 				</div>
@@ -27,7 +27,7 @@ const AddChairmanPage: React.FC = () => {
 						<div className="col-12">
 							<div className="card">
 								<div className="card-body">
-									<h5 className="card-title">Add Chairman Profile</h5>
+									<h5 className="card-title"> চেয়ারম্যান প্রোফাইল তৈরি করুন </h5>
 									<AddChairmanForm />
 								</div>
 							</div>

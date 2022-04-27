@@ -89,7 +89,7 @@ const AddUserForm: React.FC = () => {
 		<form className="row g-3">
 			<div className="col-12">
 				<label htmlFor="yourPassword" className="form-label">
-					Name
+					নাম
 				</label>
 				<input
 					type="text"
@@ -113,7 +113,7 @@ const AddUserForm: React.FC = () => {
 			</div>
 			<div className="col-12">
 				<label htmlFor="yourEmail" className="form-label">
-					Email
+					 ইমেইল
 				</label>
 				<div className="input-group has-validation">
 					<span className="input-group-text" id="inputGroupPrepend">
@@ -142,7 +142,7 @@ const AddUserForm: React.FC = () => {
 			</div>
 			<div className="col-12">
 				<label htmlFor="password" className="form-label">
-					Password
+					পাসওয়ার্ড 
 				</label>
 				<input
 					type="password"
@@ -166,7 +166,7 @@ const AddUserForm: React.FC = () => {
 			</div>
 			<div className="col-12">
 				<label htmlFor="password_confirmation" className="form-label">
-					Confirm Password
+					পাসওয়ার্ড নিশ্চিত করুন 
 				</label>
 				<input
 					type="password"
@@ -193,7 +193,7 @@ const AddUserForm: React.FC = () => {
 			</div>
 			<div className="col-md-12">
 				<label htmlFor="role_name" className="form-label">
-					Roles
+					রোল
 				</label>
 				<select
 					className={

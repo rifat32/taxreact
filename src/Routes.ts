@@ -44,6 +44,10 @@ import AddChairmanPage from "./pages/AdminPages/ChairmanProfile/AddChairmanPage"
 import ListChairmanPage from "./pages/AdminPages/ChairmanProfile/ListChairmanPage";
 import ListCasePage from "./pages/AdminPages/VillageCourt/ListCasePage";
 import AddCasePage from "./pages/AdminPages/VillageCourt/AddCasePage";
+import ListHoldingTaxPage from "./pages/AdminPages/Taxes/ListHoldingTaxPage";
+import AddHoldingTaxPage from "./pages/AdminPages/Taxes/AddHoldingTaxPage";
+import AddNonHoldingTaxPage from "./pages/AdminPages/Taxes/AddNonHoldingTaxPage";
+import ListNonHoldingTaxPage from "./pages/AdminPages/Taxes/ListNonHoldingTaxPage";
 
 export const RouteData: RouteInterface[] = [
 	{
@@ -242,5 +246,27 @@ export const RouteData: RouteInterface[] = [
 			case:"solved"
 		}
 	},
+
+		// Tax  
+		{
+			path: ROUTE_LIST.createHoldingTax,
+			exact: false,
+			component: AddHoldingTaxPage,
+		},
+		{
+			path: ROUTE_LIST.listHoldingTax,
+			exact: true,
+			component: ListHoldingTaxPage,
+		},
+		{
+			path: ROUTE_LIST.createNonHoldingTax,
+			exact: false,
+			component: AddNonHoldingTaxPage,
+		},
+		{
+			path: ROUTE_LIST.listNonHoldingTax,
+			exact: true,
+			component: ListNonHoldingTaxPage,
+		},
 ];
 //

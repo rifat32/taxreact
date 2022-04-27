@@ -10,14 +10,14 @@ const AddCitizenPage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>Add new Citizen</h1>
+					<h1>নাগরিক</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Citizen</a>
+								<a href="index.html">হোম </a>
 							</li>
-							<li className="breadcrumb-item">Citizen</li>
-							<li className="breadcrumb-item active">Add Citizen</li>
+							<li className="breadcrumb-item"> নাগরিক</li>
+							<li className="breadcrumb-item active"> নাগরিক</li>
 						</ol>
 					</nav>
 				</div>
@@ -27,7 +27,7 @@ const AddCitizenPage: React.FC = () => {
 						<div className="col-12">
 							<div className="card">
 								<div className="card-body">
-									<h5 className="card-title">Add Citizen</h5>
+									<h5 className="card-title"> নাগরিক তৈরি করুন</h5>
 									<AddCitizenForm />
 								</div>
 							</div>

@@ -5,25 +5,26 @@ import { Link } from "react-router-dom";
 
 
 import { ROUTE_LIST } from "../../../RoutConstants";
-import ListWardPageComponent from "../../../components/PageComponent/ElectionAreaComponent/ListWardPageComponent";
+
+import ListCasePageComponent from "../../../components/PageComponent/VillageCourt/ListCasePageComponent";
 
 
-const ListCasePage: React.FC = (props) => {
+
+const ListCasePage: React.FC = (props:any) => {
 	useEffect(() => {
-console.log(props)
 	},[])
 	return (
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>Village Court</h1>
+					<h1> গ্রাম আদালত</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Village Court</a>
+								<a href="index.html"> হোম</a>
 							</li>
-							<li className="breadcrumb-item">Village Court</li>
-							<li className="breadcrumb-item active">List Village Court</li>
+							<li className="breadcrumb-item"> গ্রাম আদালত</li>
+							<li className="breadcrumb-item active"> মামলা</li>
 						</ol>
 					</nav>
 				</div>
@@ -34,14 +35,16 @@ console.log(props)
 							<div className="card">
 								<div className="card-body">
 									<div className="d-flex justify-content-between align-items-end">
-										<h5 className="card-title">All Wards</h5>
+										<h5 className="card-title"> মামলা সমূহ </h5>
 										<Link
 											to={ROUTE_LIST.createCase}
 											className="btn btn-primary">
 											Add Data
 										</Link>
 									</div>
-									<ListWardPageComponent />
+									<ListCasePageComponent value={{
+										case:props.case
+									}} />
 								</div>
 							</div>
 						</div>

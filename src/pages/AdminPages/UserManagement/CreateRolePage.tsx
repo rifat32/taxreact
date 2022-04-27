@@ -7,14 +7,14 @@ const CreateRolePage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>Add Role</h1>
+					<h1> রোল</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Home</a>
+								<a href="index.html"> হোম</a>
 							</li>
-							<li className="breadcrumb-item">User Management</li>
-							<li className="breadcrumb-item active">Role Create</li>
+							<li className="breadcrumb-item"> ইউজার ম্যানেজমেন্ট </li>
+							<li className="breadcrumb-item active"> রোল </li>
 						</ol>
 					</nav>
 				</div>
@@ -24,7 +24,7 @@ const CreateRolePage: React.FC = () => {
 						<div className="col-12">
 							<div className="card">
 								<div className="card-body">
-									<h5 className="card-title">Add Role</h5>
+									<h5 className="card-title"> রোল তৈরি করুন</h5>
 									<AddRoleForm />
 								</div>
 							</div>

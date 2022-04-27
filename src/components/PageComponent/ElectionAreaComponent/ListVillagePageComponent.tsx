@@ -4,6 +4,7 @@ import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
 import AddVillageForm from "../../Forms/ElectionAreaForms/AddVillageForm";
+import { villagesLang } from "../../../language/bn/village";
 
 
 
@@ -75,10 +76,10 @@ const ListVillagePageComponent: React.FC = () => {
 				<thead>
 					<tr>
 					
-						<th scope="col">Id</th>
-						<th scope="col">Village  Name</th>
-						<th scope="col">Ward Number</th>
-						<th scope="col">Union</th>
+						<th scope="col">{villagesLang.id}</th>
+						<th scope="col">{villagesLang.village_name}</th>
+						<th scope="col">{villagesLang.warn_no}</th>
+						<th scope="col">{villagesLang.union}</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>

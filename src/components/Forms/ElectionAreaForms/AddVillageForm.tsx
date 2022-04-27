@@ -140,7 +140,7 @@ const invalidInputHandler = (error:any) => {
 		<form className="row g-3" onSubmit={handleSubmit}>
 		<div className="col-md-12">
 				<label htmlFor="union_id" className="form-label">
-					Union
+					ইউনিয়ন
 				</label>
 				<select
 					className={
@@ -171,7 +171,7 @@ const invalidInputHandler = (error:any) => {
 			</div>
 			<div className="col-md-12">
 				<label htmlFor="union_id" className="form-label">
-					Ward
+					ওয়ার্ড
 				</label>
 				<select
 					className={
@@ -202,7 +202,7 @@ const invalidInputHandler = (error:any) => {
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="name" className="form-label">
-					Name
+					নাম
 				</label>
 				<input
 					type="text"

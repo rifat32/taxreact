@@ -15,14 +15,14 @@ const ListNonHoldingCitizenPage: React.FC = () => {
 		<AdminPageComponent>
 			<main id="main" className="main">
 				<div className="pagetitle">
-					<h1>List Non Holding Citizen</h1>
+					<h1> নন হোল্ডিং নাগরিক</h1>
 					<nav>
 						<ol className="breadcrumb">
 							<li className="breadcrumb-item">
-								<a href="index.html">Citizen</a>
+								<a href="index.html"> হোম</a>
 							</li>
-							<li className="breadcrumb-item">Non Holding Citizen</li>
-							<li className="breadcrumb-item active">List Non Holding Citizen</li>
+							<li className="breadcrumb-item"> নাগরিক</li>
+							<li className="breadcrumb-item active"> নন হোল্ডিং নাগরিক</li>
 						</ol>
 					</nav>
 				</div>
@@ -33,7 +33,7 @@ const ListNonHoldingCitizenPage: React.FC = () => {
 							<div className="card">
 								<div className="card-body">
 									<div className="d-flex justify-content-between align-items-end">
-										<h5 className="card-title">All Non Holding Citizen</h5>
+										<h5 className="card-title"> নন হোল্ডিং নাগরিক সমূহ</h5>
 										<Link
 											to={ROUTE_LIST.createNonHoldingCitizen}
 											className="btn btn-primary">

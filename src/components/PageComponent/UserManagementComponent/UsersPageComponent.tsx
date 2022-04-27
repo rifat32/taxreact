@@ -50,10 +50,10 @@ const UsersPageComponent: React.FC = () => {
 			<table className="table">
 				<thead>
 					<tr>
-						<th scope="col">Id</th>
-						<th scope="col">Name</th>
-						<th scope="col">email</th>
-						<th scope="col">roles</th>
+						<th scope="col"> আইডি</th>
+						<th scope="col"> নাম</th>
+						<th scope="col"> ইমেইল</th>
+						<th scope="col"> রোল</th>
 					</tr>
 				</thead>
 				{data.length ? (
