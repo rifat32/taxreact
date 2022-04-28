@@ -4,11 +4,12 @@ import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
 import AddVillageForm from "../../Forms/ElectionAreaForms/AddVillageForm";
-import AddHoldingTaxForm from "../../Forms/TaxForms/AddHoldingTaxForm";
+import { villagesLang } from "../../../language/bn/village";
+import AddTradeLicenseForm from "../../Forms/TradeLicenseForms/AddTradeLicenseForm";
 
 
 
-const ListHoldingTaxPageComponent: React.FC = () => {
+const ListTradeLisencePageComponent: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [data, setData] = useState<any>([]);
 	const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -17,7 +18,7 @@ const ListHoldingTaxPageComponent: React.FC = () => {
 	};
 	const [currentData, setCurrentData] = useState<any>(null);
 
-	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/cizen-taxes`);
+	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/trade-license`);
 	const [nextPageLink, setNextPageLink] = useState("");
 	const [prevPageLink, setPrevPageLink] = useState("");
 
@@ -55,7 +56,7 @@ const ListHoldingTaxPageComponent: React.FC = () => {
 	const deleteData = (id: number) => {
 		if (window.confirm("Are you sure  want to delete ?")) {
 			apiClient()
-				.delete(`${BACKENDAPI}/v1.0/cizen-taxes/${id}`)
+				.delete(`${BACKENDAPI}/v1.0/trade-license/${id}`)
 				.then((response: any) => {
 					console.log(response);
 					const tempDatas = data.filter((el: any) => {
@@ -76,15 +77,14 @@ const ListHoldingTaxPageComponent: React.FC = () => {
 				<thead>
 					<tr>
 					
-	
-						<th scope="col">আইডি</th>
-						<th scope="col"> ইউনিয়ন</th>
-						<th scope="col"> ওয়ার্ড </th>
-						<th scope="col"> নাগরিক</th>
-						<th scope="col"> পরিমান</th>
-						<th scope="col"> অর্থ বছর </th>
-						<th scope="col"> নোট </th>
-						
+						<th scope="col">{villagesLang.id}</th>
+						<th scope="col">{villagesLang.warn_no}</th>
+						<th scope="col">{villagesLang.union}</th>
+						<th scope="col">প্রতিষ্ঠান </th>
+						<th scope="col">মালিকেন নাম</th>
+						<th scope="col"> এনআইডি </th>
+						<th scope="col">মোবাইল </th>
+						<th scope="col">লাইসেন্স নং</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
@@ -94,13 +94,14 @@ const ListHoldingTaxPageComponent: React.FC = () => {
 							return (
 								<tr key={el.id}>
 									<td>{el.id}</td>
-									<td>{el.union?.name && el.union.name}</td>
 									<td>{el.ward?.ward_no && el.ward.ward_no}</td>
-									<td>{el.citizen?.thana_head_name && el.citizen.thana_head_name}</td>
-									<td>{el.amount && el.amount}</td>	
-									<td>{el.current_year && el.current_year}</td>	
-									<td>{el.note && el.note}</td>	
-									
+									<td>{el.union?.name && el.union.name}</td>
+									<td>{el.institute && el.institute}</td>
+									<td>{el.owner && el.owner}</td>
+									<td>{el.nid && el.nid}</td>
+									<td>{el.mobile_no && el.mobile_no}</td>
+									<td>{el.license_no && el.license_no}</td>
+								
 									<td>
 										<div className="btn-group">
 											<button
@@ -171,8 +172,8 @@ const ListHoldingTaxPageComponent: React.FC = () => {
 			<CustomModal
 				isOpen={modalIsOpen}
 				showModal={showModal}
-				type="Update holding tax">
-				<AddHoldingTaxForm
+				type="Update Trade lisence">
+				<AddTradeLicenseForm
 					value={currentData}
 					updateDataStates={updateDataStates}
 					showModal={showModal}
@@ -183,4 +184,4 @@ const ListHoldingTaxPageComponent: React.FC = () => {
 	);
 };
 
-export default ListHoldingTaxPageComponent;
+export default ListTradeLisencePageComponent;

@@ -12,10 +12,17 @@ export const sidebarLang = {
         village_court:"গ্রাম আদালত",
         unsolved_cases:"অনিষ্পত্তিক্রিত মামলা ",
         solved_cases:"নিষ্পত্তিক্রিত মামলা ",
-        taxes:"ট্যাক্স",
+        taxes:"ট্যাক্স ধার্য করুন",
         holding_tax:"হোল্ডিং ট্যাক্স",
         non_holding_tax:"নন হোল্ডিং ট্যাক্স",
-    
+        taxePayment:"কর পরিশোধ",
+        holding_tax_payment:"হোল্ডিং কর পরিশোধ করুন",
+        non_holding_tax_payment:"নন হোল্ডিং কর পরিশোধ করুন",
+
+        tradeLicense:"ট্রেড লাইসেন্স",
+     
+
+
         election_area:"নির্বাচনী এরিয়া",
         unions:"ইউনিয়ন ",
         wards:"ওয়ার্ড",

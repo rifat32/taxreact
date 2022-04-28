@@ -4,6 +4,7 @@ import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
 import AddVillageForm from "../../Forms/ElectionAreaForms/AddVillageForm";
+import AddNonHoldingTaxForm from "../../Forms/TaxForms/AddNonHoldingTaxForm";
 
 
 
@@ -168,8 +169,8 @@ const ListNonHoldingTaxPageComponent: React.FC = () => {
 			<CustomModal
 				isOpen={modalIsOpen}
 				showModal={showModal}
-				type="Update Village">
-				<AddVillageForm
+				type="Update non holding tax">
+				<AddNonHoldingTaxForm
 					value={currentData}
 					updateDataStates={updateDataStates}
 					showModal={showModal}

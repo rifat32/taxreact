@@ -48,6 +48,12 @@ import ListHoldingTaxPage from "./pages/AdminPages/Taxes/ListHoldingTaxPage";
 import AddHoldingTaxPage from "./pages/AdminPages/Taxes/AddHoldingTaxPage";
 import AddNonHoldingTaxPage from "./pages/AdminPages/Taxes/AddNonHoldingTaxPage";
 import ListNonHoldingTaxPage from "./pages/AdminPages/Taxes/ListNonHoldingTaxPage";
+import AddHoldingTaxPaymetPage from "./pages/AdminPages/TaxPayments/AddHoldingTaxPaymentPage";
+import ListHoldingTaxPaymentPage from "./pages/AdminPages/TaxPayments/ListHoldingTaxPaymentPage";
+import AddNonHoldingTaxPaymentPage from "./pages/AdminPages/TaxPayments/AddNonHoldingTaxPaymentPage";
+import ListNonHoldingTaxPaymentPage from "./pages/AdminPages/TaxPayments/ListNonHoldingTaxPaymentPage";
+import ListTradeLicensePage from "./pages/AdminPages/TradeLicense/ListTradeLicensePage";
+import AddTradeLicense from "./pages/AdminPages/TradeLicense/AddTradeLicensePage";
 
 export const RouteData: RouteInterface[] = [
 	{
@@ -268,5 +274,38 @@ export const RouteData: RouteInterface[] = [
 			exact: true,
 			component: ListNonHoldingTaxPage,
 		},
+			// Tax  payment
+			{
+				path: ROUTE_LIST.createHoldingTaxPayment,
+				exact: false,
+				component: AddHoldingTaxPaymetPage,
+			},
+			{
+				path: ROUTE_LIST.listHoldingTaxPayment,
+				exact: true,
+				component: ListHoldingTaxPaymentPage,
+			},
+			{
+				path: ROUTE_LIST.createNonHoldingTaxPayment,
+				exact: false,
+				component: AddNonHoldingTaxPaymentPage,
+			},
+			{
+				path: ROUTE_LIST.listNonHoldingTaxPayment,
+				exact: true,
+				component: ListNonHoldingTaxPaymentPage,
+			},
+
+				// trade license 
+	{
+		path: ROUTE_LIST.createTradeLicense,
+		exact: false,
+		component: AddTradeLicense,
+	},
+	{
+		path: ROUTE_LIST.listTradeLicense,
+		exact: true,
+		component: ListTradeLicensePage,
+	},
 ];
 //

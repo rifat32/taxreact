@@ -116,6 +116,41 @@ export const adminSideBarData: NavInterface[] = [
 		],
 	},
 	{
+		name: sidebarLang.taxePayment,
+		list: [
+			// {
+			// 	name: "Add Union",
+			// 	link: ROUTE_LIST.createUnions,
+			// 	permissions: [],
+			// },
+			{
+				name: sidebarLang.holding_tax_payment,
+				link: ROUTE_LIST.listHoldingTaxPayment,
+				permissions: [],
+			},
+			{
+				name: sidebarLang.non_holding_tax_payment,
+				link: ROUTE_LIST.listNonHoldingTaxPayment,
+				permissions: [],
+			},
+			
+		
+		],
+	},
+	{
+		name: sidebarLang.tradeLicense,
+		list: [
+
+			{
+				name: sidebarLang.tradeLicense,
+				link: ROUTE_LIST.listTradeLicense,
+				permissions: [],
+			},
+			
+		
+		],
+	},
+	{
 		name: sidebarLang.election_area,
 		list: [
 			// {

@@ -28,5 +28,11 @@ export enum ROUTE_LIST {
     listHoldingTax="/admin/holding-tax",
     createNonHoldingTax="/admin/non-holding-tax/create",
     listNonHoldingTax="/admin/non-holding-tax",
+    createHoldingTaxPayment="/admin/holding-tax-payment/create",
+    listHoldingTaxPayment="/admin/holding-tax-payment",
+    createNonHoldingTaxPayment="/admin/non-holding-tax-payment/create",
+    listNonHoldingTaxPayment="/admin/non-holding-tax-payment",
+    createTradeLicense="/admin/trade-license/create",
+    listTradeLicense="/admin/trade-license",
   }
 

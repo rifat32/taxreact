@@ -4,11 +4,11 @@ import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
 import AddVillageForm from "../../Forms/ElectionAreaForms/AddVillageForm";
-import AddHoldingTaxForm from "../../Forms/TaxForms/AddHoldingTaxForm";
+import AddHoldingTaxPaymentForm from "../../Forms/TaxPaymentForms/AddHoldingTaxPaymentForm";
 
 
 
-const ListHoldingTaxPageComponent: React.FC = () => {
+const ListHoldingTaxPaymentPageComponent: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [data, setData] = useState<any>([]);
 	const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -17,7 +17,7 @@ const ListHoldingTaxPageComponent: React.FC = () => {
 	};
 	const [currentData, setCurrentData] = useState<any>(null);
 
-	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/cizen-taxes`);
+	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/tax-payments`);
 	const [nextPageLink, setNextPageLink] = useState("");
 	const [prevPageLink, setPrevPageLink] = useState("");
 
@@ -55,7 +55,7 @@ const ListHoldingTaxPageComponent: React.FC = () => {
 	const deleteData = (id: number) => {
 		if (window.confirm("Are you sure  want to delete ?")) {
 			apiClient()
-				.delete(`${BACKENDAPI}/v1.0/cizen-taxes/${id}`)
+				.delete(`${BACKENDAPI}/v1.0/tax-payments/${id}`)
 				.then((response: any) => {
 					console.log(response);
 					const tempDatas = data.filter((el: any) => {
@@ -79,12 +79,11 @@ const ListHoldingTaxPageComponent: React.FC = () => {
 	
 						<th scope="col">আইডি</th>
 						<th scope="col"> ইউনিয়ন</th>
-						<th scope="col"> ওয়ার্ড </th>
 						<th scope="col"> নাগরিক</th>
 						<th scope="col"> পরিমান</th>
 						<th scope="col"> অর্থ বছর </th>
-						<th scope="col"> নোট </th>
-						
+						<th scope="col"> কর পরিশোধের পদ্ধতি </th>
+						<th scope="col"> বছরের জন্য অর্থ প্রদান </th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
@@ -95,12 +94,11 @@ const ListHoldingTaxPageComponent: React.FC = () => {
 								<tr key={el.id}>
 									<td>{el.id}</td>
 									<td>{el.union?.name && el.union.name}</td>
-									<td>{el.ward?.ward_no && el.ward.ward_no}</td>
 									<td>{el.citizen?.thana_head_name && el.citizen.thana_head_name}</td>
 									<td>{el.amount && el.amount}</td>	
 									<td>{el.current_year && el.current_year}</td>	
-									<td>{el.note && el.note}</td>	
-									
+									<td>{el.method?.name && el.method?.name}</td>	
+									<td>{el.payment_for && el.payment_for}</td>	
 									<td>
 										<div className="btn-group">
 											<button
@@ -171,8 +169,8 @@ const ListHoldingTaxPageComponent: React.FC = () => {
 			<CustomModal
 				isOpen={modalIsOpen}
 				showModal={showModal}
-				type="Update holding tax">
-				<AddHoldingTaxForm
+				type="Update Holding tax payment">
+				<AddHoldingTaxPaymentForm
 					value={currentData}
 					updateDataStates={updateDataStates}
 					showModal={showModal}
@@ -183,4 +181,4 @@ const ListHoldingTaxPageComponent: React.FC = () => {
 	);
 };
 
-export default ListHoldingTaxPageComponent;
+export default ListHoldingTaxPaymentPageComponent;
