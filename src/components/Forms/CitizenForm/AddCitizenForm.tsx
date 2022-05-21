@@ -100,7 +100,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			}
 		]
 	});
-
+	const [imageFile, setImageFile] = useState<any>();
 	const [errors, setErrors] = useState<any>(null);
 
 	const [unions, setUnions] = useState([]);
@@ -337,8 +337,40 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			loadVillages(e.target.value);
 			loadPostOffices(e.target.value);
 		}
-
 	};
+	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	
+		if (!e.target.files) {
+			return;
+		  }
+		 
+		let file = e.target.files[0]
+		setImageFile(file)
+
+            let data:any = new FormData();
+            data.append('image', file, file.name);
+            apiClient().post(`${BACKENDAPI}/v1.0/image/upload/single/citizen`, data, {
+                headers: {
+                    'accept': 'application/json',
+                    'Accept-Language': 'en-US,en;q=0.8',
+                    'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+                }
+            })
+			.then((response: any) => {
+				console.log(response);
+			setFormData((prevData)=> {
+return {
+	...prevData,
+	image:response.data.image
+}
+			})
+			})
+			.catch((error) => {
+				console.log(error.response);
+			});
+
+		
+	  };
 	const resetFunction = () => {
 		setFormData({
 			union_id: '',
@@ -1178,7 +1210,32 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
-
+			<div className="col-md-4">
+				<label htmlFor="sku" className="form-label">
+				 {imageFile?.name?imageFile.name:"upload image"}
+				</label>
+				<br />
+				{imageFile && 	<img src={URL.createObjectURL(imageFile)} alt="..." height={100} width={100} />}
+	
+				<input
+					type="file"
+					className={
+						errors
+							? errors.image
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="image"
+					name="image"
+					onChange={handleImageChange}
+			
+				/>
+				{errors?.image && (
+					<div className="invalid-feedback">{errors.image[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
 			<br />
 			<h3 className="text-center">সদস্য  গণ </h3>
 			{
