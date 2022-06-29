@@ -17,6 +17,8 @@ export enum ROUTE_LIST {
     listPaymentMethod="/admin/payment-method",
     createCitizen="/admin/citizens/create",
     listCitizen="/admin/citizens",
+    createService="/admin/services/create",
+    listService="/admin/services",
     createNonHoldingCitizen="/admin/non-holding-citizens/create",
     listNonHoldingCitizen="/admin/non-holding-citizens",
     createChairman="/admin/chairmans/create",

@@ -9,7 +9,7 @@ import AddChairmanForm from "../../Forms/ChairmanForm/AddChairmanForm";
 
 
 
-const ListCitizenPageComponent: React.FC = () => {
+const ListServicesPageComponent: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [data, setData] = useState<any>([]);
 	const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -18,7 +18,7 @@ const ListCitizenPageComponent: React.FC = () => {
 	};
 	const [currentData, setCurrentData] = useState<any>(null);
 
-	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/citizens`);
+	const [link, setLink] = useState(`${BACKENDAPI}/v1.0/services`);
 	const [nextPageLink, setNextPageLink] = useState("");
 	const [prevPageLink, setPrevPageLink] = useState("");
 
@@ -57,7 +57,7 @@ const ListCitizenPageComponent: React.FC = () => {
 	const deleteData = (id: number) => {
 		if (window.confirm("Are you sure  want to delete ?")) {
 			apiClient()
-				.delete(`${BACKENDAPI}/v1.0/citizens/${id}`)
+				.delete(`${BACKENDAPI}/v1.0/services/${id}`)
 				.then((response: any) => {
 					console.log(response);
 					const tempDatas = data.filter((el: any) => {
@@ -104,8 +104,8 @@ const ListCitizenPageComponent: React.FC = () => {
 									<td>{el.upazila?.name && el.upazila.name}</td>
 									<td>{el.district?.name && el.district.name}</td>
 								
-									<td>{el.mobile && el.mobile}</td>
-									<td>{el.nid && el.nid}</td>
+									<td>{el.applicant_phone && el.applicant_phone}</td>
+									<td>{el.applicant_nid && el.applicant_nid}</td>
 									
 									
 									<td>
@@ -190,4 +190,4 @@ const ListCitizenPageComponent: React.FC = () => {
 	);
 };
 
-export default ListCitizenPageComponent;
+export default ListServicesPageComponent;

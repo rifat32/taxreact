@@ -46,6 +46,11 @@ export const adminSideBarData: NavInterface[] = [
 				link: ROUTE_LIST.listNonHoldingCitizen,
 				permissions: [],
 			},
+			{
+				name: "services",
+				link: ROUTE_LIST.listService,
+				permissions: [],
+			},
 			// {
 			// 	name: "Add Ward",
 			// 	link: ROUTE_LIST.createWards,

@@ -54,6 +54,8 @@ import AddNonHoldingTaxPaymentPage from "./pages/AdminPages/TaxPayments/AddNonHo
 import ListNonHoldingTaxPaymentPage from "./pages/AdminPages/TaxPayments/ListNonHoldingTaxPaymentPage";
 import ListTradeLicensePage from "./pages/AdminPages/TradeLicense/ListTradeLicensePage";
 import AddTradeLicense from "./pages/AdminPages/TradeLicense/AddTradeLicensePage";
+import ListServicePage from "./pages/AdminPages/Citizen/ListServicePage";
+import AddServicePage from "./pages/AdminPages/Citizen/AddServicePage";
 
 export const RouteData: RouteInterface[] = [
 	{
@@ -209,8 +211,18 @@ export const RouteData: RouteInterface[] = [
 		exact: true,
 		component: ListCitizenPage,
 	},
+	{
+		path: ROUTE_LIST.createService,
+		exact: false,
+		component: AddServicePage,
+	},
+	{
+		path: ROUTE_LIST.listService,
+		exact: true,
+		component: ListServicePage,
+	},
 			// NonHolding Citizen 
-			{
+		    {
 				path: ROUTE_LIST.createNonHoldingCitizen,
 				exact: false,
 				component: AddNonHoldingCitizenPage,
