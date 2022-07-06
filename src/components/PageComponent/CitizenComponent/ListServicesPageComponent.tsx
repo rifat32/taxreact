@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import AddWardForm from "../../Forms/ElectionAreaForms/AddWardForm";
 import AddCitizenForm from "../../Forms/CitizenForm/AddCitizenForm";
 import AddChairmanForm from "../../Forms/ChairmanForm/AddChairmanForm";
+import { printInvoice } from "../../../utils/PrintInvoice";
 
 
 
@@ -71,7 +72,18 @@ const ListServicesPageComponent: React.FC = () => {
 				});
 		}
 	};
-	
+	const getInvoice = (id:number) => {
+
+		apiClient()
+				.get(`${BACKENDAPI}/v1.0/services/get/invoice/${id}`)
+				.then((response: any) => {
+					printInvoice(response.data.invoice);
+				})
+				.catch((error) => {
+					console.log(error.response);
+				});
+
+	}
 	return (
 		<>
 			<table className="table">
@@ -118,7 +130,7 @@ const ListServicesPageComponent: React.FC = () => {
 												Action
 											</button>
 											<ul className="dropdown-menu action">
-												<li>
+												{/* <li>
 													<a
 														onClick={() => {
 															setCurrentData({...el});
@@ -127,6 +139,17 @@ const ListServicesPageComponent: React.FC = () => {
 														className="dropdown-item"
 														href="#">
 														edit
+													</a>
+												</li> */}
+												<li>
+													<a
+														onClick={() => {
+															getInvoice(el.id);
+														
+														}}
+														className="dropdown-item"
+														href="#">
+														print
 													</a>
 												</li>
 												<li>
