@@ -47,7 +47,7 @@ export const adminSideBarData: NavInterface[] = [
 				permissions: [],
 			},
 			{
-				name: "services",
+				name: "সার্ভিস সমূহ",
 				link: ROUTE_LIST.listService,
 				permissions: [],
 			},
@@ -229,7 +229,37 @@ export const adminSideBarData: NavInterface[] = [
 				permissions: [],
 			},
 		],
+
 	},
+	{
+		name: "রিপোর্ট",
+		list: [
+			
+			{
+				name: sidebarLang.holding_tax,
+				link: ROUTE_LIST.listHoldingTax,
+				permissions: [],
+			},
+			{
+				name: sidebarLang.non_holding_tax,
+				link: ROUTE_LIST.listNonHoldingTax,
+				permissions: [],
+			},
+			{
+				name: sidebarLang.holding_tax_payment,
+				link: ROUTE_LIST.listHoldingTaxPayment,
+				permissions: [],
+			},
+			{
+				name: sidebarLang.non_holding_tax_payment,
+				link: ROUTE_LIST.listNonHoldingTaxPayment,
+				permissions: [],
+			},
+			
+		
+		],
+	},
+
 
 	
 

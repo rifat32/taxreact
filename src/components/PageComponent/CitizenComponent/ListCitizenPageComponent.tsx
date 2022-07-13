@@ -71,9 +71,51 @@ const ListCitizenPageComponent: React.FC = () => {
 				});
 		}
 	};
+	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if(e.target.value) {
+			setLoading(true)
+			apiClient()
+				.get(`${BACKENDAPI}/v1.0/citizens/search/${e.target.value}`)
+				.then((response: any) => {
+					setLoading(false)
+					console.log(response.data.data);
+					setData([ ...response.data.data.data]);
+					setNextPageLink(response.data.data.next_page_url);
+					setPrevPageLink(response.data.data.prev_page_url);
+				})
+				.catch((error) => {
+					setLoading(false)
+					console.log(error.response);
+				});
+		} else {
+			setLoading(true)
+		apiClient()
+			.get(link)
+			.then((response: any) => {
+				setLoading(false)
+				console.log(response.data.data);
+				setData([ ...response.data.data.data]);
+				setNextPageLink(response.data.data.next_page_url);
+				setPrevPageLink(response.data.data.prev_page_url);
+			})
+			.catch((error) => {
+				setLoading(false)
+				console.log(error.response);
+			});
+		}
+	
+	}
 	
 	return (
 		<>
+		<div className="row">
+			<div className="col-6 offset-3">
+
+			<input type="text" className="form-control" onChange={handleSearch}/>
+			</div>
+	
+		</div>
+		
 			<table className="table">
 				<thead>
 					<tr>
@@ -105,7 +147,7 @@ const ListCitizenPageComponent: React.FC = () => {
 									<td>{el.district?.name && el.district.name}</td>
 								
 									<td>{el.mobile && el.mobile}</td>
-									<td>{el.nid && el.nid}</td>
+									<td>{el.nid_no && el.nid_no}</td>
 									
 									
 									<td>
