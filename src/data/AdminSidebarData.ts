@@ -9,22 +9,26 @@ export const adminSideBarData: NavInterface[] = [
 			{
 				name: sidebarLang.create_user,
 				link: "/admin/users/create",
-				permissions: [],
+				permissions: [ "election_area",
+				"user_management"],
 			},
 			{
 				name: sidebarLang.list_user,
 				link: "/admin/users",
-				permissions: [],
+				permissions: [ 
+				"user_management"],
 			},
 			{
 				name: sidebarLang.create_role,
 				link: "/admin/roles/create",
-				permissions: [],
+				permissions: [ 
+				"user_management"],
 			},
 			{
 				name: sidebarLang.list_roles,
 				link: "/admin/roles",
-				permissions: [],
+				permissions: [ 
+				"user_management"],
 			},
 		],
 	},
@@ -94,7 +98,11 @@ export const adminSideBarData: NavInterface[] = [
 				link: ROUTE_LIST.listSolvedCase,
 				permissions: [],
 			},
-			
+			{
+				name: "চলমান মামলা",
+				link: ROUTE_LIST.listOngoingCase,
+				permissions: [],
+			},
 		
 		],
 	},
@@ -166,7 +174,8 @@ export const adminSideBarData: NavInterface[] = [
 			{
 				name: sidebarLang.unions,
 				link: ROUTE_LIST.listUnions,
-				permissions: [],
+				permissions: [ "election_area",
+				],
 			},
 			// {
 			// 	name: "Add Ward",
@@ -176,7 +185,7 @@ export const adminSideBarData: NavInterface[] = [
 			{
 				name: sidebarLang.wards,
 				link: ROUTE_LIST.listWards,
-				permissions: [],
+				permissions: [ "election_area",],
 			},
 			// {
 			// 	name: "Add Village",
@@ -186,7 +195,7 @@ export const adminSideBarData: NavInterface[] = [
 			{
 				name: sidebarLang.villages,
 				link: ROUTE_LIST.listVillages,
-				permissions: [],
+				permissions: [ "election_area",],
 			},
 			// {
 			// 	name: "Add Post Office",
@@ -196,7 +205,7 @@ export const adminSideBarData: NavInterface[] = [
 			{
 				name: sidebarLang.post_offices,
 				link: ROUTE_LIST.listPostOffice,
-				permissions: [],
+				permissions: [ "election_area",],
 			},
 				// {
 			// 	name: "Add Ward",
@@ -206,7 +215,7 @@ export const adminSideBarData: NavInterface[] = [
 			{
 				name: sidebarLang.sub_districts,
 				link: ROUTE_LIST.listSubDistrict,
-				permissions: [],
+				permissions: [ "election_area",],
 			},
 			// {
 			// 	name: "Add District",
@@ -216,7 +225,7 @@ export const adminSideBarData: NavInterface[] = [
 			{
 				name: sidebarLang.districts,
 				link: ROUTE_LIST.listDistrict,
-				permissions: [],
+				permissions: [ "election_area",],
 			},
 			// {
 			// 	name: "Add Payment Method",
@@ -226,7 +235,7 @@ export const adminSideBarData: NavInterface[] = [
 			{
 				name: sidebarLang.payment_methods,
 				link: ROUTE_LIST.listPaymentMethod,
-				permissions: [],
+				permissions: [ "election_area",],
 			},
 		],
 

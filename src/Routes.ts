@@ -264,6 +264,14 @@ export const RouteData: RouteInterface[] = [
 			case:"solved"
 		}
 	},
+	{
+		path: ROUTE_LIST.listOngoingCase,
+		exact: true,
+		component: ListCasePage,
+		props:{
+			case:"ongoing"
+		}
+	},
 
 		// Tax  
 		{

@@ -4,6 +4,7 @@ import { apiClient } from "../../../utils/apiClient";
 import { toast } from "react-toastify";
 
 interface FormData {
+	union_id:string;
 	name: string;
 	email: string;
 	password: string;
@@ -12,6 +13,7 @@ interface FormData {
 }
 const AddUserForm: React.FC = () => {
 	const [formData, setFormData] = useState<FormData>({
+		union_id:"",
 		name: "",
 		email: "",
 		password: "",
@@ -51,6 +53,7 @@ const AddUserForm: React.FC = () => {
 
 	const resetFunction = () => {
 		setFormData({
+			union_id:"",
 			name: "",
 			email: "",
 			password: "",
@@ -58,6 +61,23 @@ const AddUserForm: React.FC = () => {
 			role_name: "",
 		});
 	};
+	const [unions, setUnions] = useState([]);
+	useEffect(() => {
+		loadUnions();
+	}, []);
+	const loadUnions = () => {
+		apiClient()
+			.get(`${BACKENDAPI}/v1.0/unions/all`)
+			.then((response: any) => {
+				console.log(response);
+				setUnions(response.data.data);
+			})
+			.catch((error) => {
+				console.log(error.response);
+			});
+	};
+
+
 	// handle submit Function
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -87,6 +107,37 @@ const AddUserForm: React.FC = () => {
 
 	return (
 		<form className="row g-3">
+				<div className="col-md-12">
+				<label htmlFor="union_id" className="form-label">
+					ইউনিয়ন
+				</label>
+				<select
+					className={
+						errors
+							? errors.union_id
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="union_id"
+					name="union_id"
+					onChange={handleSelect}
+					value={formData.union_id}>
+					<option value="">Please Select</option>
+					{unions.map((el: any, index) => (
+						<option
+							key={index}
+							value={el.id}
+							style={{ textTransform: "uppercase" }}>
+							{el.name}
+						</option>
+					))}
+				</select>
+				{errors?.union_id && (
+					<div className="invalid-feedback">{errors.union_id[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
 			<div className="col-12">
 				<label htmlFor="yourPassword" className="form-label">
 					নাম

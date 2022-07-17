@@ -29,7 +29,7 @@ interface FormData {
     date:string;
     time:string;
     place:string;
-    is_solved:string;
+    status:string;
     chairman_id:string;
 
 }
@@ -58,7 +58,7 @@ const AddCaseForm: React.FC<UpdateFormInterface> = (props) => {
     date:"",
     time:"",
     place:"",
-    is_solved:"1",
+    status:"unsolved",
     chairman_id:"",
 	});
 	
@@ -145,7 +145,7 @@ const invalidInputHandler = (error:any) => {
     date:"",
     time:"",
     place:"",
-    is_solved:"1",
+    status:"unsolved",
     chairman_id:"",
 		});
 	};
@@ -201,7 +201,56 @@ const invalidInputHandler = (error:any) => {
 	};
 	// end edit Data section
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+const handleBadiChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  let index:any = e.target.name.split(".")[1];
+ let name = formData.applicant_name.split(",");
+ name[index] = e.target.value;
+ let finalName = name.join(",");
+ setFormData({
+	...formData,
+	applicant_name:finalName
+ })
+}
+const AddBadiValue = () => {
+	setFormData({
+		...formData,
+		applicant_name:`${formData.applicant_name},`
+	 })
+}
+const deleteBadiValue = () => {
+	let name = formData.applicant_name.split(",");
+	name.pop();
+ let finalName = name.join(",");
+ setFormData({
+	...formData,
+	applicant_name:finalName
+ })
+}
+const handleBiBadiChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	let index:any = e.target.name.split(".")[1];
+   let name = formData.defendant_name.split(",");
+   name[index] = e.target.value;
+   let finalName = name.join(",");
+   setFormData({
+	  ...formData,
+	  defendant_name:finalName
+   })
+  }
+  const AddBiBadiValue = () => {
+	  setFormData({
+		  ...formData,
+		  defendant_name:`${formData.defendant_name},`
+	   })
+  }
+  const deleteBiBadiValue = () => {
+	  let name = formData.defendant_name.split(",");
+	  name.pop();
+   let finalName = name.join(",");
+   setFormData({
+	  ...formData,
+	  defendant_name:finalName
+   })
+  }
 	return (
 		<form className="row g-3" onSubmit={handleSubmit}>
 		<div className="col-md-12">
@@ -304,29 +353,62 @@ const invalidInputHandler = (error:any) => {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
-            <div className="col-md-4">
-				<label htmlFor="applicant_name" className="form-label">
-                বাদীর নাম
+			<h3>বাদীর  বিবরণ </h3>
+			{
+					formData.applicant_name.split(",").map( (el,index) => {
+						return (
+					<div className="row">
+				<br/>
+				<div className="col-md-4">
+				<label htmlFor="name" className="form-label">
+					নাম
 				</label>
 				<input
 					type="text"
 					className={
 						errors
-							? errors.applicant_name
+							? errors[`badi.${index}.name`]
 								? `form-control is-invalid`
 								: `form-control is-valid`
 							: "form-control"
 					}
-					id="applicant_name"
-					name="applicant_name"
-					onChange={handleChange}
-					value={formData.applicant_name}
+					id={`badi.${index}.name`}
+					name={`badi.${index}.name`}
+				
+					onChange={handleBadiChange}
+					value={el}
 				/>
-				{errors?.applicant_name && (
-					<div className="invalid-feedback">{errors.applicant_name[0]}</div>
+					{errors && (
+				<>	
+				{
+					errors[`members.${index}.name`] ? (<div className="invalid-feedback">This field is required</div>):(<div className="valid-feedback">Looks good!</div>)
+
+				}
+				
+				</>
+					
 				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
+			
+		
+			
+		
+			
+
+		
+		
+					</div>
+					)})
+				}
+				<div className="row">
+				<div className=" col-md-4 text-center">
+				<button className="btn btn-danger me-2" type="button" onClick={deleteBadiValue}>-</button>
+				<button className="btn btn-primary" type="button" onClick={AddBadiValue}>+</button>
+
+			</div>
+				</div>
+				
+           
             <div className="col-md-4">
 				<label htmlFor="applicant_father_name" className="form-label">
               পিতার নাম
@@ -465,29 +547,62 @@ const invalidInputHandler = (error:any) => {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
-            <div className="col-md-4">
+			<h3>বাদীর  বিবরণ </h3>
+			{
+					formData.defendant_name.split(",").map( (el,index) => {
+						return (
+					<div className="row">
+				<br/>
+				<div className="col-md-4">
 				<label htmlFor="defendant_name" className="form-label">
-                বিবাদীর নাম
+					নাম
 				</label>
 				<input
 					type="text"
 					className={
 						errors
-							? errors.defendant_name
+							? errors[`bibadi.${index}.name`]
 								? `form-control is-invalid`
 								: `form-control is-valid`
 							: "form-control"
 					}
-					id="defendant_name"
-					name="defendant_name"
-					onChange={handleChange}
-					value={formData.defendant_name}
+					id={`bibadi.${index}.name`}
+					name={`bibadi.${index}.name`}
+				
+					onChange={handleBiBadiChange}
+					value={el}
 				/>
-				{errors?.defendant_name && (
-					<div className="invalid-feedback">{errors.defendant_name[0]}</div>
+					{errors && (
+				<>	
+				{
+					errors[`members.${index}.name`] ? (<div className="invalid-feedback">This field is required</div>):(<div className="valid-feedback">Looks good!</div>)
+
+				}
+				
+				</>
+					
 				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
+			
+		
+			
+		
+			
+
+		
+		
+					</div>
+					)})
+				}
+				<div className="row">
+				<div className=" col-md-4 text-center">
+				<button className="btn btn-danger me-2" type="button" onClick={deleteBiBadiValue}>-</button>
+				<button className="btn btn-primary" type="button" onClick={AddBiBadiValue}>+</button>
+
+			</div>
+				</div>
+				
+          
             <div className="col-md-12">
 				<label htmlFor="defendants" className="form-label">
                 বিবাদীগণ 
@@ -719,26 +834,29 @@ const invalidInputHandler = (error:any) => {
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
             <div className="col-md-4">
-				<label htmlFor="is_solved" className="form-label">
+				<label htmlFor="status" className="form-label">
 				is solved
 				</label>
 				<select
 					className={
 						errors
-							? errors.is_solved
+							? errors.status
 								? `form-control is-invalid`
 								: `form-control is-valid`
 							: "form-control"
 					}
-					id="is_solved"
-					name="is_solved"
+					id="status"
+					name="status"
 					onChange={handleSelect}
-					value={formData.is_solved}>
-					<option value="1">Solved</option>
-					<option value="0">Unsolved</option>
+					value={formData.status}>
+						<option value="unsolved"> অনিষ্পত্তিক্রিত  মামলা</option>
+						<option value="ongoing">চলমান মামলা</option>
+					<option value="solved">  নিষ্পত্তিক্রিত মামলা</option>
+					
+				
 				</select>
-				{errors?.is_solved && (
-					<div className="invalid-feedback">{errors.is_solved[0]}</div>
+				{errors?.status && (
+					<div className="invalid-feedback">{errors.status[0]}</div>
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>

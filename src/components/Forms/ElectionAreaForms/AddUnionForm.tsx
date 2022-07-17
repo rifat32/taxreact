@@ -7,11 +7,13 @@ import { ErrorMessage } from "../../../utils/ErrorMessage";
 
 interface FormData {
 	name: string;
+	image: string;
 }
 
 const AddUnionForm: React.FC<UpdateFormInterface> = (props) => {
 	const [formData, setFormData] = useState<FormData>({
 	name: "",
+	image: ""
 	});
 	
 	const [errors, setErrors] = useState<any>(null);
@@ -28,7 +30,8 @@ const invalidInputHandler = (error:any) => {
 
 	const resetFunction = () => {
 		setFormData({
-			name: ""
+			name: "",
+			image: ""
 		});
 	};
 	const handleSubmit = (e: React.FormEvent) => {
@@ -83,6 +86,42 @@ const invalidInputHandler = (error:any) => {
 	// end edit Data section
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+	const [imageFile, setImageFile] = useState<any>();
+	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	
+		if (!e.target.files) {
+			return;
+		  }
+		 
+		let file = e.target.files[0]
+		setImageFile(file)
+
+            let data:any = new FormData();
+            data.append('image', file, file.name);
+            apiClient().post(`${BACKENDAPI}/v1.0/image/upload/single/union`, data, {
+                headers: {
+                    'accept': 'application/json',
+                    'Accept-Language': 'en-US,en;q=0.8',
+                    'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+                }
+            })
+			.then((response: any) => {
+				console.log(response);
+			setFormData((prevData)=> {
+			
+return {
+	...prevData,
+	[e.target.name]:response.data.image
+}
+			})
+			})
+			.catch((error) => {
+				console.log(error.response);
+			});
+
+		
+	  };
+	
 	return (
 		<form className="row g-3" onSubmit={handleSubmit}>
 		
@@ -110,7 +149,31 @@ const invalidInputHandler = (error:any) => {
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
 		
-		
+			<div className="col-md-4">
+				<label htmlFor="sku" className="form-label">
+				 {" image"}
+				</label>
+				
+	
+				<input
+					type="file"
+					className={
+						errors
+							? errors.image
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="image"
+					name="image"
+					onChange={handleImageChange}
+			
+				/>
+				{errors?.image && (
+					<div className="invalid-feedback">{errors.image[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
 		
 
 			<div className="text-center">

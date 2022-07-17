@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BACKENDAPI } from "../../../config";
+import { BACKEND, BACKENDAPI } from "../../../config";
 import { apiClient } from "../../../utils/apiClient";
 import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
@@ -78,6 +78,7 @@ const ListUnionPageComponent: React.FC = () => {
 					
 						<th scope="col">{unionLang.id}</th>
 						<th scope="col">{unionLang.name}</th>
+						<th scope="col">image</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
@@ -88,7 +89,7 @@ const ListUnionPageComponent: React.FC = () => {
 								<tr key={el.id}>
 									<td>{el.id}</td>
 									<td>{el.name && el.name}</td>
-								
+									<td>{el.image && <img src={`${BACKEND}/${el.image}`} height={50}/>}</td>
 									<td>
 										<div className="btn-group">
 											<button

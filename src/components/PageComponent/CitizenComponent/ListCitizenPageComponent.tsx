@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import AddWardForm from "../../Forms/ElectionAreaForms/AddWardForm";
 import AddCitizenForm from "../../Forms/CitizenForm/AddCitizenForm";
 import AddChairmanForm from "../../Forms/ChairmanForm/AddChairmanForm";
+import { printInvoice } from "../../../utils/PrintInvoice";
 
 
 
@@ -105,6 +106,18 @@ const ListCitizenPageComponent: React.FC = () => {
 		}
 	
 	}
+	const getInvoice = (id:number) => {
+
+		apiClient()
+				.get(`${BACKENDAPI}/v1.0/citizens/get/invoice/${id}`)
+				.then((response: any) => {
+					printInvoice(response.data.invoice);
+				})
+				.catch((error) => {
+					console.log(error.response);
+				});
+
+	}
 	
 	return (
 		<>
@@ -173,6 +186,17 @@ const ListCitizenPageComponent: React.FC = () => {
 												</li>
 												<li>
 													<hr className="dropdown-divider" />
+												</li>
+												<li>
+													<a
+														onClick={() => {
+															getInvoice(el.id);
+														
+														}}
+														className="dropdown-item"
+														href="#">
+														print
+													</a>
 												</li>
 												<li>
 													<a

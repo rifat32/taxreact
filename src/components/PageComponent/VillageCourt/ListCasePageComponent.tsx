@@ -5,6 +5,7 @@ import CustomModal from "../../Modal/Modal";
 import { toast } from "react-toastify";
 import AddWardForm from "../../Forms/ElectionAreaForms/AddWardForm";
 import AddCaseForm from "../../Forms/VillageCourtForm/AddCaseForm";
+import { printInvoice } from "../../../utils/PrintInvoice";
 
 interface CaseType {
 	value?: {
@@ -94,9 +95,98 @@ const ListCasePageComponent: React.FC<CaseType> = (props) => {
 				});
 		}
 	};
+	const getInvoice = (id:number) => {
+
+		apiClient()
+				.get(`${BACKENDAPI}/v1.0/complains/get/invoice/${id}`)
+				.then((response: any) => {
+					printInvoice(response.data.invoice);
+				})
+				.catch((error) => {
+					console.log(error.response);
+				});
+
+	}
+	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if(e.target.value) {
+			setLoading(true)
+			apiClient()
+				.get(`${BACKENDAPI}/v1.0/complains/status/${props.value?.case}/search/${e.target.value}`)
+				.then((response: any) => {
+					setLoading(false)
+					console.log(response.data.data);
+					setData([ ...response.data.data.data]);
+					setNextPageLink(response.data.data.next_page_url);
+					setPrevPageLink(response.data.data.prev_page_url);
+				})
+				.catch((error) => {
+					setLoading(false)
+					console.log(error.response);
+				});
+		} else {
+			loadData2();
+		}
 	
+	}
+
+	const[dateSearch,setDateSearch] = useState<any>({
+		from:"",
+		to:""
+	})
+	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setDateSearch({
+			...dateSearch,
+			[e.target.name]:e.target.value
+		})
+	
+	}
+		const handleDateSearch = () => {
+		
+			setLoading(true)
+			apiClient()
+				.get(`${BACKENDAPI}/v1.0/complains/status/${props.value?.case}/date/${dateSearch.from}/${dateSearch.to}`)
+				.then((response: any) => {
+					setLoading(false)
+					console.log(response.data.data);
+					setData([ ...response.data.data.data]);
+					setNextPageLink(response.data.data.next_page_url);
+					setPrevPageLink(response.data.data.prev_page_url);
+				})
+				.catch((error) => {
+					setLoading(false)
+					console.log(error.response);
+				});
+	}
 	return (
 		<>
+		<div className="row">
+		<div className="col-6 offset-3">
+
+		<input type="text" className="form-control" onChange={handleSearch}/>
+		</div>
+
+	</div>
+	<div className="row mt-2">
+		<div className="col-6 offset-3">
+			<div className="row">
+				<div className="col-4">
+				<input type="date" className="form-control" name="from" value={dateSearch.from} onChange={handleDateChange}/>
+				</div>
+				<div className="col-1">
+				--
+				</div>
+				<div className="col-4">
+				<input type="date" className="form-control" name="to" value={dateSearch.to} onChange={handleDateChange}/>
+				</div>
+				<div className="col-2">
+				<button type="button" onClick={handleDateSearch} className="btn btn-primary"> filter</button>
+				</div>
+			</div>
+
+		
+		</div>
+
+	</div>
 			<table className="table">
 				<thead>
 					<tr>
@@ -154,6 +244,17 @@ const ListCasePageComponent: React.FC<CaseType> = (props) => {
 												</li>
 												<li>
 													<hr className="dropdown-divider" />
+												</li>
+												<li>
+													<a
+														onClick={() => {
+															getInvoice(el.id);
+														
+														}}
+														className="dropdown-item"
+														href="#">
+														print
+													</a>
 												</li>
 												<li>
 													<a
