@@ -56,6 +56,8 @@ import ListTradeLicensePage from "./pages/AdminPages/TradeLicense/ListTradeLicen
 import AddTradeLicense from "./pages/AdminPages/TradeLicense/AddTradeLicensePage";
 import ListServicePage from "./pages/AdminPages/Citizen/ListServicePage";
 import AddServicePage from "./pages/AdminPages/Citizen/AddServicePage";
+import ListStructurePage from "./pages/AdminPages/ElectionArea/ListStructurePage";
+import AddStructurePage from "./pages/AdminPages/ElectionArea/AddStructurePage";
 
 export const RouteData: RouteInterface[] = [
 	{
@@ -174,6 +176,17 @@ export const RouteData: RouteInterface[] = [
 		path: ROUTE_LIST.listSubDistrict,
 		exact: true,
 		component: ListSubDristictPage,
+	},
+	// structure 
+	{
+		path: ROUTE_LIST.createStructureType,
+		exact: false,
+		component: AddStructurePage,
+	},
+	{
+		path: ROUTE_LIST.listStructureType,
+		exact: true,
+		component: ListStructurePage,
 	},
 	// District 
 	{

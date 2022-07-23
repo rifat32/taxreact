@@ -177,31 +177,19 @@ export const adminSideBarData: NavInterface[] = [
 				permissions: [ "election_area",
 				],
 			},
-			// {
-			// 	name: "Add Ward",
-			// 	link: ROUTE_LIST.createWards,
-			// 	permissions: [],
-			// },
+		
 			{
 				name: sidebarLang.wards,
 				link: ROUTE_LIST.listWards,
 				permissions: [ "election_area",],
 			},
-			// {
-			// 	name: "Add Village",
-			// 	link: ROUTE_LIST.createVillage,
-			// 	permissions: [],
-			// },
+		
 			{
 				name: sidebarLang.villages,
 				link: ROUTE_LIST.listVillages,
 				permissions: [ "election_area",],
 			},
-			// {
-			// 	name: "Add Post Office",
-			// 	link: ROUTE_LIST.createPostOfice,
-			// 	permissions: [],
-			// },
+		
 			{
 				name: sidebarLang.post_offices,
 				link: ROUTE_LIST.listPostOffice,
@@ -237,6 +225,12 @@ export const adminSideBarData: NavInterface[] = [
 				link: ROUTE_LIST.listPaymentMethod,
 				permissions: [ "election_area",],
 			},
+			{
+				name: "অবকাঠামোর ধরণ",
+				link: ROUTE_LIST.listStructureType,
+				permissions: [ "election_area",],
+			},
+			
 		],
 
 	},

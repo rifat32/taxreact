@@ -15,6 +15,9 @@ export enum ROUTE_LIST {
     listDistrict="/admin/districts",
     createPaymentMethod="/admin/payment-method/create",
     listPaymentMethod="/admin/payment-method",
+    listStructureType="/admin/structure-type",
+    createStructureType="/admin/structure-type/create",
+
     createCitizen="/admin/citizens/create",
     listCitizen="/admin/citizens",
     createService="/admin/services/create",
