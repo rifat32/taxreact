@@ -103,6 +103,16 @@ export const adminSideBarData: NavInterface[] = [
 				link: ROUTE_LIST.listOngoingCase,
 				permissions: [],
 			},
+			{
+				name: "মামলার প্রত্যয়ন পত্র প্রদান",
+				link: ROUTE_LIST.casePrint,
+				permissions: [],
+			},
+			{
+				name: "আপোষ নামা মামলা প্রদান",
+				link: ROUTE_LIST.casePrint,
+				permissions: [],
+			},
 		
 		],
 	},

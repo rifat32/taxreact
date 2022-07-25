@@ -30,6 +30,7 @@ export enum ROUTE_LIST {
     listCase="/admin/cases",
     listSolvedCase="/admin/solved-cases",
     listOngoingCase="/admin/ongoing-cases",
+    casePrint="/admin/print/case",
     createHoldingTax="/admin/holding-tax/create",
     listHoldingTax="/admin/holding-tax",
     createNonHoldingTax="/admin/non-holding-tax/create",

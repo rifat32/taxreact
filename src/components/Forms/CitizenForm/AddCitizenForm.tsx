@@ -37,6 +37,7 @@ interface FormData {
 	half_building_house: string;
 	building_house: string;
 	members: Members[];
+	house_structure: string;
 
 }
 interface Members {
@@ -98,7 +99,8 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 				nid: "",
 				
 			}
-		]
+		],
+		house_structure:""
 	});
 	const [imageFile, setImageFile] = useState<any>();
 	const [errors, setErrors] = useState<any>(null);
@@ -109,6 +111,7 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 	const [postOffices, setPostOffices] = useState([]);
 	const [subDistricts, setSubDistricts] = useState([]);
 	const [districts, setDistricts] = useState([]);
+	const [houseTax, setHouseTax] = useState<any>([]);
 	const religions = [
 		{
 			id: 1,
@@ -289,6 +292,17 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 				console.log(error.response);
 			});
 	};
+	const loadHouseTax = (unionId: string) => {
+		apiClient()
+		.get(`${BACKENDAPI}/v1.0/house-structure/unions/${unionId}`)
+		.then((response: any) => {
+			console.log("hpuseTax", response.data.data);
+			setHouseTax(response.data.data);
+		})
+		.catch((error) => {
+			console.log(error.response);
+		});
+	}
 
 	const loadVillages = (wardId: string) => {
 		apiClient()
@@ -328,15 +342,42 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 
 	};
 	const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		if(e.target.name == "house_structure") {
+			if(e.target.value=="strong_house") {
+				setFormData({ ...formData,
+					 [e.target.name]: e.target.value,
+					tax_amount:houseTax.strong_house_tax,
+					annual_price:houseTax.strong_house_yearly_tax
+					});
+			}
+			if(e.target.value=="half_strong_house") {
+				setFormData({ ...formData,
+					[e.target.name]: e.target.value,
+				   tax_amount:houseTax.half_strong_house_tax,
+				   annual_price:houseTax.half_strong_yearly_tax
+				   });
+		   }
+		   if(e.target.value=="weak_strong_house") {
+			setFormData({ ...formData,
+				[e.target.name]: e.target.value,
+			   tax_amount:houseTax.weak_house_tax,
+			   annual_price:houseTax.weak_house_yearly_tax
+			   });
+		   }
+		   return
+	   }
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 		if (e.target.name == "union_id") {
 			loadWards(e.target.value);
 			loadSubDistricts(e.target.value)
+			loadHouseTax(e.target.value)
 		}
 		if (e.target.name == "ward_id") {
 			loadVillages(e.target.value);
 			loadPostOffices(e.target.value);
 		}
+	
+		
 	};
 	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 	
@@ -417,7 +458,8 @@ return {
 					nid: "",
 					
 				}
-			]
+			],
+			house_structure:""
 		});
 	};
 	{/* ccccccc */ }
@@ -455,7 +497,9 @@ return {
 			console.log(props.value)
 			loadWards(props.value.union_id)
 			loadUnions();
-		loadDistricts();
+		    loadDistricts();
+			 loadHouseTax(props.value.union_id);
+
 		}
 	}, []);
 	const updateData = () => {
@@ -514,6 +558,20 @@ return {
 		tempValues[index][name] = e.target.value;
 		setFormData({ ...formData,members:tempValues });
 	};
+	const houseStructures = [
+		{
+			name:"পাকা ঘর",
+			value:"strong_house"
+		},
+		{
+			name:"আধা ঘর",
+			value:"half_strong_house"
+		},
+		{
+			name:"কাঁচা ঘর",
+			value:"weak_strong_house"
+		},
+	]
 	return (
 		<form className="row g-3" onSubmit={handleSubmit}>
 			<div className="col-md-4">
@@ -1138,6 +1196,37 @@ return {
 				</select>
 				{errors?.current_year && (
 					<div className="invalid-feedback">{errors.current_year[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			<div className="col-md-4">
+				<label htmlFor="type_of_living" className="form-label">
+				অবকাঠামোর ধরণ
+				</label>
+				<select
+					className={
+						errors
+							? errors.house_structure
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="house_structure"
+					name="house_structure"
+					onChange={handleSelect}
+					value={formData.house_structure}>
+					<option value="">Please Select</option>
+					{houseStructures.map((el, index) => (
+						<option
+							key={index}
+							value={el.value}
+							style={{ textTransform: "uppercase" }}>
+							{el.name}
+						</option>
+					))}
+				</select>
+				{errors?.type_of_living && (
+					<div className="invalid-feedback">{errors.type_of_living[0]}</div>
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>

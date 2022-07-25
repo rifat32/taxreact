@@ -58,6 +58,7 @@ import ListServicePage from "./pages/AdminPages/Citizen/ListServicePage";
 import AddServicePage from "./pages/AdminPages/Citizen/AddServicePage";
 import ListStructurePage from "./pages/AdminPages/ElectionArea/ListStructurePage";
 import AddStructurePage from "./pages/AdminPages/ElectionArea/AddStructurePage";
+import CasePrintPage from "./pages/AdminPages/VillageCourt/CasePrint";
 
 export const RouteData: RouteInterface[] = [
 	{
@@ -187,6 +188,11 @@ export const RouteData: RouteInterface[] = [
 		path: ROUTE_LIST.listStructureType,
 		exact: true,
 		component: ListStructurePage,
+	},
+	{
+		path: ROUTE_LIST.casePrint,
+		exact: true,
+		component: CasePrintPage,
 	},
 	// District 
 	{
