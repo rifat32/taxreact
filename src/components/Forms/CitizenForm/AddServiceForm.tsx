@@ -37,8 +37,11 @@ interface FormData {
 	permanent_addess:string,
 	expire_date:string,
 	current_year:string,
-
-
+	fee:string,
+	fee_des:string,
+	vat:string,
+	vat_des:string,
+	total:string,
 	died_name:string,
 	died_father:string,
 	died_mother:string,
@@ -89,6 +92,11 @@ const AddServiceForm: React.FC<UpdateFormInterface> = (props) => {
 		post_office_id: "",
 		upazila_id: "",
 		district_id: "",
+		fee:"",
+	fee_des:"",
+	vat:"",
+	vat_des:"",
+	total:"",
 
 
 
@@ -469,7 +477,11 @@ return {
 	permanent_addess:"",
 	expire_date:"",
 	current_year:"",
-
+	fee:"",
+	fee_des:"",
+	vat:"",
+	vat_des:"",
+	total:"",
 	died_name:"",
 	died_father:"",
 	died_mother:"",
@@ -1173,7 +1185,128 @@ return {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
-
+			
+	
+	
+	
+	
+	
+	
+	<div className="col-md-4">
+				<label htmlFor="fee" className="form-label">
+				fee
+				</label>
+				<input
+					type="text"
+					className={
+						errors
+							? errors.fee
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="fee"
+					name="fee"
+					onChange={handleChange}
+					value={formData.fee}
+				/>
+				{errors?.fee && (
+					<div className="invalid-feedback">{errors.fee[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			<div className="col-md-4">
+				<label htmlFor="fee_des" className="form-label">
+				fee_des
+				</label>
+				<input
+					type="text"
+					className={
+						errors
+							? errors.fee_des
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="fee_des"
+					name="fee_des"
+					onChange={handleChange}
+					value={formData.fee_des}
+				/>
+				{errors?.fee_des && (
+					<div className="invalid-feedback">{errors.fee_des[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			<div className="col-md-4">
+				<label htmlFor="vat" className="form-label">
+				vat
+				</label>
+				<input
+					type="text"
+					className={
+						errors
+							? errors.vat
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="vat"
+					name="vat"
+					onChange={handleChange}
+					value={formData.vat}
+				/>
+				{errors?.vat && (
+					<div className="invalid-feedback">{errors.vat[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			<div className="col-md-4">
+				<label htmlFor="vat_des" className="form-label">
+				vat_des
+				</label>
+				<input
+					type="text"
+					className={
+						errors
+							? errors.vat_des
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="vat_des"
+					name="vat_des"
+					onChange={handleChange}
+					value={formData.vat_des}
+				/>
+				{errors?.vat_des && (
+					<div className="invalid-feedback">{errors.vat_des[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			<div className="col-md-4">
+				<label htmlFor="total" className="form-label">
+				total
+				</label>
+				<input
+					type="text"
+					className={
+						errors
+							? errors.total
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="total"
+					name="total"
+					onChange={handleChange}
+					value={formData.total}
+				/>
+				{errors?.total && (
+					<div className="invalid-feedback">{errors.total[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
 			<div className="col-md-4">
 				<label htmlFor="expire_date" className="form-label">
 				expire date
@@ -1328,7 +1461,7 @@ return {
 					{districts.map((el: any, index) => (
 						<option
 							key={index}
-							value={el.id}
+							value={el.name}
 							style={{ textTransform: "uppercase" }}>
 							{el.name}
 						</option>
@@ -1360,7 +1493,7 @@ return {
 					{subDistricts.map((el: any, index) => (
 						<option
 							key={index}
-							value={el.id}
+							value={el.name}
 							style={{ textTransform: "uppercase" }}>
 							{el.name}
 						</option>
@@ -1391,7 +1524,7 @@ return {
 					{wards.map((el: any, index) => (
 						<option
 							key={index}
-							value={el.id}
+							value={el.name}
 							style={{ textTransform: "uppercase" }}>
 							{el.ward_no}
 						</option>
@@ -1422,7 +1555,7 @@ return {
 					{villages.map((el: any, index) => (
 						<option
 							key={index}
-							value={el.id}
+							value={el.name}
 							style={{ textTransform: "uppercase" }}>
 							{el.name}
 						</option>
@@ -1453,7 +1586,7 @@ return {
 					{postOffices.map((el: any, index) => (
 						<option
 							key={index}
-							value={el.id}
+							value={el.name}
 							style={{ textTransform: "uppercase" }}>
 							{el.name}
 						</option>

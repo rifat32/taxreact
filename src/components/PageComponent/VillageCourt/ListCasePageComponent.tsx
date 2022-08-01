@@ -140,7 +140,7 @@ const ListCasePageComponent: React.FC<CaseType> = (props) => {
 		})
 	
 	}
-		const handleDateSearch = () => {
+    const handleDateSearch = () => {
 		
 			setLoading(true)
 			apiClient()
