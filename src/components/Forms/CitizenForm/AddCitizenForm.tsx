@@ -37,7 +37,10 @@ interface FormData {
 	half_building_house: string;
 	building_house: string;
 	members: Members[];
-	house_structure: string;
+
+	strong_house:string,
+	half_strong_house:string,
+	weak_house:string,
 
 }
 interface Members {
@@ -97,11 +100,16 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 				upazila: "test",
 				district: "test",
 				nid: "",
+
 				
 			}
 		],
-		house_structure:""
+		strong_house:"0",
+
+		half_strong_house:"0",
+		weak_house:"0",
 	});
+
 	const [imageFile, setImageFile] = useState<any>();
 	const [errors, setErrors] = useState<any>(null);
 
@@ -336,36 +344,159 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			setErrors(error.data.errors);
 		}
 	}
-
+	function isNumber(str: string): boolean {
+		if (typeof str !== 'string') {
+		  return false;
+		}
+	  
+		if (str.trim() === '') {
+		  return false;
+		}
+	  
+		return !Number.isNaN(Number(str));
+	  }
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
+		let strongHouse = parseInt(formData.strong_house)
+		let halfStrongHouse = parseInt(formData.half_strong_house)
+		let weakHouse = parseInt(formData.weak_house)
+	 
+			if(e.target.name=="strong_house") {
+				if(!isNumber(e.target.value)) {
+                    return;
+				}
+				if(!isNumber(formData.half_strong_house)) {
+                    halfStrongHouse = 0;
+				}
+				if(!isNumber(formData.weak_house)) {
+					weakHouse = 0; 
+				}
+		
+			
+			let value = parseInt(e.target.value)
+            let strongHouseTax = parseInt(houseTax.strong_house_tax)
+			let halfStrongHouseTax = parseInt(houseTax.half_strong_house_tax)
+			let weakHouseTax = parseInt(houseTax.weak_house_tax)
 
-	};
-	const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		if(e.target.name == "house_structure") {
-			if(e.target.value=="strong_house") {
-				setFormData({ ...formData,
-					 [e.target.name]: e.target.value,
-					tax_amount:houseTax.strong_house_tax,
-					annual_price:houseTax.strong_house_yearly_tax
-					});
-			}
-			if(e.target.value=="half_strong_house") {
-				setFormData({ ...formData,
-					[e.target.name]: e.target.value,
-				   tax_amount:houseTax.half_strong_house_tax,
-				   annual_price:houseTax.half_strong_yearly_tax
-				   });
-		   }
-		   if(e.target.value=="weak_strong_house") {
+
+			let strongHouseYearlyTax = parseInt(houseTax.strong_house_yearly_tax)
+			let halfStrongHouseYearlyTax = parseInt(houseTax.half_strong_yearly_tax)
+			let weakHouseYearlyTax = parseInt(houseTax.weak_house_yearly_tax)
+
+
+
+
+		
+
+	
 			setFormData({ ...formData,
 				[e.target.name]: e.target.value,
-			   tax_amount:houseTax.weak_house_tax,
-			   annual_price:houseTax.weak_house_yearly_tax
+
+
+			   tax_amount: ((strongHouseTax * value) + (halfStrongHouseTax * halfStrongHouse) + (weakHouseTax * weakHouse) ).toString(),
+
+
+			   annual_price: ((strongHouseYearlyTax * value) + (halfStrongHouseYearlyTax * halfStrongHouse) + (weakHouseYearlyTax * weakHouse) ).toString(),
 			   });
-		   }
+		 
+			
+			}
+			if(e.target.name=="half_strong_house") {
+
+				if(!isNumber(e.target.value)) {
+                    return;
+				}
+				if(!isNumber(formData.strong_house)) {
+                    strongHouse = 0;
+				}
+				if(!isNumber(formData.weak_house)) {
+					weakHouse = 0; 
+				}
+				   
+				   let value = parseInt(e.target.value)
+				   let strongHouseTax = parseInt(houseTax.strong_house_tax)
+				   let halfStrongHouseTax = parseInt(houseTax.half_strong_house_tax)
+				   let weakHouseTax = parseInt(houseTax.weak_house_tax)
+	   
+	   
+				   let strongHouseYearlyTax = parseInt(houseTax.strong_house_yearly_tax)
+				   let halfStrongHouseYearlyTax = parseInt(houseTax.half_strong_yearly_tax)
+				   let weakHouseYearlyTax = parseInt(houseTax.weak_house_yearly_tax)
+	   
+	   
+	   
+	   
+	   
+		   
+				   setFormData({ ...formData,
+					   [e.target.name]: e.target.value,
+	   
+	   
+					  tax_amount: ((strongHouseTax * strongHouse) + (halfStrongHouseTax * value) + (weakHouseTax * weakHouse) ).toString(),
+	   
+	   
+					  annual_price: ((strongHouseYearlyTax * strongHouse) + (halfStrongHouseYearlyTax * value) + (weakHouseYearlyTax * weakHouse) ).toString(),
+					  });
+				
+				   
+				   }
+				   if(e.target.name=="weak_house") {
+					if(!isNumber(e.target.value)) {
+						return;
+					}
+					if(!isNumber(formData.strong_house)) {
+						strongHouse = 0;
+					}
+					if(!isNumber(formData.half_strong_house)) {
+						halfStrongHouse = 0; 
+					}
+					   
+					   let value = parseInt(e.target.value)
+					   let strongHouseTax = parseInt(houseTax.strong_house_tax)
+					   let halfStrongHouseTax = parseInt(houseTax.half_strong_house_tax)
+					   let weakHouseTax = parseInt(houseTax.weak_house_tax)
+		   
+		   
+					   let strongHouseYearlyTax = parseInt(houseTax.strong_house_yearly_tax)
+					   let halfStrongHouseYearlyTax = parseInt(houseTax.half_strong_yearly_tax)
+					   let weakHouseYearlyTax = parseInt(houseTax.weak_house_yearly_tax)
+		   
+		   
+		   
+		   
+			   
+					   setFormData({ ...formData,
+						   [e.target.name]: e.target.value,
+		   
+		   
+						  tax_amount: ((strongHouseTax * strongHouse) + (halfStrongHouseTax * halfStrongHouse) + (weakHouseTax * value) ).toString(),
+		   
+		   
+						  annual_price: ((strongHouseYearlyTax * strongHouse) + (halfStrongHouseYearlyTax * halfStrongHouse) + (weakHouseYearlyTax * value) ).toString(),
+						  });
+					
+					   
+					   }
+	
 		   return
-	   }
+	   
+	};
+		{/* const houseStructures = [
+		{
+			name:"পাকা ঘর",
+			value:"strong_house"
+		},
+		{
+			name:"আধা ঘর",
+			value:"half_strong_house"
+		},
+		{
+			name:"কাঁচা ঘর",
+			value:"weak_strong_house"
+		},
+	] */}
+	const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+	
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 		if (e.target.name == "union_id") {
 			loadWards(e.target.value);
@@ -459,7 +590,10 @@ return {
 					
 				}
 			],
-			house_structure:""
+		strong_house:"0",
+
+		half_strong_house:"0",
+		weak_house:"0",
 		});
 	};
 	{/* ccccccc */ }
@@ -558,20 +692,7 @@ return {
 		tempValues[index][name] = e.target.value;
 		setFormData({ ...formData,members:tempValues });
 	};
-	const houseStructures = [
-		{
-			name:"পাকা ঘর",
-			value:"strong_house"
-		},
-		{
-			name:"আধা ঘর",
-			value:"half_strong_house"
-		},
-		{
-			name:"কাঁচা ঘর",
-			value:"weak_strong_house"
-		},
-	]
+
 	return (
 		<form className="row g-3" onSubmit={handleSubmit}>
 			<div className="col-md-4">
@@ -1199,34 +1320,73 @@ return {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
+		
 			<div className="col-md-4">
-				<label htmlFor="type_of_living" className="form-label">
-				অবকাঠামোর ধরণ
+				<label htmlFor="strong_house" className="form-label">
+				পাকা ঘর
 				</label>
-				<select
+				<input
+					type="text"
 					className={
 						errors
-							? errors.house_structure
+							? errors.strong_house
 								? `form-control is-invalid`
 								: `form-control is-valid`
 							: "form-control"
 					}
-					id="house_structure"
-					name="house_structure"
-					onChange={handleSelect}
-					value={formData.house_structure}>
-					<option value="">Please Select</option>
-					{houseStructures.map((el, index) => (
-						<option
-							key={index}
-							value={el.value}
-							style={{ textTransform: "uppercase" }}>
-							{el.name}
-						</option>
-					))}
-				</select>
-				{errors?.type_of_living && (
-					<div className="invalid-feedback">{errors.type_of_living[0]}</div>
+					id="strong_house"
+					name="strong_house"
+					onChange={handleChange}
+					value={formData.strong_house}
+				/>
+				{errors?.strong_house && (
+					<div className="invalid-feedback">{errors.annual_price[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			<div className="col-md-4">
+				<label htmlFor="half_strong_house" className="form-label">
+				আধা ঘর
+				</label>
+				<input
+					type="text"
+					className={
+						errors
+							? errors.half_strong_house
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="half_strong_house"
+					name="half_strong_house"
+					onChange={handleChange}
+					value={formData.half_strong_house}
+				/>
+				{errors?.half_strong_house && (
+					<div className="invalid-feedback">{errors.annual_price[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			<div className="col-md-4">
+				<label htmlFor="weak_house" className="form-label">
+				কাঁচা ঘর
+				</label>
+				<input
+					type="text"
+					className={
+						errors
+							? errors.weak_house
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="weak_house"
+					name="weak_house"
+					onChange={handleChange}
+					value={formData.weak_house}
+				/>
+				{errors?.weak_house && (
+					<div className="invalid-feedback">{errors.annual_price[0]}</div>
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
