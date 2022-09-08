@@ -183,7 +183,7 @@ const invalidInputHandler = (error:any) => {
 					name="union_id"
 					onChange={handleSelect}
 					value={formData.union_id}>
-					<option value="">Please Select</option>
+					
 					{unions.map((el: any, index) => (
 						<option
 							key={index}
