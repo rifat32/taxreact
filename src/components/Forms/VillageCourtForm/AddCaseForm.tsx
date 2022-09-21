@@ -274,7 +274,8 @@ const handleBiBadiChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 						<option
 							key={index}
 							value={el.id}
-							style={{ textTransform: "uppercase" }}>
+							style={{ textTransform: "uppercase" }}
+							selected={index == 0}>
 							{el.name}
 						</option>
 					))}
@@ -611,7 +612,7 @@ const handleBiBadiChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 					
 					className={
 						errors
-							? errors.defendant_name
+							? errors.defendants
 								? `form-control is-invalid`
 								: `form-control is-valid`
 							: "form-control"

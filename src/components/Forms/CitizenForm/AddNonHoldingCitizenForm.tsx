@@ -283,7 +283,8 @@ const AddNonHoldingCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 						<option
 							key={index}
 							value={el.id}
-							style={{ textTransform: "uppercase" }}>
+							style={{ textTransform: "uppercase" }}
+							selected={index == 0}>
 							{el.name}
 						</option>
 					))}
