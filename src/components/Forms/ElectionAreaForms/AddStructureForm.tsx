@@ -49,6 +49,10 @@ const AddStructureForm: React.FC<UpdateFormInterface> = (props) => {
 			.then((response: any) => {
 				console.log(response);
 				setUnions(response.data.data);
+				if(props.type !== "update") {
+					setFormData({...formData,union_id:response.data.data[0]?.id})
+				
+				}
 			})
 			.catch((error) => {
 				console.log(error.response);

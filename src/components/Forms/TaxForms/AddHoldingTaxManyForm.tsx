@@ -6,25 +6,32 @@ import { UpdateFormInterface } from "../../../interfaces/UpdateFormInterfaced";
 import { ErrorMessage } from "../../../utils/ErrorMessage";
 
 interface FormData {
+	data: FormDataObj[];
 	union_id: string;
 	ward_id: string;
+	
+}
+interface FormDataObj {
 	note:string;
 	amount:string;
 	current_year:string;
-	citizen_id:string;
 	holding_no:string
-	
+	citizen_id:string;
 }
 
-const AddHoldingTaxForm: React.FC<UpdateFormInterface> = (props) => {
+const AddHoldingTaxManyForm: React.FC<UpdateFormInterface> = (props) => {
 	const [formData, setFormData] = useState<FormData>({
-	union_id:'',
-	ward_id:'',
-	note:"",
-	amount:"",
-	current_year:"",
-	citizen_id:"",
-	holding_no:""
+		data:[
+			{
+			note:"",
+			amount:"",
+			current_year:"",
+			citizen_id:"",
+			holding_no:""}
+		],
+		union_id:'',
+			ward_id:'',
+	
 	
 	});
 	
@@ -44,10 +51,13 @@ const AddHoldingTaxForm: React.FC<UpdateFormInterface> = (props) => {
 			.get(`${BACKENDAPI}/v1.0/unions/all`)
 			.then((response: any) => {
 				console.log(response);
+
 				setUnions(response.data.data);
+				
 				if(props.type !== "update") {
-					setFormData({...formData,union_id:response.data.data[0]?.id})
-					loadWards(response.data.data[0]?.id );
+					let firstUnion = response.data.data[0]?.id;
+					setFormData({...formData,union_id:firstUnion})
+					loadWards(firstUnion);
 				}
 				
 			})
@@ -93,6 +103,25 @@ const invalidInputHandler = (error:any) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 		
 	};
+	const handleChangeMany = (e: React.ChangeEvent<HTMLInputElement>) => {
+		let index = (e.target.name).split("-")[0]
+		let name = (e.target.name).split("-")[1]
+		const tempData = JSON.parse(JSON.stringify(formData.data)) 
+		
+		tempData[index][name] = e.target.value;
+		console.log(index,name,tempData)
+		setFormData({ ...formData, data: tempData });
+		
+	};
+	
+	const handleTextAreaChangeMany = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		let index = (e.target.name).split("-")[0]
+		let name = (e.target.name).split("-")[1]
+		const tempData = JSON.parse(JSON.stringify(formData.data)) 
+		tempData[index][name] = e.target.value;
+		setFormData({ ...formData, data: tempData });
+		
+	};
 	const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 		
@@ -105,19 +134,29 @@ const invalidInputHandler = (error:any) => {
 		if(e.target.name == "ward_id"){
 			loadCitizens(e.target.value );
 		  }
-		
 				  
 	};
+	const handleSelectMany = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		let index = (e.target.name).split("-")[0]
+		let name = (e.target.name).split("-")[1]
+		const tempData = JSON.parse(JSON.stringify(formData.data)) 
+		tempData[index][name] = e.target.value;
+		setFormData({ ...formData, data: tempData });
+	
+				  
+	};
+	
 	const resetFunction = () => {
-		setFormData({
-			union_id:'',
-			ward_id:'',
+		setFormData({data:[{
+			
 			note:"",
 			amount:"",
 			current_year:"",
 			citizen_id:"",
 			holding_no:""
-		});
+		}],
+		union_id:'',
+		ward_id:''});
 	};
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -129,12 +168,25 @@ const invalidInputHandler = (error:any) => {
 		}
 	};
 	const createData = () => {
-		apiClient()
-			.post(`${BACKENDAPI}/v1.0/cizen-taxes`, { ...formData })
+		formData.data.map((el,index) => {
+			const postObj = {
+				note:el.note,
+				amount:el.amount,
+				current_year:el.current_year,
+				citizen_id:el.citizen_id,
+				holding_no:el.holding_no,
+			union_id:formData.union_id,
+			ward_id:formData.ward_id}
+
+			apiClient()
+			.post(`${BACKENDAPI}/v1.0/cizen-taxes`, { ...postObj })
 			.then((response) => {
 				console.log(response);
 				toast.success("Data saved");
-				resetFunction();
+				if(formData.data.length == (index + 1)){
+					resetFunction();
+				}
+				
 			})
 			.catch((error) => {
 				console.log(error.response);
@@ -143,6 +195,11 @@ const invalidInputHandler = (error:any) => {
 				invalidInputHandler(error.response)
 				ErrorMessage(error.response)
 			});
+
+
+		})
+		
+		
 	};
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	// edit data section
@@ -172,10 +229,28 @@ const invalidInputHandler = (error:any) => {
 	};
 	// end edit Data section
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+const addMore = () => {
+	const tempFormData = JSON.parse(JSON.stringify(formData.data))
+	tempFormData.push({
+		note:"",
+		amount:"",
+		current_year:"",
+		citizen_id:"",
+		holding_no:""
+	})
+	setFormData({...formData,data:tempFormData})
+}
+const remove = () => {
+	const tempFormData = JSON.parse(JSON.stringify(formData.data))
+	if(tempFormData.length == 1) {
+return
+	}
+	tempFormData.pop()
+	setFormData({...formData,data:tempFormData})
+}
 	return (
 		<form className="row g-3" onSubmit={handleSubmit}>
-		<div className="col-md-12">
+				<div className="col-md-12">
 				<label htmlFor="union_id" className="form-label">
 					ইউনিয়ন
 				</label>
@@ -238,6 +313,12 @@ const invalidInputHandler = (error:any) => {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
+			<hr />
+			{
+				formData.data.map((el:any,index) => {
+					return (
+						<div className="row">
+						
 			<div className="col-md-12">
 				<label htmlFor="holding_no" className="form-label">
 				হোল্ডিং নাম্বার 
@@ -251,9 +332,9 @@ const invalidInputHandler = (error:any) => {
 							: "form-control"
 					}
 					id="holding_no"
-					name="holding_no"
-					onChange={handleChange}
-					value={formData.holding_no}>
+					name={`${index}-holding_no`}
+					onChange={handleChangeMany}
+					value={el.holding_no}>
 				</input>
 				
 				{errors?.holding_no && (
@@ -275,9 +356,10 @@ const invalidInputHandler = (error:any) => {
 							: "form-control"
 					}
 					id="current_year"
-					name="current_year"
-					onChange={handleChange}
-					value={formData.current_year}
+				
+					name={`${index}-current_year`}
+					onChange={handleChangeMany}
+					value={el.current_year}
 				/>
 				{errors?.current_year && (
 					<div className="invalid-feedback">{errors.current_year[0]}</div>
@@ -298,9 +380,10 @@ const invalidInputHandler = (error:any) => {
 							: "form-control"
 					}
 					id="amount"
-					name="amount"
-					onChange={handleChange}
-					value={formData.amount}
+				
+					name={`${index}-amount`}
+					onChange={handleChangeMany}
+					value={el.amount}
 				/>
 				{errors?.amount && (
 					<div className="invalid-feedback">{errors.amount[0]}</div>
@@ -321,9 +404,10 @@ const invalidInputHandler = (error:any) => {
 							: "form-control"
 					}
 					id="note"
-					name="note"
-					onChange={handleTextAreaChange}
-					value={formData.note}
+					name={`${index}-note`}
+					
+					onChange={handleTextAreaChangeMany}
+					value={el.note}
 			>
 			</textarea>
 				{errors?.note && (
@@ -347,9 +431,10 @@ const invalidInputHandler = (error:any) => {
 							: "form-control"
 					}
 					id="citizen_id"
-					name="citizen_id"
-					onChange={handleSelect}
-					value={formData.citizen_id}>
+					name={`${index}-citizen_id`}
+				
+					onChange={handleSelectMany}
+					value={el.citizen_id}>
 					<option value="">Please Select</option>
 					{citizens.map((el: any, index) => (
 						<option
@@ -365,6 +450,20 @@ const invalidInputHandler = (error:any) => {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
+<hr />
+<hr />
+<hr />
+
+						</div>
+					)
+				})
+			}
+	
+	<div>
+	<button type="button" className="btn btn-primary" onClick={addMore}>+</button>
+	<button type="button" className="btn btn-primary" onClick={remove}>-</button>
+	
+</div>
 	
 		
 
@@ -383,4 +482,4 @@ const invalidInputHandler = (error:any) => {
 	);
 };
 
-export default AddHoldingTaxForm;
+export default AddHoldingTaxManyForm;

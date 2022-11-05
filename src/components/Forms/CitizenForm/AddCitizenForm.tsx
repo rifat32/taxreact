@@ -262,11 +262,26 @@ const AddCitizenForm: React.FC<UpdateFormInterface> = (props) => {
 			.then((response: any) => {
 				console.log(response);
 				setUnions(response.data.data);
+				if(props.type !== "update") {
+					setFormData({...formData,union_id:response.data.data[0]?.id})
+				}
+				
+				
 			})
 			.catch((error) => {
 				console.log(error.response);
 			});
 	};
+	useEffect(()=> {
+		
+			if(formData.union_id){
+				loadWards(formData.union_id);
+				loadSubDistricts(formData.union_id)
+				loadHouseTax(formData.union_id)
+			}
+		
+		
+	},[formData.union_id])
 	const loadDistricts = () => {
 		apiClient()
 			.get(`${BACKENDAPI}/v1.0/districts/all`)
@@ -630,6 +645,9 @@ return {
 			 setFormData(props.value);
 			console.log(props.value)
 			loadWards(props.value.union_id)
+			loadVillages(props.value.ward_id);
+			loadPostOffices(props.value.ward_id);
+
 			loadUnions();
 		    loadDistricts();
 			 loadHouseTax(props.value.union_id);

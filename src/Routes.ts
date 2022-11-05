@@ -59,6 +59,7 @@ import AddServicePage from "./pages/AdminPages/Citizen/AddServicePage";
 import ListStructurePage from "./pages/AdminPages/ElectionArea/ListStructurePage";
 import AddStructurePage from "./pages/AdminPages/ElectionArea/AddStructurePage";
 import CasePrintPage from "./pages/AdminPages/VillageCourt/CasePrint";
+import AddHoldingTaxManyPage from "./pages/AdminPages/Taxes/AddHoldingTaxManyPage";
 
 export const RouteData: RouteInterface[] = [
 	{
@@ -297,6 +298,12 @@ export const RouteData: RouteInterface[] = [
 			path: ROUTE_LIST.createHoldingTax,
 			exact: false,
 			component: AddHoldingTaxPage,
+		},
+		// Tax  
+		{
+			path: ROUTE_LIST.createHoldingTaxMany,
+			exact: false,
+			component: AddHoldingTaxManyPage,
 		},
 		{
 			path: ROUTE_LIST.listHoldingTax,

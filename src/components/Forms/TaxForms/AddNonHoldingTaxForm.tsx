@@ -12,6 +12,7 @@ interface FormData {
 	amount:string;
 	current_year:string;
 	non_citizen_id:string;
+	holding_no:string;
 	
 }
 
@@ -23,7 +24,7 @@ const AddNonHoldingTaxForm: React.FC<UpdateFormInterface> = (props) => {
 	amount:"",
 	current_year:"",
 	non_citizen_id:"",
-	
+	holding_no:""
 	});
 	
 	const [errors, setErrors] = useState<any>(null);
@@ -43,6 +44,10 @@ const AddNonHoldingTaxForm: React.FC<UpdateFormInterface> = (props) => {
 			.then((response: any) => {
 				console.log(response);
 				setUnions(response.data.data);
+				if(props.type !== "update") {
+					setFormData({...formData,union_id:response.data.data[0]?.id})
+					loadWards(response.data.data[0]?.id );
+				}
 			})
 			.catch((error) => {
 				console.log(error.response);
@@ -108,6 +113,7 @@ const invalidInputHandler = (error:any) => {
 			amount:"",
 			current_year:"",
 			non_citizen_id:"",
+	holding_no:""
 		});
 	};
 	const handleSubmit = (e: React.FormEvent) => {
@@ -230,49 +236,25 @@ const invalidInputHandler = (error:any) => {
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
 			<div className="col-md-12">
-				<label htmlFor="note" className="form-label">
-					নোট
+				<label htmlFor="holding_no" className="form-label">
+				হোল্ডিং নাম্বার 
 				</label>
-				<textarea
-				
-					className={
+				<input 
+				className={
 						errors
-							? errors.note
+							? errors.holding_no
 								? `form-control is-invalid`
 								: `form-control is-valid`
 							: "form-control"
 					}
-					id="note"
-					name="note"
-					onChange={handleTextAreaChange}
-					value={formData.note}
-			>
-			</textarea>
-				{errors?.note && (
-					<div className="invalid-feedback">{errors.note[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
-			<div className="col-md-4">
-				<label htmlFor="amount" className="form-label">
-				পরিমাণ
-				</label>
-				<input
-					type="text"
-					className={
-						errors
-							? errors.amount
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="amount"
-					name="amount"
+					id="holding_no"
+					name="holding_no"
 					onChange={handleChange}
-					value={formData.amount}
-				/>
-				{errors?.amount && (
-					<div className="invalid-feedback">{errors.amount[0]}</div>
+					value={formData.holding_no}>
+				</input>
+				
+				{errors?.holding_no && (
+					<div className="invalid-feedback">{errors.holding_no[0]}</div>
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
@@ -299,6 +281,55 @@ const invalidInputHandler = (error:any) => {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
+			<div className="col-md-4">
+				<label htmlFor="amount" className="form-label">
+				পরিমাণ
+				</label>
+				<input
+					type="text"
+					className={
+						errors
+							? errors.amount
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="amount"
+					name="amount"
+					onChange={handleChange}
+					value={formData.amount}
+				/>
+				{errors?.amount && (
+					<div className="invalid-feedback">{errors.amount[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			<div className="col-md-12">
+				<label htmlFor="note" className="form-label">
+					নোট
+				</label>
+				<textarea
+				
+					className={
+						errors
+							? errors.note
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="note"
+					name="note"
+					onChange={handleTextAreaChange}
+					value={formData.note}
+			>
+			</textarea>
+				{errors?.note && (
+					<div className="invalid-feedback">{errors.note[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			
+			
 		
 			<div className="col-md-12">
 				<label htmlFor="non_citizen_id" className="form-label">

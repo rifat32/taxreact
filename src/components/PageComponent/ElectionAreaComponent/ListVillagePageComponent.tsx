@@ -91,7 +91,7 @@ const ListVillagePageComponent: React.FC = () => {
 									<td>{el.id}</td>
 									<td>{el.name && el.name}</td>
 									<td>{el.ward?.ward_no && el.ward.ward_no}</td>
-									<td>{el.union?.name && el.union.name}</td>
+									<td>{el.ward?.union?.name && el.ward?.union?.name}</td>
 								
 									<td>
 										<div className="btn-group">
