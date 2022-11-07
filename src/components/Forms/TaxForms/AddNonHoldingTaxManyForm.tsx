@@ -6,26 +6,35 @@ import { UpdateFormInterface } from "../../../interfaces/UpdateFormInterfaced";
 import { ErrorMessage } from "../../../utils/ErrorMessage";
 
 interface FormData {
+	data: FormDataObj[];
 	union_id: string;
 	ward_id: string;
+	
+}
+interface FormDataObj {
 	note:string;
 	amount:string;
 	current_year:string;
+	holding_no:string
 	non_citizen_id:string;
-	holding_no:string;
-	
 }
 
 const AddNonHoldingTaxManyForm: React.FC<UpdateFormInterface> = (props) => {
 	const [formData, setFormData] = useState<FormData>({
-	union_id:'',
-	ward_id:'',
-	note:"",
-	amount:"",
-	current_year:"",
-	non_citizen_id:"",
-	holding_no:""
+		data:[
+			{
+			note:"",
+			amount:"",
+			current_year:"",
+			non_citizen_id:"",
+			holding_no:""}
+		],
+		union_id:'',
+			ward_id:'',
+	
+	
 	});
+	
 	
 	const [errors, setErrors] = useState<any>(null);
 
@@ -107,13 +116,16 @@ const invalidInputHandler = (error:any) => {
 	};
 	const resetFunction = () => {
 		setFormData({
+			data:[
+				{
+				note:"",
+				amount:"",
+				current_year:"",
+				non_citizen_id:"",
+				holding_no:""}
+			],
 			union_id:'',
-			ward_id:'',
-			note:"",
-			amount:"",
-			current_year:"",
-			non_citizen_id:"",
-	holding_no:""
+				ward_id:'',
 		});
 	};
 	const handleSubmit = (e: React.FormEvent) => {
@@ -169,214 +181,274 @@ const invalidInputHandler = (error:any) => {
 	};
 	// end edit Data section
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+	const addMore = () => {
+		const tempFormData = JSON.parse(JSON.stringify(formData.data))
+		tempFormData.push({
+			note:"",
+			amount:"",
+			current_year:"",
+			citizen_id:"",
+			holding_no:""
+		})
+		setFormData({...formData,data:tempFormData})
+	}
+	const remove = () => {
+		const tempFormData = JSON.parse(JSON.stringify(formData.data))
+		if(tempFormData.length == 1) {
+	return
+		}
+		tempFormData.pop()
+		setFormData({...formData,data:tempFormData})
+	}
+	const handleChangeMany = (e: React.ChangeEvent<HTMLInputElement>) => {
+		let index = (e.target.name).split("-")[0]
+		let name = (e.target.name).split("-")[1]
+		const tempData = JSON.parse(JSON.stringify(formData.data)) 
+		
+		tempData[index][name] = e.target.value;
+		console.log(index,name,tempData)
+		setFormData({ ...formData, data: tempData });
+		
+	};
+	const handleTextAreaChangeMany = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		let index = (e.target.name).split("-")[0]
+		let name = (e.target.name).split("-")[1]
+		const tempData = JSON.parse(JSON.stringify(formData.data)) 
+		tempData[index][name] = e.target.value;
+		setFormData({ ...formData, data: tempData });
+		
+	};
 	return (
 		<form className="row g-3" onSubmit={handleSubmit}>
 		<div className="col-md-12">
-				<label htmlFor="union_id" className="form-label">
-					ইউনিয়ন
-				</label>
-				<select
-					className={
-						errors
-							? errors.union_id
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="union_id"
-					name="union_id"
-					onChange={handleSelect}
-					value={formData.union_id}>
-					
-					{unions.map((el: any, index) => (
-						<option
-							key={index}
-							value={el.id}
-							style={{ textTransform: "uppercase" }}
-							selected={index == 0}>
-							{el.name}
-						</option>
-					))}
-				</select>
-				{errors?.union_id && (
-					<div className="invalid-feedback">{errors.union_id[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
-			<div className="col-md-12">
-				<label htmlFor="union_id" className="form-label">
-					ওয়ার্ড
-				</label>
-				<select
-					className={
-						errors
-							? errors.ward_id
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="ward_id"
-					name="ward_id"
-					onChange={handleSelect}
-					value={formData.ward_id}>
-					<option value="">Please Select</option>
-					{wards.map((el: any, index) => (
-						<option
-							key={index}
-							value={el.id}
-							style={{ textTransform: "uppercase" }}>
-							{el.ward_no}
-						</option>
-					))}
-				</select>
-				{errors?.ward_id && (
-					<div className="invalid-feedback">{errors.ward_id[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
-			<div className="col-md-12">
-				<label htmlFor="holding_no" className="form-label">
-				হোল্ডিং নাম্বার 
-				</label>
-				<input 
-				className={
-						errors
-							? errors.holding_no
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="holding_no"
-					name="holding_no"
-					onChange={handleChange}
-					value={formData.holding_no}>
-				</input>
-				
-				{errors?.holding_no && (
-					<div className="invalid-feedback">{errors.holding_no[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
-			<div className="col-md-4">
-				<label htmlFor="current_year" className="form-label">
-				অর্থ বছর
-				</label>
-				<input
-					type="text"
-					className={
-						errors
-							? errors.current_year
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="current_year"
-					name="current_year"
-					onChange={handleChange}
-					value={formData.current_year}
-				/>
-				{errors?.current_year && (
-					<div className="invalid-feedback">{errors.current_year[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
-			<div className="col-md-4">
-				<label htmlFor="amount" className="form-label">
-				পরিমাণ
-				</label>
-				<input
-					type="text"
-					className={
-						errors
-							? errors.amount
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="amount"
-					name="amount"
-					onChange={handleChange}
-					value={formData.amount}
-				/>
-				{errors?.amount && (
-					<div className="invalid-feedback">{errors.amount[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
-			<div className="col-md-12">
-				<label htmlFor="note" className="form-label">
-					নোট
-				</label>
-				<textarea
-				
-					className={
-						errors
-							? errors.note
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="note"
-					name="note"
-					onChange={handleTextAreaChange}
-					value={formData.note}
-			>
-			</textarea>
-				{errors?.note && (
-					<div className="invalid-feedback">{errors.note[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
+		<label htmlFor="union_id" className="form-label">
+			ইউনিয়ন
+		</label>
+		<select
+			className={
+				errors
+					? errors.union_id
+						? `form-control is-invalid`
+						: `form-control is-valid`
+					: "form-control"
+			}
+			id="union_id"
+			name="union_id"
+			onChange={handleSelect}
+			value={formData.union_id}>
 			
-			
+			{unions.map((el: any, index) => (
+				<option
+					key={index}
+					value={el.id}
+					style={{ textTransform: "uppercase" }}
+					selected={index == 0}>
+					{el.name}
+				</option>
+			))}
+		</select>
+		{errors?.union_id && (
+			<div className="invalid-feedback">{errors.union_id[0]}</div>
+		)}
+		{errors && <div className="valid-feedback">Looks good!</div>}
+	</div>
+	<div className="col-md-12">
+		<label htmlFor="union_id" className="form-label">
+			ওয়ার্ড
+		</label>
+		<select
+			className={
+				errors
+					? errors.ward_id
+						? `form-control is-invalid`
+						: `form-control is-valid`
+					: "form-control"
+			}
+			id="ward_id"
+			name="ward_id"
+			onChange={handleSelect}
+			value={formData.ward_id}>
+			<option value="">Please Select</option>
+			{wards.map((el: any, index) => (
+				<option
+					key={index}
+					value={el.id}
+					style={{ textTransform: "uppercase" }}>
+					{el.ward_no}
+				</option>
+			))}
+		</select>
+		{errors?.ward_id && (
+			<div className="invalid-feedback">{errors.ward_id[0]}</div>
+		)}
+		{errors && <div className="valid-feedback">Looks good!</div>}
+	</div>
+	<hr />
+	{
+		formData.data.map((el:any,index) => {
+			return (
+				<div className="row">
+				
+	<div className="col-md-12">
+		<label htmlFor="holding_no" className="form-label">
+		হোল্ডিং নাম্বার 
+		</label>
+		<input 
+		className={
+				errors
+					? errors.holding_no
+						? `form-control is-invalid`
+						: `form-control is-valid`
+					: "form-control"
+			}
+			id="holding_no"
+			name={`${index}-holding_no`}
+			onChange={handleChangeMany}
+			value={el.holding_no}>
+		</input>
 		
-			<div className="col-md-12">
-				<label htmlFor="non_citizen_id" className="form-label">
-				নন হোল্ডিং নাগরিক 
-				</label>
-				<select
-					className={
-						errors
-							? errors.non_citizen_id
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="non_citizen_id"
-					name="non_citizen_id"
-					onChange={handleSelect}
-					value={formData.non_citizen_id}>
-					<option value="">Please Select</option>
-					{citizens.map((el: any, index) => (
-						<option
-							key={index}
-							value={el.id}
-							style={{ textTransform: "uppercase" }}>
-							{el.license_no}
-						</option>
-					))}
-				</select>
-				{errors?.non_citizen_id && (
-					<div className="invalid-feedback">{errors.non_citizen_id[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
+		{errors?.holding_no && (
+			<div className="invalid-feedback">{errors.holding_no[0]}</div>
+		)}
+		{errors && <div className="valid-feedback">Looks good!</div>}
+	</div>
+	<div className="col-md-4">
+		<label htmlFor="current_year" className="form-label">
+	অর্থ বছর
+		</label>
+		<input
+			type="date"
+			className={
+				errors
+					? errors.current_year
+						? `form-control is-invalid`
+						: `form-control is-valid`
+					: "form-control"
+			}
+			id="current_year"
+		
+			name={`${index}-current_year`}
+			onChange={handleChangeMany}
+			value={el.current_year}
+		/>
+		{errors?.current_year && (
+			<div className="invalid-feedback">{errors.current_year[0]}</div>
+		)}
+		{errors && <div className="valid-feedback">Looks good!</div>}
+	</div>
+	<div className="col-md-4">
+		<label htmlFor="amount" className="form-label">
+		পরমাণ 
+		</label>
+		<input
+			type="text"
+			className={
+				errors
+					? errors.amount
+						? `form-control is-invalid`
+						: `form-control is-valid`
+					: "form-control"
+			}
+			id="amount"
+		
+			name={`${index}-amount`}
+			onChange={handleChangeMany}
+			value={el.amount}
+		/>
+		{errors?.amount && (
+			<div className="invalid-feedback">{errors.amount[0]}</div>
+		)}
+		{errors && <div className="valid-feedback">Looks good!</div>}
+	</div>
+	<div className="col-md-12">
+		<label htmlFor="note" className="form-label">
+			নোট
+		</label>
+		<textarea
+		
+			className={
+				errors
+					? errors.note
+						? `form-control is-invalid`
+						: `form-control is-valid`
+					: "form-control"
+			}
+			id="note"
+			name={`${index}-note`}
+			
+			onChange={handleTextAreaChangeMany}
+			value={el.note}
+	>
+	</textarea>
+		{errors?.note && (
+			<div className="invalid-feedback">{errors.note[0]}</div>
+		)}
+		{errors && <div className="valid-feedback">Looks good!</div>}
+	</div>
 	
-		
 
-			<div className="text-center">
-				<button type="submit" className="btn btn-primary me-2">
-					Submit
-				</button>
-				<button
-					type="button"
-					onClick={resetFunction}
-					className="btn btn-secondary">
-					Reset
-				</button>
-			</div>
-		</form>
+
+	{/* <div className="col-md-12">
+		<label htmlFor="citizen_id" className="form-label">
+		নাগরিক
+		</label>
+		<select
+			className={
+				errors
+					? errors.citizen_id
+						? `form-control is-invalid`
+						: `form-control is-valid`
+					: "form-control"
+			}
+			id="citizen_id"
+			name={`${index}-citizen_id`}
+		
+			onChange={handleSelectMany}
+			value={el.citizen_id}>
+			<option value="">Please Select</option>
+			{citizens.map((el: any, index) => (
+				<option
+					key={index}
+					value={el.id}
+					style={{ textTransform: "uppercase" }}>
+					{el.thana_head_name}
+				</option>
+			))}
+		</select>
+		{errors?.citizen_id && (
+			<div className="invalid-feedback">{errors.citizen_id[0]}</div>
+		)}
+		{errors && <div className="valid-feedback">Looks good!</div>}
+	</div> */}
+<hr />
+<hr />
+<hr />
+
+				</div>
+			)
+		})
+	}
+
+<div>
+<button type="button" className="btn btn-primary" onClick={addMore}>+</button>
+<button type="button" className="btn btn-primary" onClick={remove}>-</button>
+
+</div>
+
+
+
+	<div className="text-center">
+		<button type="submit" className="btn btn-primary me-2">
+			Submit
+		</button>
+		<button
+			type="button"
+			onClick={resetFunction}
+			className="btn btn-secondary">
+			Reset
+		</button>
+	</div>
+</form>
 	);
 };
 

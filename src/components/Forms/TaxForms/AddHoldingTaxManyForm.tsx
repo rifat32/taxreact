@@ -418,7 +418,7 @@ return
 			
 		
 		
-			<div className="col-md-12">
+			{/* <div className="col-md-12">
 				<label htmlFor="citizen_id" className="form-label">
 				নাগরিক
 				</label>
@@ -449,7 +449,7 @@ return
 					<div className="invalid-feedback">{errors.citizen_id[0]}</div>
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
+			</div> */}
 <hr />
 <hr />
 <hr />

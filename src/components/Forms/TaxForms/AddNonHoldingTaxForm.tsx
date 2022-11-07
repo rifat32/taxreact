@@ -263,7 +263,7 @@ const invalidInputHandler = (error:any) => {
 				অর্থ বছর
 				</label>
 				<input
-					type="text"
+					type="date"
 					className={
 						errors
 							? errors.current_year
