@@ -60,6 +60,7 @@ import ListStructurePage from "./pages/AdminPages/ElectionArea/ListStructurePage
 import AddStructurePage from "./pages/AdminPages/ElectionArea/AddStructurePage";
 import CasePrintPage from "./pages/AdminPages/VillageCourt/CasePrint";
 import AddHoldingTaxManyPage from "./pages/AdminPages/Taxes/AddHoldingTaxManyPage";
+import AddNonHoldingTaxManyPage from "./pages/AdminPages/Taxes/AddNonHoldingTaxManyPage";
 
 export const RouteData: RouteInterface[] = [
 	{
@@ -305,6 +306,12 @@ export const RouteData: RouteInterface[] = [
 			exact: false,
 			component: AddHoldingTaxManyPage,
 		},
+		{
+			path: ROUTE_LIST.createNonHoldingTaxMany,
+			exact: false,
+			component: AddNonHoldingTaxManyPage,
+		},
+		
 		{
 			path: ROUTE_LIST.listHoldingTax,
 			exact: true,

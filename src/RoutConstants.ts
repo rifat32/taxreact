@@ -35,6 +35,7 @@ export enum ROUTE_LIST {
     createHoldingTaxMany="/admin/holding-tax-many/create",
     listHoldingTax="/admin/holding-tax",
     createNonHoldingTax="/admin/non-holding-tax/create",
+    createNonHoldingTaxMany="/admin/non-holding-tax-many/create",
     listNonHoldingTax="/admin/non-holding-tax",
     createHoldingTaxPayment="/admin/holding-tax-payment/create",
     listHoldingTaxPayment="/admin/holding-tax-payment",

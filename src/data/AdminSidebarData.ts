@@ -134,9 +134,15 @@ export const adminSideBarData: NavInterface[] = [
 				link: ROUTE_LIST.createHoldingTaxMany,
 				permissions: [],
 			},
+			
 			{
 				name: sidebarLang.non_holding_tax,
 				link: ROUTE_LIST.listNonHoldingTax,
+				permissions: [],
+			},
+			{
+				name: "নন হোল্ডিং  ট্যাক্স একাধিক এড করুন",
+				link: ROUTE_LIST.createNonHoldingTaxMany,
 				permissions: [],
 			},
 			
