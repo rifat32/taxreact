@@ -327,6 +327,12 @@ const AddServiceForm: React.FC<UpdateFormInterface> = (props) => {
 			.then((response: any) => {
 				console.log(response);
 				setUnions(response.data.data);
+				if(props.type !== "update") {
+					setFormData({...formData,union_id:response.data.data[0]?.id})
+					loadWards(response.data.data[0]?.id);
+			loadSubDistricts(response.data.data[0]?.id)
+				}
+				
 			})
 			.catch((error) => {
 				console.log(error.response);
@@ -552,6 +558,8 @@ return {
 			 setFormData(props.value);
 			console.log(props.value)
 			loadWards(props.value.union_id)
+		
+			loadSubDistricts(props.value.union_id)
 			loadUnions();
 		loadDistricts();
 		}
