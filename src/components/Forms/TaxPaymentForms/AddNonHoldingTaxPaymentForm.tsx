@@ -6,7 +6,7 @@ import { UpdateFormInterface } from "../../../interfaces/UpdateFormInterfaced";
 import { ErrorMessage } from "../../../utils/ErrorMessage";
 
 interface FormData {
-
+	ward_id: string;
 	payment_for:string;
 	amount:string;
 	current_year:string;
@@ -14,6 +14,7 @@ interface FormData {
 	method_id:string;
 	non_citizen_id:string;
 	due:string;
+	non_holding_no:string;
 
 	
 }
@@ -26,7 +27,9 @@ const AddNonHoldingTaxPaymentForm: React.FC<UpdateFormInterface> = (props) => {
 		union_id:"",
 		non_citizen_id:"",
 		method_id:"",
-        due:""
+        due:"",
+		ward_id:"",
+		non_holding_no:""
 	
 	});
 	
@@ -36,7 +39,7 @@ const AddNonHoldingTaxPaymentForm: React.FC<UpdateFormInterface> = (props) => {
 	const [methods, setMethods] = useState([]);
 	const [wards, setWards] = useState([]);
 	const [citizens, setCitizens] = useState([]);
-	
+
 
 	useEffect(() => {
 		loadUnions();
@@ -60,6 +63,10 @@ const AddNonHoldingTaxPaymentForm: React.FC<UpdateFormInterface> = (props) => {
 			.then((response: any) => {
 				console.log(response);
 				setUnions(response.data.data);
+				if(props.type !== "update") {
+					setFormData({...formData,union_id:response.data.data[0]?.id})
+					loadWards(response.data.data[0]?.id );
+				}
 			})
 			.catch((error) => {
 				console.log(error.response);
@@ -78,7 +85,7 @@ const AddNonHoldingTaxPaymentForm: React.FC<UpdateFormInterface> = (props) => {
 	};
 	const loadCitizens = (unionId:string) => {
 		apiClient()
-			.get(`${BACKENDAPI}/v1.0/nonholding-citizens/unions/${unionId}`)
+			.get(`${BACKENDAPI}/v1.0/nonholding-citizens/wards/${unionId}`)
 			.then((response: any) => {
 				console.log("dddd",response.data.data);
 				setCitizens(response.data.data);
@@ -109,6 +116,9 @@ const invalidInputHandler = (error:any) => {
 	const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 		if(e.target.name == "union_id"){
+			loadWards(e.target.value );
+		  }
+		if(e.target.name == "ward_id"){
 			loadCitizens(e.target.value);
 		  }
 	
@@ -123,7 +133,9 @@ const invalidInputHandler = (error:any) => {
 		union_id:"",
 		non_citizen_id:"",
 		method_id:"",
-        due:""
+        due:"",
+		ward_id:"",
+		non_holding_no:""
 		});
 	};
 	const handleSubmit = (e: React.FormEvent) => {
@@ -156,8 +168,8 @@ const invalidInputHandler = (error:any) => {
 	useEffect(() => {
 		if (props.type == "update") {
 			setFormData(props.value);
-		
-			loadCitizens(props.value.union_id)
+			loadWards(props.value.union_id)
+			loadCitizens(props.value.ward_id)
 		}
 	}, []);
 	const updateData = () => {
@@ -214,31 +226,84 @@ const invalidInputHandler = (error:any) => {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
+			<div className="col-md-12">
+				<label htmlFor="union_id" className="form-label">
+					ওয়ার্ড
+				</label>
+				<select
+					className={
+						errors
+							? errors.ward_id
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="ward_id"
+					name="ward_id"
+					onChange={handleSelect}
+					value={formData.ward_id}>
+					<option value="">Please Select</option>
+					{wards.map((el: any, index) => (
+						<option
+							key={index}
+							value={el.id}
+							style={{ textTransform: "uppercase" }}>
+							{el.ward_no}
+						</option>
+					))}
+				</select>
+				{errors?.ward_id && (
+					<div className="invalid-feedback">{errors.ward_id[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
 			
 			<div className="col-md-4">
+				<label htmlFor="non_holding_no" className="form-label">
+				নন হোল্ডিং নং
+				</label>
+				<input
+					type="text"
+					className={
+						errors
+							? errors.non_holding_no
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="non_holding_no"
+					name="non_holding_no"
+					onChange={handleChange}
+					value={formData.non_holding_no}
+				/>
+				{errors?.non_holding_no && (
+					<div className="invalid-feedback">{errors.non_holding_no[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			<div className="col-md-4">
 				<label htmlFor="current_year" className="form-label">
-				বছরের জন্য অর্থ প্রদান
+				অর্থ বছর
 				</label>
 				<input
 					type="date"
 					className={
 						errors
-							? errors.payment_for
+							? errors.current_year
 								? `form-control is-invalid`
 								: `form-control is-valid`
 							: "form-control"
 					}
-					id="payment_for"
-					name="payment_for"
+					id="current_year"
+					name="current_year"
 					onChange={handleChange}
-					value={formData.payment_for}
+					value={formData.current_year}
 				/>
-				{errors?.payment_for && (
-					<div className="invalid-feedback">{errors.payment_for[0]}</div>
+				{errors?.current_year && (
+					<div className="invalid-feedback">{errors.current_year[0]}</div>
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
-		
 			<div className="col-md-4">
 				<label htmlFor="amount" className="form-label">
 				পরিমাণ
@@ -259,84 +324,6 @@ const invalidInputHandler = (error:any) => {
 				/>
 				{errors?.amount && (
 					<div className="invalid-feedback">{errors.amount[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
-			<div className="col-md-4">
-				<label htmlFor="due" className="form-label">
-				বকেয়া 
-				</label>
-				<input
-					type="text"
-					className={
-						errors
-							? errors.due
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="due"
-					name="due"
-					onChange={handleChange}
-					value={formData.due}
-				/>
-				{errors?.due && (
-					<div className="invalid-feedback">{errors.due[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
-			<div className="col-md-4">
-				<label htmlFor="current_year" className="form-label">
-				অর্থ বছর
-				</label>
-				<input
-					type="text"
-					className={
-						errors
-							? errors.current_year
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="current_year"
-					name="current_year"
-					onChange={handleChange}
-					value={formData.current_year}
-				/>
-				{errors?.current_year && (
-					<div className="invalid-feedback">{errors.current_year[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
-		
-			<div className="col-md-12">
-				<label htmlFor="non_citizen_id" className="form-label">
-				নন হোল্ডিং নাগরিক 
-				</label>
-				<select
-					className={
-						errors
-							? errors.non_citizen_id
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="non_citizen_id"
-					name="non_citizen_id"
-					onChange={handleSelect}
-					value={formData.non_citizen_id}>
-					<option value="">Please Select</option>
-					{citizens.map((el: any, index) => (
-						<option
-							key={index}
-							value={el.id}
-							style={{ textTransform: "uppercase" }}>
-							{el.license_no}
-						</option>
-					))}
-				</select>
-				{errors?.non_citizen_id && (
-					<div className="invalid-feedback">{errors.non_citizen_id[0]}</div>
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
@@ -371,6 +358,88 @@ const invalidInputHandler = (error:any) => {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
+			<div className="col-md-4">
+				<label htmlFor="current_year" className="form-label">
+				বছরের জন্য অর্থ প্রদান
+				</label>
+				<input
+					type="date"
+					className={
+						errors
+							? errors.payment_for
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="payment_for"
+					name="payment_for"
+					onChange={handleChange}
+					value={formData.payment_for}
+				/>
+				{errors?.payment_for && (
+					<div className="invalid-feedback">{errors.payment_for[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+		
+		
+			<div className="col-md-4">
+				<label htmlFor="due" className="form-label">
+				বকেয়া 
+				</label>
+				<input
+					type="text"
+					className={
+						errors
+							? errors.due
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="due"
+					name="due"
+					onChange={handleChange}
+					value={formData.due}
+				/>
+				{errors?.due && (
+					<div className="invalid-feedback">{errors.due[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			
+		
+			<div className="col-md-12">
+				<label htmlFor="non_citizen_id" className="form-label">
+				নন হোল্ডিং নাগরিক 
+				</label>
+				<select
+					className={
+						errors
+							? errors.non_citizen_id
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="non_citizen_id"
+					name="non_citizen_id"
+					onChange={handleSelect}
+					value={formData.non_citizen_id}>
+					<option value="">Please Select</option>
+					{citizens.map((el: any, index) => (
+						<option
+							key={index}
+							value={el.id}
+							style={{ textTransform: "uppercase" }}>
+							{el.license_no}
+						</option>
+					))}
+				</select>
+				{errors?.non_citizen_id && (
+					<div className="invalid-feedback">{errors.non_citizen_id[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+		
 		
 
 			<div className="text-center">

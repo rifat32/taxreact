@@ -8,6 +8,8 @@ import { ErrorMessage } from "../../../utils/ErrorMessage";
 interface FormData {
 	
 	payment_for:string;
+	ward_id: string;
+	holding_no:string
 	amount:string;
 	current_year:string;
 	union_id:string;
@@ -24,6 +26,8 @@ const AddHoldingTaxPaymentForm: React.FC<UpdateFormInterface> = (props) => {
 		union_id:"",
 		citizen_id:"",
 		method_id:"",
+		ward_id:"",
+		holding_no:""
 	
 	});
 	
@@ -40,12 +44,30 @@ const AddHoldingTaxPaymentForm: React.FC<UpdateFormInterface> = (props) => {
 		loadMethods();
 	}, []);
 	// pagination required
+	
 	const loadUnions = () => {
 		apiClient()
 			.get(`${BACKENDAPI}/v1.0/unions/all`)
 			.then((response: any) => {
 				console.log(response);
 				setUnions(response.data.data);
+				if(props.type !== "update") {
+					setFormData({...formData,union_id:response.data.data[0]?.id})
+					loadWards(response.data.data[0]?.id );
+				}
+			})
+			.catch((error) => {
+				console.log(error.response);
+			});
+	};
+	const [wards, setWards] = useState([]);
+	const loadWards = (unionId:string) => {
+		apiClient()
+			.get(`${BACKENDAPI}/v1.0/wards/unions/${unionId}`)
+			.then((response: any) => {
+				console.log("dddd",response.data.data);
+				setWards(response.data.data);
+				
 			})
 			.catch((error) => {
 				console.log(error.response);
@@ -65,7 +87,7 @@ const AddHoldingTaxPaymentForm: React.FC<UpdateFormInterface> = (props) => {
 
 	const loadCitizens = (unionId:string) => {
 		apiClient()
-			.get(`${BACKENDAPI}/v1.0/citizens/unions/${unionId}`)
+			.get(`${BACKENDAPI}/v1.0/citizens/wards/${unionId}`)
 			.then((response: any) => {
 				console.log("dddd",response.data.data);
 				setCitizens(response.data.data);
@@ -96,9 +118,11 @@ const invalidInputHandler = (error:any) => {
 	const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 		if(e.target.name == "union_id"){
+			loadWards(e.target.value );
+		  }
+		if(e.target.name == "ward_id"){
 			loadCitizens(e.target.value );
 		  }
-	
 		
 				  
 	};
@@ -110,6 +134,9 @@ const invalidInputHandler = (error:any) => {
 			union_id:"",
 			citizen_id:"",
 			method_id:"",
+			ward_id:"",
+			holding_no:""
+			
 		});
 	};
 	const handleSubmit = (e: React.FormEvent) => {
@@ -142,7 +169,8 @@ const invalidInputHandler = (error:any) => {
 	useEffect(() => {
 		if (props.type == "update") {
 			setFormData(props.value);
-			loadCitizens(props.value.union_id)
+			loadWards(props.value.union_id)
+			loadCitizens(props.value.ward_id)
 		}
 	}, []);
 	const updateData = () => {
@@ -199,6 +227,138 @@ const invalidInputHandler = (error:any) => {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
+			<div className="col-md-12">
+				<label htmlFor="union_id" className="form-label">
+					ওয়ার্ড
+				</label>
+				<select
+					className={
+						errors
+							? errors.ward_id
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="ward_id"
+					name="ward_id"
+					onChange={handleSelect}
+					value={formData.ward_id}>
+					<option value="">Please Select</option>
+					{wards.map((el: any, index) => (
+						<option
+							key={index}
+							value={el.id}
+							style={{ textTransform: "uppercase" }}>
+							{el.ward_no}
+						</option>
+					))}
+				</select>
+				{errors?.ward_id && (
+					<div className="invalid-feedback">{errors.ward_id[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			<div className="col-md-12">
+				<label htmlFor="holding_no" className="form-label">
+				হোল্ডিং নাম্বার 
+				</label>
+				<input 
+				className={
+						errors
+							? errors.holding_no
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="holding_no"
+					name="holding_no"
+					onChange={handleChange}
+					value={formData.holding_no}>
+				</input>
+				
+				{errors?.holding_no && (
+					<div className="invalid-feedback">{errors.holding_no[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			<div className="col-md-4">
+				<label htmlFor="current_year" className="form-label">
+			অর্থ বছর
+				</label>
+				<input
+					type="date"
+					className={
+						errors
+							? errors.current_year
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="current_year"
+					name="current_year"
+					onChange={handleChange}
+					value={formData.current_year}
+				/>
+				{errors?.current_year && (
+					<div className="invalid-feedback">{errors.current_year[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			<div className="col-md-4">
+				<label htmlFor="amount" className="form-label">
+				পরমাণ 
+				</label>
+				<input
+					type="text"
+					className={
+						errors
+							? errors.amount
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="amount"
+					name="amount"
+					onChange={handleChange}
+					value={formData.amount}
+				/>
+				{errors?.amount && (
+					<div className="invalid-feedback">{errors.amount[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+			<div className="col-md-12">
+				<label htmlFor="method_id" className="form-label">
+					পরিশোধের পদ্ধতি
+				</label>
+				<select
+					className={
+						errors
+							? errors.method_id
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="method_id"
+					name="method_id"
+					onChange={handleSelect}
+					value={formData.method_id}>
+					<option value="">Please Select</option>
+					{methods.map((el: any, index) => (
+						<option
+							key={index}
+							value={el.id}
+							style={{ textTransform: "uppercase" }}>
+							{el.name}
+						</option>
+					))}
+				</select>
+				{errors?.method_id && (
+					<div className="invalid-feedback">{errors.method_id[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+			</div>
+		
 			<div className="col-md-4">
 				<label htmlFor="current_year" className="form-label">
 				বছরের জন্য অর্থ প্রদান
@@ -223,52 +383,8 @@ const invalidInputHandler = (error:any) => {
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
 		
-			<div className="col-md-4">
-				<label htmlFor="amount" className="form-label">
-				পরমাণ 
-				</label>
-				<input
-					type="text"
-					className={
-						errors
-							? errors.amount
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="amount"
-					name="amount"
-					onChange={handleChange}
-					value={formData.amount}
-				/>
-				{errors?.amount && (
-					<div className="invalid-feedback">{errors.amount[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
-			<div className="col-md-4">
-				<label htmlFor="current_year" className="form-label">
-			অর্থ বছর
-				</label>
-				<input
-					type="text"
-					className={
-						errors
-							? errors.current_year
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="current_year"
-					name="current_year"
-					onChange={handleChange}
-					value={formData.current_year}
-				/>
-				{errors?.current_year && (
-					<div className="invalid-feedback">{errors.current_year[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
+			
+		
 		
 			<div className="col-md-12">
 				<label htmlFor="citizen_id" className="form-label">
@@ -301,38 +417,7 @@ const invalidInputHandler = (error:any) => {
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</div>
-			<div className="col-md-12">
-				<label htmlFor="method_id" className="form-label">
-					পরিশোধের পদ্ধতি 
-				</label>
-				<select
-					className={
-						errors
-							? errors.method_id
-								? `form-control is-invalid`
-								: `form-control is-valid`
-							: "form-control"
-					}
-					id="method_id"
-					name="method_id"
-					onChange={handleSelect}
-					value={formData.method_id}>
-					<option value="">Please Select</option>
-					{methods.map((el: any, index) => (
-						<option
-							key={index}
-							value={el.id}
-							style={{ textTransform: "uppercase" }}>
-							{el.name}
-						</option>
-					))}
-				</select>
-				{errors?.method_id && (
-					<div className="invalid-feedback">{errors.method_id[0]}</div>
-				)}
-				{errors && <div className="valid-feedback">Looks good!</div>}
-			</div>
-		
+	
 
 			<div className="text-center">
 				<button type="submit" className="btn btn-primary me-2">
