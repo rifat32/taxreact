@@ -84,6 +84,24 @@ const ListServicesPageComponent: React.FC = () => {
 				});
 
 	}
+	const changeStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const statusInfoArray = e.target.value.split("-")
+		let id = statusInfoArray[0]
+		let status = statusInfoArray[1]
+		apiClient()
+		.post(`${BACKENDAPI}/v1.0/services/change/status`,{
+			status,
+			id
+		})
+		.then((response: any) => {
+		
+			
+		})
+		.catch((error) => {
+			setLoading(false)
+			console.log(error.response);
+		});
+	}
 	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if(e.target.value) {
 			setLoading(true)
@@ -116,8 +134,61 @@ const ListServicesPageComponent: React.FC = () => {
 				console.log(error.response);
 			});
 		}
+	}
+
+	const handleStatus = (value:string) => {
+		if(value) {
+			setLoading(true)
+			apiClient()
+				.get(`${BACKENDAPI}/v1.0/services/search/status/${value}`)
+				.then((response: any) => {
+					setLoading(false)
+					console.log(response.data.data);
+					setData([ ...response.data.data.data]);
+					setNextPageLink(response.data.data.next_page_url);
+					setPrevPageLink(response.data.data.prev_page_url);
+				})
+				.catch((error) => {
+					setLoading(false)
+					console.log(error.response);
+				});
+		} else {
+			setLoading(true)
+		apiClient()
+			.get(link)
+			.then((response: any) => {
+				setLoading(false)
+				console.log(response.data.data);
+				setData([ ...response.data.data.data]);
+				setNextPageLink(response.data.data.next_page_url);
+				setPrevPageLink(response.data.data.prev_page_url);
+			})
+			.catch((error) => {
+				setLoading(false)
+				console.log(error.response);
+			});
+		}
 	
 	}
+	const statuses = [
+		{
+			name:"pending",
+			translation:"পেন্ডিং"
+		},
+		{
+			name:"in_progress",
+			translation:"প্রক্রিয়াধীন"
+		},
+		{
+			name:"complete",
+			translation:"সম্পন্ন"
+		},
+		{
+			name:"cancelled",
+			translation:"বাতিল"
+		},
+	
+	]
 	return (
 		<>
 			<div className="row">
@@ -127,6 +198,20 @@ const ListServicesPageComponent: React.FC = () => {
 			</div>
 	
 		</div>
+		<div className="row mt-2">
+			<div className="col-6 offset-3">
+
+<button type="button" className="btn btn-success me-1" onClick={() =>handleStatus("")}>সকল</button>
+{
+	statuses.map(el => (<button type="button" className="btn btn-success me-1" onClick={() =>handleStatus(el.name)}>  {el.translation}  </button>))
+}
+
+
+
+			</div>
+	
+		</div>
+		
 			<table className="table">
 				<thead>
 					<tr>
@@ -140,6 +225,8 @@ const ListServicesPageComponent: React.FC = () => {
 						<th scope="col"> জেলা</th>
 						<th scope="col"> ফোন</th>
 						<th scope="col"> এনআইডি</th>
+						<th scope="col"> স্টেটাস</th>
+						
 						<th scope="col">Action</th>
 						
 					</tr>
@@ -159,7 +246,20 @@ const ListServicesPageComponent: React.FC = () => {
 								
 									<td>{el.applicant_phone && el.applicant_phone}</td>
 									<td>{el.applicant_nid && el.applicant_nid}</td>
-									
+									<td>
+
+										<select onChange={changeStatus}>
+											{statuses.map(el2=> {
+												let selected:boolean = false
+												if(el2.name == el.status) {
+                                                     selected = true
+												}
+											return	(<option  selected={selected} value={`${el.id}-${el2.name}`}>
+                                                   {el2.translation}
+												</option>)
+											})}
+										</select>
+									</td>
 									
 									<td>
 										<div className="btn-group">
