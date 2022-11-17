@@ -77,7 +77,10 @@ const ListServicesPageComponent: React.FC = () => {
 		apiClient()
 				.get(`${BACKENDAPI}/v1.0/services/get/invoice/${id}`)
 				.then((response: any) => {
-					printInvoice(response.data.invoice);
+					setTimeout(() => {
+						printInvoice(response.data.invoice);
+					}, 1000);
+					
 				})
 				.catch((error) => {
 					console.log(error.response);
